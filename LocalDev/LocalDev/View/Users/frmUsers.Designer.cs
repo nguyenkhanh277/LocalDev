@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.chkAllGender = new System.Windows.Forms.RadioButton();
             this.chkFemale = new System.Windows.Forms.RadioButton();
@@ -55,8 +54,7 @@
             this.Note = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
-            this.radPanel1.SuspendLayout();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -66,24 +64,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // radPanel1
-            // 
-            this.radPanel1.Controls.Add(this.groupControl2);
-            this.radPanel1.Controls.Add(this.groupControl1);
-            this.radPanel1.Controls.Add(this.btnExcel);
-            this.radPanel1.Controls.Add(this.btnRefresh);
-            this.radPanel1.Controls.Add(this.btnClose);
-            this.radPanel1.Controls.Add(this.btnDelete);
-            this.radPanel1.Controls.Add(this.btnEdit);
-            this.radPanel1.Controls.Add(this.btnAdd);
-            this.radPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanel1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.radPanel1.Location = new System.Drawing.Point(0, 0);
-            this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(1090, 50);
-            this.radPanel1.TabIndex = 0;
             // 
             // groupControl2
             // 
@@ -466,6 +449,22 @@
             this.repositoryItemButtonEdit1.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.groupControl2);
+            this.panelControl1.Controls.Add(this.groupControl1);
+            this.panelControl1.Controls.Add(this.btnExcel);
+            this.panelControl1.Controls.Add(this.btnRefresh);
+            this.panelControl1.Controls.Add(this.btnClose);
+            this.panelControl1.Controls.Add(this.btnDelete);
+            this.panelControl1.Controls.Add(this.btnEdit);
+            this.panelControl1.Controls.Add(this.btnAdd);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(1090, 50);
+            this.panelControl1.TabIndex = 5;
+            // 
             // frmUsers
             // 
             this.Appearance.Options.UseFont = true;
@@ -473,7 +472,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1090, 468);
             this.Controls.Add(this.dgvDuLieu);
-            this.Controls.Add(this.radPanel1);
+            this.Controls.Add(this.panelControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -482,8 +481,6 @@
             this.Text = "Users List";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmUsers_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
-            this.radPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
@@ -495,13 +492,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Telerik.WinControls.UI.RadPanel radPanel1;
+        //private System.Windows.Forms.Panel radPanel1;
         private DevExpress.XtraEditors.SimpleButton btnDelete;
         private DevExpress.XtraEditors.SimpleButton btnEdit;
         private DevExpress.XtraEditors.SimpleButton btnAdd;
@@ -528,5 +527,6 @@
         private System.Windows.Forms.RadioButton chkMale;
         private System.Windows.Forms.RadioButton chkAllGender;
         private System.Windows.Forms.RadioButton chkAllStatus;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
     }
 }
