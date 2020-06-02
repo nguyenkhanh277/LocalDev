@@ -44,7 +44,7 @@
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.dgvDuLieu = new DevExpress.XtraGrid.GridControl();
             this.viewDuLieu = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.ID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Id = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.Username = new DevExpress.XtraGrid.Columns.GridColumn();
             this.FullName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -55,6 +55,8 @@
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnProgram = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAuthority = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -203,7 +205,7 @@
             this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseBackColor = true;
             this.btnClose.Appearance.Options.UseFont = true;
-            this.btnClose.Location = new System.Drawing.Point(998, 5);
+            this.btnClose.Location = new System.Drawing.Point(1243, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
             this.btnClose.TabIndex = 5;
@@ -259,7 +261,7 @@
             this.repositoryItemCheckEdit1,
             this.repositoryItemButtonEdit1,
             this.repositoryItemMemoEdit1});
-            this.dgvDuLieu.Size = new System.Drawing.Size(1090, 418);
+            this.dgvDuLieu.Size = new System.Drawing.Size(1335, 418);
             this.dgvDuLieu.TabIndex = 4;
             this.dgvDuLieu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.viewDuLieu});
@@ -272,7 +274,7 @@
             this.viewDuLieu.Appearance.FocusedCell.Options.UseForeColor = true;
             this.viewDuLieu.ColumnPanelRowHeight = 40;
             this.viewDuLieu.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.ID,
+            this.Id,
             this.Username,
             this.FullName,
             this.Phone,
@@ -293,22 +295,22 @@
             this.viewDuLieu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.viewDuLieu_KeyDown);
             this.viewDuLieu.DoubleClick += new System.EventHandler(this.btnEdit_Click);
             // 
-            // ID
+            // Id
             // 
-            this.ID.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.ID.AppearanceCell.Options.UseFont = true;
-            this.ID.AppearanceCell.Options.UseTextOptions = true;
-            this.ID.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.ID.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.ID.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.ID.AppearanceHeader.Options.UseFont = true;
-            this.ID.AppearanceHeader.Options.UseTextOptions = true;
-            this.ID.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.ID.Caption = "ID";
-            this.ID.ColumnEdit = this.repositoryItemMemoEdit1;
-            this.ID.FieldName = "ID";
-            this.ID.Name = "ID";
-            this.ID.Width = 100;
+            this.Id.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.Id.AppearanceCell.Options.UseFont = true;
+            this.Id.AppearanceCell.Options.UseTextOptions = true;
+            this.Id.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Id.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.Id.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.Id.AppearanceHeader.Options.UseFont = true;
+            this.Id.AppearanceHeader.Options.UseTextOptions = true;
+            this.Id.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Id.Caption = "Id";
+            this.Id.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.Id.FieldName = "Id";
+            this.Id.Name = "Id";
+            this.Id.Width = 100;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -451,6 +453,8 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnProgram);
+            this.panelControl1.Controls.Add(this.btnAuthority);
             this.panelControl1.Controls.Add(this.groupControl2);
             this.panelControl1.Controls.Add(this.groupControl1);
             this.panelControl1.Controls.Add(this.btnExcel);
@@ -462,15 +466,37 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1090, 50);
+            this.panelControl1.Size = new System.Drawing.Size(1335, 50);
             this.panelControl1.TabIndex = 5;
+            // 
+            // btnProgram
+            // 
+            this.btnProgram.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnProgram.Appearance.Options.UseFont = true;
+            this.btnProgram.Location = new System.Drawing.Point(940, 5);
+            this.btnProgram.Name = "btnProgram";
+            this.btnProgram.Size = new System.Drawing.Size(80, 40);
+            this.btnProgram.TabIndex = 11;
+            this.btnProgram.Text = "Program\r\n(F7)";
+            this.btnProgram.Click += new System.EventHandler(this.btnProgram_Click);
+            // 
+            // btnAuthority
+            // 
+            this.btnAuthority.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnAuthority.Appearance.Options.UseFont = true;
+            this.btnAuthority.Location = new System.Drawing.Point(854, 5);
+            this.btnAuthority.Name = "btnAuthority";
+            this.btnAuthority.Size = new System.Drawing.Size(80, 40);
+            this.btnAuthority.TabIndex = 10;
+            this.btnAuthority.Text = "Authority\r\n(F6)";
+            this.btnAuthority.Click += new System.EventHandler(this.btnAuthority_Click);
             // 
             // frmUsers
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1090, 468);
+            this.ClientSize = new System.Drawing.Size(1335, 468);
             this.Controls.Add(this.dgvDuLieu);
             this.Controls.Add(this.panelControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -509,7 +535,7 @@
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraGrid.GridControl dgvDuLieu;
         private DevExpress.XtraGrid.Views.Grid.GridView viewDuLieu;
-        private DevExpress.XtraGrid.Columns.GridColumn ID;
+        private DevExpress.XtraGrid.Columns.GridColumn Id;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
@@ -528,5 +554,7 @@
         private System.Windows.Forms.RadioButton chkAllGender;
         private System.Windows.Forms.RadioButton chkAllStatus;
         private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.SimpleButton btnProgram;
+        private DevExpress.XtraEditors.SimpleButton btnAuthority;
     }
 }

@@ -11,6 +11,8 @@ using DevExpress.XtraEditors;
 using LocalDev.Persistence;
 using LocalDev.Core;
 using LocalDev.Persistence.Repositories;
+using LocalDev.View.AuthorityGroups;
+using LocalDev.View.ProgramFunctionMasters;
 
 namespace LocalDev.View.Users
 {
@@ -53,13 +55,22 @@ namespace LocalDev.View.Users
                 btnRefresh_Click(null, null);
                 return true;
             }
+            else if (e.KeyCode == Keys.F6)
+            {
+                btnAuthority_Click(null, null);
+                return true;
+            }
+            else if (e.KeyCode == Keys.F7)
+            {
+                btnProgram_Click(null, null);
+                return true;
+            }
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
         public frmUsers()
         {
             InitializeComponent();
-
         }
 
         private void frmUsers_Load(object sender, EventArgs e)
@@ -79,7 +90,7 @@ namespace LocalDev.View.Users
             {
                 conditions.Add(UserRepository.SearchConditions.Gender, chkMale.Checked ? GlobalConstants.GenderValue.Male : GlobalConstants.GenderValue.Female);
             }
-            dgvDuLieu.DataSource = _userRepository.GetAllUser(conditions);
+            dgvDuLieu.DataSource = _userRepository.GetAll(conditions);
             Control();
         }
 
@@ -109,15 +120,17 @@ namespace LocalDev.View.Users
         {
             if (XtraMessageBox.Show("Do you want to delete this item?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                _userRepository.DeleteUser(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
-                if (_userRepository.error)
+                _userRepository.Delete(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
+                UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
+                int result = unitOfWork.Complete();
+                if (result > 0)
                 {
-                    XtraMessageBox.Show("Delete failed", "Notification");
-                    return;
+                    Search();
                 }
                 else
                 {
-                    Search();
+                    XtraMessageBox.Show("Delete failed.", "Notification");
+                    return;
                 }
             }
         }
@@ -130,6 +143,18 @@ namespace LocalDev.View.Users
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             Search();
+        }
+
+        private void btnAuthority_Click(object sender, EventArgs e)
+        {
+            frmAuthorityGroup frm = new frmAuthorityGroup();
+            frm.ShowDialog();
+        }
+
+        private void btnProgram_Click(object sender, EventArgs e)
+        {
+            frmProgramFunctionMaster frm = new frmProgramFunctionMaster();
+            frm.ShowDialog();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

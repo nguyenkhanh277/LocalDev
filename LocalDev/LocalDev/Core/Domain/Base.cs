@@ -14,11 +14,6 @@ namespace LocalDev.Core.Domain
         public string EditedBy { get; set; }
         #endregion
 
-        #region Initial and Validate
-        public abstract bool IsValidInformation();
-        public abstract void InitDefaultValues();
-        #endregion
-
         public void CollectInformation(Object model, bool withoutManagementInfo = false, bool withoutNullValue = false, bool withoutZeroValue = false)
         {
             if (

@@ -9,13 +9,13 @@ namespace LocalDev.Core.Repositories
 {
     public interface IUserRepository : IRepository<User>
     {
-        User GetUser(string id);
-        IEnumerable<User> GetAllUser(Dictionary<UserRepository.SearchConditions, object> conditions);
-        void AddUser(User user);
-        void UpdateUser(User user);
-        void DeleteUser(string id);
-        void DeleteUser(User user);
-        void DeleteRangeUser(string ids);
-        void DeleteRangeUser(IEnumerable<User> users);
+        User GetInfo(string id);
+        IEnumerable<User> GetAll(Dictionary<UserRepository.SearchConditions, object> conditions);
+        void Add(User user);
+        void Update(User user);
+        void Delete(string id);
+        void Delete(User user);
+        void DeleteRange(string ids);
+        void DeleteRange(IEnumerable<User> users);
     }
 }

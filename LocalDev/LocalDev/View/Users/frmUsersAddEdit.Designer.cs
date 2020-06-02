@@ -42,7 +42,6 @@
             this.txtAddress = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.txtNote = new DevExpress.XtraEditors.TextEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.chkFemale = new System.Windows.Forms.RadioButton();
             this.chkMale = new System.Windows.Forms.RadioButton();
@@ -50,16 +49,17 @@
             this.chkNoUse = new System.Windows.Forms.RadioButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.txtNote = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFullName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -67,7 +67,7 @@
             this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(265, 518);
+            this.btnClose.Location = new System.Drawing.Point(265, 512);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
             this.btnClose.TabIndex = 17;
@@ -80,7 +80,7 @@
             this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSave.Appearance.Options.UseBackColor = true;
             this.btnSave.Appearance.Options.UseFont = true;
-            this.btnSave.Location = new System.Drawing.Point(179, 518);
+            this.btnSave.Location = new System.Drawing.Point(179, 512);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
             this.btnSave.TabIndex = 16;
@@ -228,32 +228,18 @@
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(45, 456);
+            this.labelControl7.Location = new System.Drawing.Point(45, 452);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(35, 17);
             this.labelControl7.TabIndex = 14;
             this.labelControl7.Text = "Status";
             // 
-            // txtNote
-            // 
-            this.txtNote.EditValue = "";
-            this.txtNote.Location = new System.Drawing.Point(45, 418);
-            this.txtNote.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtNote.Name = "txtNote";
-            this.txtNote.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtNote.Properties.Appearance.Options.UseFont = true;
-            this.txtNote.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtNote.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtNote.Properties.AutoHeight = false;
-            this.txtNote.Size = new System.Drawing.Size(300, 30);
-            this.txtNote.TabIndex = 13;
-            // 
             // labelControl8
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(45, 393);
+            this.labelControl8.Location = new System.Drawing.Point(45, 391);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(29, 17);
@@ -325,10 +311,22 @@
             // 
             this.panelControl2.Controls.Add(this.chkUsing);
             this.panelControl2.Controls.Add(this.chkNoUse);
-            this.panelControl2.Location = new System.Drawing.Point(45, 480);
+            this.panelControl2.Location = new System.Drawing.Point(45, 476);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(300, 30);
             this.panelControl2.TabIndex = 15;
+            // 
+            // txtNote
+            // 
+            this.txtNote.Location = new System.Drawing.Point(45, 415);
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.txtNote.Properties.Appearance.Options.UseFont = true;
+            this.txtNote.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtNote.Properties.AppearanceFocused.Options.UseBackColor = true;
+            this.txtNote.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.txtNote.Size = new System.Drawing.Size(300, 30);
+            this.txtNote.TabIndex = 13;
             // 
             // frmUsersAddEdit
             // 
@@ -337,10 +335,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(390, 568);
+            this.Controls.Add(this.txtNote);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.labelControl7);
-            this.Controls.Add(this.txtNote);
             this.Controls.Add(this.labelControl8);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.txtAddress);
@@ -361,20 +359,20 @@
             this.MaximizeBox = false;
             this.Name = "frmUsersAddEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Category Add/Edit";
+            this.Text = "Add/Edit";
             this.Load += new System.EventHandler(this.frmUsersAddEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFullName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -395,7 +393,6 @@
         private DevExpress.XtraEditors.TextEdit txtAddress;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraEditors.TextEdit txtNote;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private System.Windows.Forms.RadioButton chkFemale;
         private System.Windows.Forms.RadioButton chkMale;
@@ -403,5 +400,6 @@
         private System.Windows.Forms.RadioButton chkNoUse;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.MemoEdit txtNote;
     }
 }

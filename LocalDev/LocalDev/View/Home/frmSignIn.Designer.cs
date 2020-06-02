@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.linkIForgetMyPassword = new DevExpress.XtraEditors.HyperlinkLabelControl();
-            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
+            this.chkKeepMeSignedIn = new DevExpress.XtraEditors.CheckEdit();
             this.btnSignIn = new DevExpress.XtraEditors.SimpleButton();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
+            this.txtPassword = new DevExpress.XtraEditors.TextEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.txtUsername = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkKeepMeSignedIn.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // linkIForgetMyPassword
@@ -52,16 +52,16 @@
             this.linkIForgetMyPassword.TabIndex = 7;
             this.linkIForgetMyPassword.Text = "I forgot my password";
             // 
-            // checkEdit1
+            // chkKeepMeSignedIn
             // 
-            this.checkEdit1.Location = new System.Drawing.Point(45, 210);
-            this.checkEdit1.Name = "checkEdit1";
-            this.checkEdit1.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.checkEdit1.Properties.Appearance.Options.UseFont = true;
-            this.checkEdit1.Properties.AutoHeight = false;
-            this.checkEdit1.Properties.Caption = "Keep me signed in";
-            this.checkEdit1.Size = new System.Drawing.Size(300, 30);
-            this.checkEdit1.TabIndex = 5;
+            this.chkKeepMeSignedIn.Location = new System.Drawing.Point(45, 210);
+            this.chkKeepMeSignedIn.Name = "chkKeepMeSignedIn";
+            this.chkKeepMeSignedIn.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.chkKeepMeSignedIn.Properties.Appearance.Options.UseFont = true;
+            this.chkKeepMeSignedIn.Properties.AutoHeight = false;
+            this.chkKeepMeSignedIn.Properties.Caption = "Keep me signed in";
+            this.chkKeepMeSignedIn.Size = new System.Drawing.Size(300, 30);
+            this.chkKeepMeSignedIn.TabIndex = 5;
             // 
             // btnSignIn
             // 
@@ -76,18 +76,19 @@
             this.btnSignIn.Text = "Sign In";
             this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
-            // textEdit2
+            // txtPassword
             // 
-            this.textEdit2.Location = new System.Drawing.Point(45, 173);
-            this.textEdit2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.textEdit2.Properties.Appearance.Options.UseFont = true;
-            this.textEdit2.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.textEdit2.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.textEdit2.Properties.AutoHeight = false;
-            this.textEdit2.Size = new System.Drawing.Size(300, 30);
-            this.textEdit2.TabIndex = 4;
+            this.txtPassword.Location = new System.Drawing.Point(45, 173);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtPassword.Properties.Appearance.Options.UseFont = true;
+            this.txtPassword.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtPassword.Properties.AppearanceFocused.Options.UseBackColor = true;
+            this.txtPassword.Properties.AutoHeight = false;
+            this.txtPassword.Size = new System.Drawing.Size(300, 30);
+            this.txtPassword.TabIndex = 4;
+            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // labelControl3
             // 
@@ -117,19 +118,20 @@
             this.labelControl2.TabIndex = 0;
             this.labelControl2.Text = "Project Name";
             // 
-            // textEdit1
+            // txtUsername
             // 
-            this.textEdit1.EditValue = "";
-            this.textEdit1.Location = new System.Drawing.Point(45, 110);
-            this.textEdit1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.textEdit1.Properties.Appearance.Options.UseFont = true;
-            this.textEdit1.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.textEdit1.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.textEdit1.Properties.AutoHeight = false;
-            this.textEdit1.Size = new System.Drawing.Size(300, 30);
-            this.textEdit1.TabIndex = 2;
+            this.txtUsername.EditValue = "";
+            this.txtUsername.Location = new System.Drawing.Point(45, 110);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtUsername.Properties.Appearance.Options.UseFont = true;
+            this.txtUsername.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtUsername.Properties.AppearanceFocused.Options.UseBackColor = true;
+            this.txtUsername.Properties.AutoHeight = false;
+            this.txtUsername.Size = new System.Drawing.Size(300, 30);
+            this.txtUsername.TabIndex = 2;
+            this.txtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsername_KeyDown);
             // 
             // labelControl1
             // 
@@ -149,12 +151,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(390, 368);
             this.Controls.Add(this.linkIForgetMyPassword);
-            this.Controls.Add(this.checkEdit1);
+            this.Controls.Add(this.chkKeepMeSignedIn);
             this.Controls.Add(this.btnSignIn);
-            this.Controls.Add(this.textEdit2);
+            this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl2);
-            this.Controls.Add(this.textEdit1);
+            this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.labelControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -163,9 +165,10 @@
             this.Name = "frmSignIn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sign In";
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            this.Load += new System.EventHandler(this.frmSignIn_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.chkKeepMeSignedIn.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,12 +177,12 @@
         #endregion
 
         private DevExpress.XtraEditors.HyperlinkLabelControl linkIForgetMyPassword;
-        private DevExpress.XtraEditors.CheckEdit checkEdit1;
+        private DevExpress.XtraEditors.CheckEdit chkKeepMeSignedIn;
         private DevExpress.XtraEditors.SimpleButton btnSignIn;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
+        private DevExpress.XtraEditors.TextEdit txtPassword;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit txtUsername;
         private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }

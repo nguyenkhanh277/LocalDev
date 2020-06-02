@@ -57,6 +57,10 @@ namespace LocalDev.Persistence
 
         #region Tables
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<AuthorityGroup> AuthorityGroups { get; set; }
+        public virtual DbSet<ProgramFunctionMaster> ProgramFunctionMasters { get; set; }
+        public virtual DbSet<ProgramFunctionAuthority> ProgramFunctionAuthoritys { get; set; }
+        public virtual DbSet<UserAuthority> UserAuthoritys { get; set; }
         #endregion
 
     }
