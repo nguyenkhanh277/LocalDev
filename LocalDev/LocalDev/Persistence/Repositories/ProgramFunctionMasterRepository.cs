@@ -44,7 +44,7 @@ namespace LocalDev.Persistence.Repositories
             var query = from x in projectDataContext.ProgramFunctionMasters
                         select x;
 
-            if (!query.Any()) return null;
+            if (!query.Any()) return new List<ProgramFunctionMaster>();
             if (conditions != null)
             {
                 #region Check conditions
@@ -67,11 +67,11 @@ namespace LocalDev.Persistence.Repositories
                     bool value = (bool)conditions[SearchConditions.SortProgramName_Desc];
                     if (value)
                     {
-                        query = query.OrderByDescending(_ => _.ProgramName);
+                        query = query.OrderByDescending(_ => _.ProgramName).ThenByDescending(_ => _.FunctionName);
                     }
                     else
                     {
-                        query = query.OrderBy(_ => _.ProgramName);
+                        query = query.OrderBy(_ => _.ProgramName).ThenBy(_ => _.FunctionName);
                     }
                 }
                 #endregion

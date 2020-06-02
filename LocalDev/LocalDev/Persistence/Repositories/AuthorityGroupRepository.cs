@@ -10,6 +10,7 @@ namespace LocalDev.Persistence.Repositories
 {
     public class AuthorityGroupRepository : Repository<AuthorityGroup>, IAuthorityGroupRepository
     {
+        public int? id = -1;
         public bool error = false;
         public string errorMessage = "";
 
@@ -32,10 +33,10 @@ namespace LocalDev.Persistence.Repositories
         }
         #endregion
 
-        public AuthorityGroup GetInfo(int id)
+        public AuthorityGroup GetInfo(int? id)
         {
             ProjectDataContext projectDataContext = new ProjectDataContext();
-            return projectDataContext.AuthorityGroups.OrderBy(_ => _.Id).SingleOrDefault(_ => _.Id.Equals(id));
+            return projectDataContext.AuthorityGroups.OrderBy(_ => _.Id).SingleOrDefault(_ => _.Id == id);
         }
 
         public IEnumerable<AuthorityGroup> GetAll(Dictionary<SearchConditions, object> conditions)
@@ -44,14 +45,14 @@ namespace LocalDev.Persistence.Repositories
             var query = from x in projectDataContext.AuthorityGroups
                         select x;
 
-            if (!query.Any()) return null;
+            if (!query.Any()) return new List<AuthorityGroup>();
             if (conditions != null)
             {
                 #region Check conditions
                 if (conditions.Keys.Contains(SearchConditions.Id))
                 {
-                    string value = conditions[SearchConditions.Id].ToString();
-                    query = query.Where(_ => _.Id.Equals(value));
+                    int? value = (int)conditions[SearchConditions.Id];
+                    query = query.Where(_ => _.Id == value);
                 }
                 if (conditions.Keys.Contains(SearchConditions.Status))
                 {
@@ -99,7 +100,8 @@ namespace LocalDev.Persistence.Repositories
             {
                 authorityGroup.CreatedAt = DateTime.Now;
                 authorityGroup.CreatedBy = GlobalConstants.Username;
-                ProjectDataContext.Set<AuthorityGroup>().Add(authorityGroup);
+                var raw = ProjectDataContext.Set<AuthorityGroup>().Add(authorityGroup);
+                this.id = raw.Id;
             }
             catch (Exception ex)
             {
@@ -115,7 +117,7 @@ namespace LocalDev.Persistence.Repositories
             try
             {
                 var query = from x in ProjectDataContext.AuthorityGroups
-                            where x.Id.Equals(authorityGroup.Id)
+                            where x.Id == authorityGroup.Id
                             select x;
                 if (query.Any())
                 {
@@ -123,6 +125,7 @@ namespace LocalDev.Persistence.Repositories
                     raw.CollectInformation(authorityGroup);
                     raw.EditedAt = DateTime.Now;
                     raw.EditedBy = GlobalConstants.Username;
+                    this.id = raw.Id;
                 }
             }
             catch (Exception ex)
@@ -132,13 +135,13 @@ namespace LocalDev.Persistence.Repositories
             }
         }
 
-        public void Delete(int id)
+        public void Delete(int? id)
         {
             error = false;
             errorMessage = "";
             try
             {
-                var AuthorityGroup = ProjectDataContext.AuthorityGroups.Where(_ => _.Id.Equals(id)).SingleOrDefault();
+                var AuthorityGroup = ProjectDataContext.AuthorityGroups.Where(_ => _.Id == id).SingleOrDefault();
                 Delete(AuthorityGroup);
             }
             catch (Exception ex)

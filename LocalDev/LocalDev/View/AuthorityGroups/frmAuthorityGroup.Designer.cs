@@ -46,7 +46,6 @@
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.btnAssign = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).BeginInit();
@@ -142,7 +141,7 @@
             this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseBackColor = true;
             this.btnClose.Appearance.Options.UseFont = true;
-            this.btnClose.Location = new System.Drawing.Point(1243, 5);
+            this.btnClose.Location = new System.Drawing.Point(1198, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
             this.btnClose.TabIndex = 5;
@@ -198,7 +197,7 @@
             this.repositoryItemCheckEdit1,
             this.repositoryItemButtonEdit1,
             this.repositoryItemMemoEdit1});
-            this.dgvDuLieu.Size = new System.Drawing.Size(1335, 418);
+            this.dgvDuLieu.Size = new System.Drawing.Size(1290, 418);
             this.dgvDuLieu.TabIndex = 4;
             this.dgvDuLieu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.viewDuLieu});
@@ -288,7 +287,6 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.btnAssign);
             this.panelControl1.Controls.Add(this.groupControl1);
             this.panelControl1.Controls.Add(this.btnExcel);
             this.panelControl1.Controls.Add(this.btnRefresh);
@@ -299,26 +297,14 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1335, 50);
+            this.panelControl1.Size = new System.Drawing.Size(1290, 50);
             this.panelControl1.TabIndex = 5;
-            // 
-            // btnAssign
-            // 
-            this.btnAssign.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnAssign.Appearance.Options.UseFont = true;
-            this.btnAssign.Location = new System.Drawing.Point(648, 5);
-            this.btnAssign.Name = "btnAssign";
-            this.btnAssign.Size = new System.Drawing.Size(80, 40);
-            this.btnAssign.TabIndex = 11;
-            this.btnAssign.Text = "Assign\r\n(F6)";
-            this.btnAssign.Click += new System.EventHandler(this.btnAssign_Click);
             // 
             // frmAuthorityGroup
             // 
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1335, 468);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(1290, 468);
             this.Controls.Add(this.dgvDuLieu);
             this.Controls.Add(this.panelControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -364,6 +350,5 @@
         private System.Windows.Forms.RadioButton chkNoUse;
         private System.Windows.Forms.RadioButton chkAllStatus;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.SimpleButton btnAssign;
     }
 }

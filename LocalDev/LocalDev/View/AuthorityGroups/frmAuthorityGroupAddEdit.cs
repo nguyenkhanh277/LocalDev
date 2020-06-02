@@ -19,6 +19,9 @@ namespace LocalDev.View.AuthorityGroups
     {
         ProjectDataContext _projectDataContext = new ProjectDataContext();
         AuthorityGroupRepository _authorityGroupRepository;
+        ProgramFunctionMasterRepository _programFunctionMasterRepository;
+        ProgramFunctionAuthorityRepository _programFunctionAuthorityRepository;
+        IEnumerable<ProgramFunctionAuthority> _oldProgramFunctionAuthority;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -26,7 +29,7 @@ namespace LocalDev.View.AuthorityGroups
             _projectDataContext.Dispose();
         }
 
-        int _id = -1;
+        int? _id = -1;
 
         public frmAuthorityGroupAddEdit()
         {
@@ -34,7 +37,7 @@ namespace LocalDev.View.AuthorityGroups
             this.Text = "Add Authority Group";
         }
 
-        public frmAuthorityGroupAddEdit(int id)
+        public frmAuthorityGroupAddEdit(int? id)
         {
             InitializeComponent();
             this.Text = "Edit Authority Group";
@@ -44,6 +47,8 @@ namespace LocalDev.View.AuthorityGroups
         private void frmAuthorityGroupAddEdit_Load(object sender, EventArgs e)
         {
             _authorityGroupRepository = new AuthorityGroupRepository(_projectDataContext);
+            _programFunctionMasterRepository = new ProgramFunctionMasterRepository(_projectDataContext);
+            _programFunctionAuthorityRepository = new ProgramFunctionAuthorityRepository(_projectDataContext);
             if (_id == -1)
             {
                 Clear();
@@ -52,6 +57,7 @@ namespace LocalDev.View.AuthorityGroups
             {
                 GetData();
             }
+            LoadProgramFunction();
         }
 
         private void Clear()
@@ -66,6 +72,36 @@ namespace LocalDev.View.AuthorityGroups
             AuthorityGroup authorityGroup = _authorityGroupRepository.GetInfo(_id);
             txtAuthorityGroupName.Text = authorityGroup.AuthorityGroupName;
             chkUsing.Checked = (authorityGroup.Status == GlobalConstants.StatusValue.Using);
+        }
+
+        private void LoadProgramFunction()
+        {
+            Dictionary<ProgramFunctionMasterRepository.SearchConditions, object> conditionsMaster = new Dictionary<ProgramFunctionMasterRepository.SearchConditions, object>();
+            conditionsMaster.Add(ProgramFunctionMasterRepository.SearchConditions.SortProgramName_Desc, false);
+            var programFunctionMasters = _programFunctionMasterRepository.GetAll(conditionsMaster);
+
+            Dictionary<ProgramFunctionAuthorityRepository.SearchConditions, object> conditions = new Dictionary<ProgramFunctionAuthorityRepository.SearchConditions, object>();
+            conditions.Add(ProgramFunctionAuthorityRepository.SearchConditions.AuthorityGroupID, _id);
+            conditions.Add(ProgramFunctionAuthorityRepository.SearchConditions.SortProgramName_Desc, false);
+            _oldProgramFunctionAuthority = _programFunctionAuthorityRepository.GetAll(conditions);
+
+            dgvDuLieu.Rows.Clear();
+            int check = 0;
+            foreach (var programFunctionMaster in programFunctionMasters)
+            {
+                check = 0;
+                foreach (var programFunctionAuthority in _oldProgramFunctionAuthority)
+                {
+                    if (programFunctionAuthority.ProgramName == programFunctionMaster.ProgramName &&
+                        programFunctionAuthority.FunctionName == programFunctionMaster.FunctionName)
+                    {
+                        check = 1;
+                        break;
+                    }
+                }
+                object[] rowAdd = { check, programFunctionMaster.ProgramName, programFunctionMaster.FunctionName, programFunctionMaster.Explanation };
+                dgvDuLieu.Rows.Add(rowAdd);
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -85,6 +121,24 @@ namespace LocalDev.View.AuthorityGroups
                 authorityGroup.AuthorityGroupName = txtAuthorityGroupName.Text.Trim();
                 authorityGroup.Status = (chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
                 _authorityGroupRepository.Save(authorityGroup);
+                if (_authorityGroupRepository.id != -1)
+                {
+                    for (int i = 0; i < dgvDuLieu.RowCount; i++)
+                    {
+                        if (dgvDuLieu.Rows[i].Cells["Assign"].Value.ToString() == "1")
+                        {
+                            ProgramFunctionAuthority programFunctionAuthority = new ProgramFunctionAuthority();
+                            programFunctionAuthority.ProgramName = dgvDuLieu.Rows[i].Cells["ProgramName"].Value.ToString();
+                            programFunctionAuthority.FunctionName = dgvDuLieu.Rows[i].Cells["FunctionName"].Value.ToString();
+                            programFunctionAuthority.AuthorityGroupID = _authorityGroupRepository.id;
+                            _programFunctionAuthorityRepository.Save(programFunctionAuthority);
+                        }
+                        else
+                        {
+                            _programFunctionAuthorityRepository.DeleteByProgramAndFunction(dgvDuLieu.Rows[i].Cells["ProgramName"].Value.ToString(), dgvDuLieu.Rows[i].Cells["FunctionName"].Value.ToString());
+                        }
+                    }
+                }
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
                 int result = unitOfWork.Complete();
                 if (result > 0)

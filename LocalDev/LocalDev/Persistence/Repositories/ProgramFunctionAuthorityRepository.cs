@@ -26,6 +26,7 @@ namespace LocalDev.Persistence.Repositories
         public enum SearchConditions
         {
             Id,
+            AuthorityGroupID,
 
             SortProgramName_Desc
         }
@@ -43,7 +44,7 @@ namespace LocalDev.Persistence.Repositories
             var query = from x in projectDataContext.ProgramFunctionAuthoritys
                         select x;
 
-            if (!query.Any()) return null;
+            if (!query.Any()) return new List<ProgramFunctionAuthority>();
             if (conditions != null)
             {
                 #region Check conditions
@@ -51,6 +52,11 @@ namespace LocalDev.Persistence.Repositories
                 {
                     string value = conditions[SearchConditions.Id].ToString();
                     query = query.Where(_ => _.Id.Equals(value));
+                }
+                if (conditions.Keys.Contains(SearchConditions.AuthorityGroupID))
+                {
+                    int? value = (int)conditions[SearchConditions.AuthorityGroupID];
+                    query = query.Where(_ => _.AuthorityGroupID == value);
                 }
                 #endregion
 
@@ -181,6 +187,22 @@ namespace LocalDev.Persistence.Repositories
             try
             {
                 ProjectDataContext.Set<ProgramFunctionAuthority>().RemoveRange(programFunctionAuthoritys);
+            }
+            catch (Exception ex)
+            {
+                error = true;
+                errorMessage = ex.ToString();
+            }
+        }
+
+        public void DeleteByProgramAndFunction(string programName, string functionName)
+        {
+            error = false;
+            errorMessage = "";
+            try
+            {
+                var ProgramFunctionAuthority = ProjectDataContext.ProgramFunctionAuthoritys.Where(_ => _.ProgramName.Equals(programName) && _.FunctionName.Equals(functionName)).ToList();
+                DeleteRange(ProgramFunctionAuthority);
             }
             catch (Exception ex)
             {

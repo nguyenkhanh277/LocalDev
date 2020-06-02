@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
@@ -50,6 +51,10 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.txtNote = new DevExpress.XtraEditors.MemoEdit();
+            this.dgvDuLieu = new System.Windows.Forms.DataGridView();
+            this.Assign = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AuthorityGroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFullName.Properties)).BeginInit();
@@ -60,6 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -328,13 +334,73 @@
             this.txtNote.Size = new System.Drawing.Size(300, 30);
             this.txtNote.TabIndex = 13;
             // 
+            // dgvDuLieu
+            // 
+            this.dgvDuLieu.AllowUserToAddRows = false;
+            this.dgvDuLieu.AllowUserToDeleteRows = false;
+            this.dgvDuLieu.AllowUserToResizeColumns = false;
+            this.dgvDuLieu.AllowUserToResizeRows = false;
+            this.dgvDuLieu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDuLieu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvDuLieu.ColumnHeadersHeight = 30;
+            this.dgvDuLieu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Assign,
+            this.Id,
+            this.AuthorityGroupName});
+            this.dgvDuLieu.Location = new System.Drawing.Point(370, 12);
+            this.dgvDuLieu.Name = "dgvDuLieu";
+            this.dgvDuLieu.RowHeadersVisible = false;
+            this.dgvDuLieu.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.dgvDuLieu.RowTemplate.Height = 30;
+            this.dgvDuLieu.Size = new System.Drawing.Size(408, 544);
+            this.dgvDuLieu.TabIndex = 18;
+            // 
+            // Assign
+            // 
+            this.Assign.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Assign.DataPropertyName = "Assign";
+            this.Assign.FalseValue = "0";
+            this.Assign.HeaderText = "Assign";
+            this.Assign.Name = "Assign";
+            this.Assign.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Assign.TrueValue = "1";
+            this.Assign.Width = 50;
+            // 
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Id.Width = 50;
+            // 
+            // AuthorityGroupName
+            // 
+            this.AuthorityGroupName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.AuthorityGroupName.DataPropertyName = "AuthorityGroupName";
+            this.AuthorityGroupName.HeaderText = "AuthorityGroupName";
+            this.AuthorityGroupName.Name = "AuthorityGroupName";
+            this.AuthorityGroupName.ReadOnly = true;
+            this.AuthorityGroupName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // frmUsersAddEdit
             // 
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(390, 568);
+            this.ClientSize = new System.Drawing.Size(790, 568);
+            this.Controls.Add(this.dgvDuLieu);
             this.Controls.Add(this.txtNote);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
@@ -373,6 +439,7 @@
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -401,5 +468,9 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.MemoEdit txtNote;
+        private System.Windows.Forms.DataGridView dgvDuLieu;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Assign;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AuthorityGroupName;
     }
 }

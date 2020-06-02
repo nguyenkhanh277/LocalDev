@@ -17,5 +17,6 @@ namespace LocalDev.Core.Repositories
         void Delete(ProgramFunctionAuthority ProgramFunctionAuthority);
         void DeleteRange(string ids);
         void DeleteRange(IEnumerable<ProgramFunctionAuthority> ProgramFunctionAuthoritys);
+        void DeleteByProgramAndFunction(string programName, string functionName);
     }
 }

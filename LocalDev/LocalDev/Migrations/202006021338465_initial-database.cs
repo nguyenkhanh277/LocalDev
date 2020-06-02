@@ -28,7 +28,7 @@ namespace LocalDev.Migrations
                         Id = c.String(nullable: false, maxLength: 128),
                         ProgramName = c.String(),
                         FunctionName = c.String(),
-                        AuthorityGroup = c.Int(),
+                        AuthorityGroupID = c.Int(),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.String(),
                         EditedAt = c.DateTime(),

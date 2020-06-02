@@ -10,11 +10,13 @@ namespace LocalDev.Core
         #region Default Values
         public static string Username = "";
         public static string FullName = "";
+        public static int Language = 0;
         public static int DEFAULT_SALT_LENGTH = 5;
         public static bool DEBUG_MODE = true;
         public enum SearchConditions { }
         public enum GenderValue { Female, Male }
-        public enum StatusValue { NoUse, Using}
+        public enum StatusValue { NoUse, Using }
+        public enum LanguageValue { Vietnamese, English }
         #endregion
 
         public static bool IsNumericType(Type type)

@@ -53,11 +53,6 @@ namespace LocalDev.View.AuthorityGroups
                 btnRefresh_Click(null, null);
                 return true;
             }
-            else if (e.KeyCode == Keys.F6)
-            {
-                btnAssign_Click(null, null);
-                return true;
-            }
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -79,6 +74,7 @@ namespace LocalDev.View.AuthorityGroups
             {
                 conditions.Add(AuthorityGroupRepository.SearchConditions.Status, chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
             }
+            conditions.Add(AuthorityGroupRepository.SearchConditions.SortId_Desc, false);
             dgvDuLieu.DataSource = _authorityGroupRepository.GetAll(conditions);
             Control();
         }
@@ -132,11 +128,6 @@ namespace LocalDev.View.AuthorityGroups
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             Search();
-        }
-
-        private void btnAssign_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnClose_Click(object sender, EventArgs e)

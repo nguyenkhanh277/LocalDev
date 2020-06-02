@@ -79,9 +79,9 @@
     <Compile Include="Core\Repositories\IAuthorityGroupRepository.cs" />
     <Compile Include="Core\Repositories\IUserAuthorityRepository.cs" />
     <Compile Include="Core\Repositories\IUserRepository.cs" />
-    <Compile Include="Migrations\202006020801588_initial-database.cs" />
-    <Compile Include="Migrations\202006020801588_initial-database.Designer.cs">
-      <DependentUpon>202006020801588_initial-database.cs</DependentUpon>
+    <Compile Include="Migrations\202006021338465_initial-database.cs" />
+    <Compile Include="Migrations\202006021338465_initial-database.Designer.cs">
+      <DependentUpon>202006021338465_initial-database.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Repositories\ProgramFunctionAuthorityRepository.cs" />
     <Compile Include="Persistence\Repositories\AuthorityGroupRepository.cs" />
@@ -143,8 +143,8 @@
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Migrations\202006020801588_initial-database.resx">
-      <DependentUpon>202006020801588_initial-database.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006021338465_initial-database.resx">
+      <DependentUpon>202006021338465_initial-database.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\AuthorityGroups\frmAuthorityGroup.resx">
       <DependentUpon>frmAuthorityGroup.cs</DependentUpon>

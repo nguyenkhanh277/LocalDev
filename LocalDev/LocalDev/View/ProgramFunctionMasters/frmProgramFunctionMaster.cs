@@ -74,6 +74,7 @@ namespace LocalDev.View.ProgramFunctionMasters
             {
                 conditions.Add(ProgramFunctionMasterRepository.SearchConditions.Status, chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
             }
+            conditions.Add(ProgramFunctionMasterRepository.SearchConditions.SortProgramName_Desc, false);
             dgvDuLieu.DataSource = _programFunctionMasterRepository.GetAll(conditions);
             Control();
         }

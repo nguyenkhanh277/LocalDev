@@ -90,6 +90,7 @@ namespace LocalDev.View.Users
             {
                 conditions.Add(UserRepository.SearchConditions.Gender, chkMale.Checked ? GlobalConstants.GenderValue.Male : GlobalConstants.GenderValue.Female);
             }
+            conditions.Add(UserRepository.SearchConditions.SortUsername_Desc, false);
             dgvDuLieu.DataSource = _userRepository.GetAll(conditions);
             Control();
         }

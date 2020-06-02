@@ -13,7 +13,7 @@ namespace LocalDev.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202006020801588_initial-database"; }
+            get { return "202006021338465_initial-database"; }
         }
         
         string IMigrationMetadata.Source

@@ -17,5 +17,6 @@ namespace LocalDev.Core.Repositories
         void Delete(UserAuthority UserAuthority);
         void DeleteRange(string ids);
         void DeleteRange(IEnumerable<UserAuthority> UserAuthoritys);
+        void DeleteByUserID(string userID);
     }
 }

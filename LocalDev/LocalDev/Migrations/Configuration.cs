@@ -136,7 +136,7 @@ namespace LocalDev.Migrations
                     Id = Guid.NewGuid().ToString(),
                     ProgramName = "User",
                     FunctionName = "Add",
-                    AuthorityGroup = authorityGroup1,
+                    AuthorityGroupID = authorityGroup1,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
@@ -145,7 +145,7 @@ namespace LocalDev.Migrations
                     Id = Guid.NewGuid().ToString(),
                     ProgramName = "User",
                     FunctionName = "Edit",
-                    AuthorityGroup = authorityGroup1,
+                    AuthorityGroupID = authorityGroup1,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
@@ -154,7 +154,7 @@ namespace LocalDev.Migrations
                     Id = Guid.NewGuid().ToString(),
                     ProgramName = "User",
                     FunctionName = "Delete",
-                    AuthorityGroup = authorityGroup1,
+                    AuthorityGroupID = authorityGroup1,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
@@ -163,7 +163,7 @@ namespace LocalDev.Migrations
                     Id = Guid.NewGuid().ToString(),
                     ProgramName = "User",
                     FunctionName = "Authority",
-                    AuthorityGroup = authorityGroup1,
+                    AuthorityGroupID = authorityGroup1,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 }

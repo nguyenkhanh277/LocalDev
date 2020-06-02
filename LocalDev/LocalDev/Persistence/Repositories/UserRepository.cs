@@ -10,6 +10,7 @@ namespace LocalDev.Persistence.Repositories
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
+        public string id = "";
         public bool error = false;
         public string errorMessage = "";
 
@@ -49,7 +50,7 @@ namespace LocalDev.Persistence.Repositories
             var query = from x in projectDataContext.Users
                         select x;
 
-            if (!query.Any()) return null;
+            if (!query.Any()) return new List<User>();
             if (conditions != null)
             {
                 #region Check conditions
@@ -133,7 +134,8 @@ namespace LocalDev.Persistence.Repositories
                 user.Password = SecurityHelper.GenerateMD5(user.Password, user.Salt);
                 user.CreatedAt = DateTime.Now;
                 user.CreatedBy = GlobalConstants.Username;
-                ProjectDataContext.Set<User>().Add(user);
+                var raw = ProjectDataContext.Set<User>().Add(user);
+                id = raw.Id;
             }
             catch (Exception ex)
             {
@@ -165,6 +167,7 @@ namespace LocalDev.Persistence.Repositories
                     raw.CollectInformation(user);
                     raw.EditedAt = DateTime.Now;
                     raw.EditedBy = GlobalConstants.Username;
+                    id = raw.Id;
                 }
             }
             catch (Exception ex)

@@ -26,6 +26,7 @@ namespace LocalDev.Persistence.Repositories
         public enum SearchConditions
         {
             Id,
+            UserID,
 
             SortAuthorityGroupID_Desc
         }
@@ -43,7 +44,7 @@ namespace LocalDev.Persistence.Repositories
             var query = from x in projectDataContext.UserAuthoritys
                         select x;
 
-            if (!query.Any()) return null;
+            if (!query.Any()) return new List<UserAuthority>();
             if (conditions != null)
             {
                 #region Check conditions
@@ -51,6 +52,11 @@ namespace LocalDev.Persistence.Repositories
                 {
                     string value = conditions[SearchConditions.Id].ToString();
                     query = query.Where(_ => _.Id.Equals(value));
+                }
+                if (conditions.Keys.Contains(SearchConditions.UserID))
+                {
+                    string value = conditions[SearchConditions.UserID].ToString();
+                    query = query.Where(_ => _.UserID.Equals(value));
                 }
                 #endregion
 
@@ -181,6 +187,22 @@ namespace LocalDev.Persistence.Repositories
             try
             {
                 ProjectDataContext.Set<UserAuthority>().RemoveRange(userAuthoritys);
+            }
+            catch (Exception ex)
+            {
+                error = true;
+                errorMessage = ex.ToString();
+            }
+        }
+
+        public void DeleteByUserID(string userID)
+        {
+            error = false;
+            errorMessage = "";
+            try
+            {
+                var UserAuthority = ProjectDataContext.UserAuthoritys.Where(_ => _.UserID.Equals(userID)).ToList();
+                DeleteRange(UserAuthority);
             }
             catch (Exception ex)
             {

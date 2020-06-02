@@ -19,6 +19,8 @@ namespace LocalDev.View.Users
     {
         ProjectDataContext _projectDataContext = new ProjectDataContext();
         UserRepository _userRepository;
+        AuthorityGroupRepository _authorityGroupRepository;
+        UserAuthorityRepository _userAuthorityRepository;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -44,6 +46,8 @@ namespace LocalDev.View.Users
         private void frmUsersAddEdit_Load(object sender, EventArgs e)
         {
             _userRepository = new UserRepository(_projectDataContext);
+            _authorityGroupRepository = new AuthorityGroupRepository(_projectDataContext);
+            _userAuthorityRepository = new UserAuthorityRepository(_projectDataContext);
             if (String.IsNullOrEmpty(_id))
             {
                 Clear();
@@ -52,6 +56,7 @@ namespace LocalDev.View.Users
             {
                 GetData();
             }
+            LoadAuthority();
         }
 
         private void Clear()
@@ -82,6 +87,35 @@ namespace LocalDev.View.Users
             chkUsing.Checked = (user.Status == GlobalConstants.StatusValue.Using);
         }
 
+        private void LoadAuthority()
+        {
+            Dictionary<AuthorityGroupRepository.SearchConditions, object> conditionsMaster = new Dictionary<AuthorityGroupRepository.SearchConditions, object>();
+            conditionsMaster.Add(AuthorityGroupRepository.SearchConditions.SortId_Desc, false);
+            var authorityGroups = _authorityGroupRepository.GetAll(conditionsMaster);
+
+            Dictionary<UserAuthorityRepository.SearchConditions, object> conditions = new Dictionary<UserAuthorityRepository.SearchConditions, object>();
+            conditions.Add(UserAuthorityRepository.SearchConditions.UserID, _id);
+            conditions.Add(UserAuthorityRepository.SearchConditions.SortAuthorityGroupID_Desc, false);
+            var userAuthoritys = _userAuthorityRepository.GetAll(conditions);
+
+            dgvDuLieu.Rows.Clear();
+            int check = 0;
+            foreach (var authorityGroup in authorityGroups)
+            {
+                check = 0;
+                foreach (var programFunctionAuthority in userAuthoritys)
+                {
+                    if (programFunctionAuthority.AuthorityGroupID == authorityGroup.Id)
+                    {
+                        check = 1;
+                        break;
+                    }
+                }
+                object[] rowAdd = { check, authorityGroup.Id, authorityGroup.AuthorityGroupName };
+                dgvDuLieu.Rows.Add(rowAdd);
+            }
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -98,6 +132,20 @@ namespace LocalDev.View.Users
                 user.Note = txtNote.Text.Trim();
                 user.Status = (chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
                 _userRepository.Save(user);
+                if (!String.IsNullOrEmpty(_userRepository.id))
+                {
+                    _userAuthorityRepository.DeleteByUserID(_userRepository.id);
+                    for (int i = 0; i < dgvDuLieu.RowCount; i++)
+                    {
+                        if (dgvDuLieu.Rows[i].Cells["Assign"].Value.ToString() == "1")
+                        {
+                            UserAuthority userAuthority = new UserAuthority();
+                            userAuthority.AuthorityGroupID = int.Parse(dgvDuLieu.Rows[i].Cells["Id"].Value.ToString());
+                            userAuthority.UserID = _userRepository.id;
+                            _userAuthorityRepository.Save(userAuthority);
+                        }
+                    }
+                }
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
                 int result = unitOfWork.Complete();
                 if (result > 0)

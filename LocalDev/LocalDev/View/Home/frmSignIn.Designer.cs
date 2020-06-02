@@ -33,12 +33,16 @@
             this.btnSignIn = new DevExpress.XtraEditors.SimpleButton();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.lblTieuDe = new DevExpress.XtraEditors.LabelControl();
             this.txtUsername = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.picEnglish = new System.Windows.Forms.PictureBox();
+            this.picVietnamese = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.chkKeepMeSignedIn.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picEnglish)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picVietnamese)).BeginInit();
             this.SuspendLayout();
             // 
             // linkIForgetMyPassword
@@ -86,6 +90,7 @@
             this.txtPassword.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtPassword.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtPassword.Properties.AutoHeight = false;
+            this.txtPassword.Properties.UseSystemPasswordChar = true;
             this.txtPassword.Size = new System.Drawing.Size(300, 30);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
@@ -101,22 +106,22 @@
             this.labelControl3.TabIndex = 3;
             this.labelControl3.Text = "Password";
             // 
-            // labelControl2
+            // lblTieuDe
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 20F);
-            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(250)))));
-            this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.Appearance.Options.UseTextOptions = true;
-            this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelControl2.Location = new System.Drawing.Point(0, 0);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(390, 73);
-            this.labelControl2.TabIndex = 0;
-            this.labelControl2.Text = "Project Name";
+            this.lblTieuDe.Appearance.Font = new System.Drawing.Font("Segoe UI", 20F);
+            this.lblTieuDe.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(250)))));
+            this.lblTieuDe.Appearance.Options.UseFont = true;
+            this.lblTieuDe.Appearance.Options.UseForeColor = true;
+            this.lblTieuDe.Appearance.Options.UseTextOptions = true;
+            this.lblTieuDe.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.lblTieuDe.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblTieuDe.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblTieuDe.Location = new System.Drawing.Point(0, 0);
+            this.lblTieuDe.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblTieuDe.Name = "lblTieuDe";
+            this.lblTieuDe.Size = new System.Drawing.Size(390, 73);
+            this.lblTieuDe.TabIndex = 0;
+            this.lblTieuDe.Text = "Project Name";
             // 
             // txtUsername
             // 
@@ -144,18 +149,43 @@
             this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "Username";
             // 
+            // picEnglish
+            // 
+            this.picEnglish.BackgroundImage = global::LocalDev.Properties.Resources.English;
+            this.picEnglish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picEnglish.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picEnglish.Location = new System.Drawing.Point(349, 329);
+            this.picEnglish.Name = "picEnglish";
+            this.picEnglish.Size = new System.Drawing.Size(29, 27);
+            this.picEnglish.TabIndex = 14;
+            this.picEnglish.TabStop = false;
+            this.picEnglish.Click += new System.EventHandler(this.picEnglish_Click);
+            // 
+            // picVietnamese
+            // 
+            this.picVietnamese.BackgroundImage = global::LocalDev.Properties.Resources.Vietnamese;
+            this.picVietnamese.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picVietnamese.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picVietnamese.Location = new System.Drawing.Point(314, 329);
+            this.picVietnamese.Name = "picVietnamese";
+            this.picVietnamese.Size = new System.Drawing.Size(29, 27);
+            this.picVietnamese.TabIndex = 15;
+            this.picVietnamese.TabStop = false;
+            this.picVietnamese.Click += new System.EventHandler(this.picVietnamese_Click);
+            // 
             // frmSignIn
             // 
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(390, 368);
+            this.Controls.Add(this.picEnglish);
+            this.Controls.Add(this.picVietnamese);
             this.Controls.Add(this.linkIForgetMyPassword);
             this.Controls.Add(this.chkKeepMeSignedIn);
             this.Controls.Add(this.btnSignIn);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.labelControl3);
-            this.Controls.Add(this.labelControl2);
+            this.Controls.Add(this.lblTieuDe);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.labelControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -169,6 +199,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkKeepMeSignedIn.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picEnglish)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picVietnamese)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,8 +213,10 @@
         private DevExpress.XtraEditors.SimpleButton btnSignIn;
         private DevExpress.XtraEditors.TextEdit txtPassword;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl lblTieuDe;
         private DevExpress.XtraEditors.TextEdit txtUsername;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private System.Windows.Forms.PictureBox picEnglish;
+        private System.Windows.Forms.PictureBox picVietnamese;
     }
 }
