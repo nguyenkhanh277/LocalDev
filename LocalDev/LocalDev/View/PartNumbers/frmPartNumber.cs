@@ -78,7 +78,7 @@ namespace LocalDev.View.PartNumbers
                 conditions.Add(PartNumberRepository.SearchConditions.Status, chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
             }
             conditions.Add(PartNumberRepository.SearchConditions.SortPartNo_Desc, false);
-            dgvDuLieu.DataSource = _partNumberRepository.GetAll(conditions);
+            dgvDuLieu.DataSource = _partNumberRepository.Find(conditions);
             Control();
         }
 
@@ -108,7 +108,7 @@ namespace LocalDev.View.PartNumbers
         {
             if (XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                _partNumberRepository.Delete(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
+                _partNumberRepository.Remove(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
                 int result = unitOfWork.Complete();
                 if (result > 0)

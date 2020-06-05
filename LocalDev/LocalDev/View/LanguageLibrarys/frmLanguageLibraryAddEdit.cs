@@ -67,22 +67,51 @@ namespace LocalDev.View.LanguageLibrarys
 
         private void Clear()
         {
-            txtEnglish.Text = "";
             txtVietnamese.Text = "";
+            txtEnglish.Text = "";
         }
 
         private void GetData()
         {
             //Get Data Table Language
-            LanguageLibrary languageLibrary = _languageLibraryRepository.GetInfo(_id);
-            txtEnglish.Text = languageLibrary.English;
+            LanguageLibrary languageLibrary = _languageLibraryRepository.Get(_id);
             txtVietnamese.Text = languageLibrary.Vietnamese;
+            txtEnglish.Text = languageLibrary.English;
+        }
+
+        private bool CheckData()
+        {
+            if (txtVietnamese.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtVietnamese.Focus();
+                return false;
+            }
+            else if (txtEnglish.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtEnglish.Focus();
+                return false;
+            }
+            LanguageLibrary languageLibrary = _languageLibraryRepository.FirstOrDefault(x => x.Vietnamese.Equals(txtVietnamese.Text.Trim()));
+            if (languageLibrary != null &&
+                (
+                    String.IsNullOrEmpty(_id) ||
+                    (!String.IsNullOrEmpty(_id) && txtVietnamese.Text.Trim() != languageLibrary.Vietnamese)
+                ))
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtVietnamese.Focus();
+                return false;
+            }
+            return true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
+                if (!CheckData()) return;
                 //Table Language
                 LanguageLibrary languageLibrary = new LanguageLibrary();
                 languageLibrary.Id = _id;

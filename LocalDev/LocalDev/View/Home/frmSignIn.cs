@@ -36,7 +36,7 @@ namespace LocalDev.View.Home
         {
             _userRepository = new UserRepository(_projectDataContext);
             _languageLibraryRepository = new LanguageLibraryRepository(_projectDataContext);
-            GlobalConstants.languageLibrary = _languageLibraryRepository.GetAll(new Dictionary<LanguageLibraryRepository.SearchConditions, object>()).ToList();
+            GlobalConstants.languageLibrary = _languageLibraryRepository.Find(new Dictionary<LanguageLibraryRepository.SearchConditions, object>()).ToList();
 
             GlobalConstants.language = Properties.Settings.Default.Language;
             LoadLanguage(GlobalConstants.language);
@@ -50,14 +50,33 @@ namespace LocalDev.View.Home
             }
         }
 
-        private void btnSignIn_Click(object sender, EventArgs e)
+        private bool CheckData()
         {
-            _userRepository.CheckSecurity(txtUsername.Text.Trim(), txtPassword.Text.Trim());
+            if (txtUsername.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtUsername.Focus();
+                return false;
+            }
+            else if (txtPassword.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtPassword.Focus();
+                return false;
+            }
+            _userRepository.CheckSecurity(GlobalConstants.username, txtPassword.Text.Trim());
             if (_userRepository.error)
             {
                 XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText(_userRepository.errorMessage), LanguageTranslate.ChangeLanguageText("Thông báo"));
-                return;
+                txtPassword.Focus();
+                return false;
             }
+            return true;
+        }
+
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            if (!CheckData()) return;
             Properties.Settings.Default.KeepMeSignedIn = chkKeepMeSignedIn.Checked;
             if (chkKeepMeSignedIn.Checked)
             {

@@ -78,7 +78,7 @@ namespace LocalDev.View.ProgramFunctionMasters
                 conditions.Add(ProgramFunctionMasterRepository.SearchConditions.Status, chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
             }
             conditions.Add(ProgramFunctionMasterRepository.SearchConditions.SortProgramName_Desc, false);
-            dgvDuLieu.DataSource = _programFunctionMasterRepository.GetAll(conditions);
+            dgvDuLieu.DataSource = _programFunctionMasterRepository.Find(conditions);
             Control();
         }
 
@@ -108,7 +108,7 @@ namespace LocalDev.View.ProgramFunctionMasters
         {
             if (XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                _programFunctionMasterRepository.Delete(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
+                _programFunctionMasterRepository.Remove(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
                 int result = unitOfWork.Complete();
                 if (result > 0)

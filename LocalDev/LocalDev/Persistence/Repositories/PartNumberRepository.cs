@@ -8,11 +8,8 @@ using LocalDev.Core.Helper;
 
 namespace LocalDev.Persistence.Repositories
 {
-    public class PartNumberRepository : Repository<PartNumber>, IPartNumberRepository
+    public class PartNumberRepository : Repository<PartNumber>
     {
-        public bool error = false;
-        public string errorMessage = "";
-
         public PartNumberRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
         {
         }
@@ -34,13 +31,7 @@ namespace LocalDev.Persistence.Repositories
         }
         #endregion
 
-        public PartNumber GetInfo(string id)
-        {
-            ProjectDataContext projectDataContext = new ProjectDataContext();
-            return projectDataContext.PartNumbers.OrderBy(_ => _.PartNo).SingleOrDefault(_ => _.Id.Equals(id));
-        }
-
-        public IEnumerable<PartNumber> GetAll(Dictionary<SearchConditions, object> conditions)
+        public IEnumerable<PartNumber> Find(Dictionary<SearchConditions, object> conditions)
         {
             ProjectDataContext projectDataContext = new ProjectDataContext();
             var query = from x in projectDataContext.PartNumbers
@@ -95,29 +86,14 @@ namespace LocalDev.Persistence.Repositories
         {
             if (String.IsNullOrEmpty(partNumber.Id))
             {
+                partNumber.Id = partNumber.PartNo;
+                partNumber.CreatedAt = DateTime.Now;
+                partNumber.CreatedBy = GlobalConstants.username;
                 Add(partNumber);
             }
             else
             {
                 Update(partNumber);
-            }
-        }
-
-        public void Add(PartNumber partNumber)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                partNumber.Id = partNumber.PartNo;
-                partNumber.CreatedAt = DateTime.Now;
-                partNumber.CreatedBy = GlobalConstants.username;
-                ProjectDataContext.Set<PartNumber>().Add(partNumber);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
             }
         }
 
@@ -127,80 +103,14 @@ namespace LocalDev.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var query = from x in ProjectDataContext.PartNumbers
-                            where x.Id.Equals(partNumber.Id)
-                            select x;
-                if (query.Any())
+                var raw = FirstOrDefault(x => x.Id.Equals(partNumber.Id));
+                if (raw != null)
                 {
-                    var raw = query.FirstOrDefault();
                     raw.CollectInformation(partNumber);
                     raw.Id = partNumber.PartNo;
                     raw.EditedAt = DateTime.Now;
                     raw.EditedBy = GlobalConstants.username;
                 }
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void Delete(string id)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var partNumber = ProjectDataContext.PartNumbers.Where(_ => _.Id.Equals(id)).SingleOrDefault();
-                Delete(partNumber);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void Delete(PartNumber partNumber)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                if (partNumber == null) return;
-                ProjectDataContext.Set<PartNumber>().Remove(partNumber);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void DeleteRange(string ids)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var partNumbers = ProjectDataContext.PartNumbers.Where(_ => (ids.Contains(_.Id)));
-                DeleteRange(partNumbers);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void DeleteRange(IEnumerable<PartNumber> partNumbers)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                ProjectDataContext.Set<PartNumber>().RemoveRange(partNumbers);
             }
             catch (Exception ex)
             {

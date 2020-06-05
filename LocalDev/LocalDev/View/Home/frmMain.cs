@@ -86,7 +86,8 @@ namespace LocalDev.View.Home
 
         private void btnChangePassword_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            frmChangePassword frm = new frmChangePassword();
+            frm.ShowDialog();
         }
 
         private void btnPartNumber_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

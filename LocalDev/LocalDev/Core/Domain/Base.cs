@@ -44,7 +44,6 @@ namespace LocalDev.Core.Domain
                         else if (GlobalConstants.IsNumericType(prop.PropertyType))
                         {
                             Type type = prop.PropertyType;
-
                             if ((val.ToString() != "0" && withoutZeroValue) || !withoutZeroValue)
                             {
                                 prop.SetValue(this, src.GetProperty(prop.Name).GetValue(model));

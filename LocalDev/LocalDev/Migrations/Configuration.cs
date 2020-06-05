@@ -435,6 +435,38 @@ namespace LocalDev.Migrations
                     English = "Explanation",
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Chưa điền dữ liệu",
+                    English = "No data entered",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Chưa chọn dữ liệu",
+                    English = "No data selected",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Dữ liệu đã tồn tại",
+                    English = "Data already exists",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Dữ liệu không đúng",
+                    English = "The data is incorrect",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
                 }
             };
 
@@ -487,13 +519,14 @@ namespace LocalDev.Migrations
 
 
             #region Add AuthorityGroup
-            int authorityGroup1 = 1;
+            string authorityGroup1 = Guid.NewGuid().ToString();
             var authorityGroups = new List<AuthorityGroup>
             {
                 new AuthorityGroup
                 {
                     Id = authorityGroup1,
                     AuthorityGroupName = "Admin",
+                    Sort = 0,
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"

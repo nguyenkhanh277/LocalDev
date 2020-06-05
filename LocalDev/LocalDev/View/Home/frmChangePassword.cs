@@ -27,6 +27,17 @@ namespace LocalDev.View.Home
             _projectDataContext.Dispose();
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            KeyEventArgs e = new KeyEventArgs(keyData);
+            if (e.KeyCode == Keys.F1)
+            {
+                btnSave_Click(null, null);
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         public frmChangePassword()
         {
             InitializeComponent();
@@ -38,10 +49,47 @@ namespace LocalDev.View.Home
             LanguageTranslate.ChangeLanguageForm(this);
         }
 
-        private void btnChangePassword_Click(object sender, EventArgs e)
+        private bool CheckData()
+        {
+            if (txtOldPassword.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtOldPassword.Focus();
+                return false;
+            }
+            else if (txtNewPassword.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtNewPassword.Focus();
+                return false;
+            }
+            else if (txtConfirmPassword.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtConfirmPassword.Focus();
+                return false;
+            }
+            else if (txtNewPassword.Text.Trim() != txtConfirmPassword.Text.Trim())
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu không đúng"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtConfirmPassword.Focus();
+                return false;
+            }
+            _userRepository.CheckSecurity(GlobalConstants.username, txtOldPassword.Text.Trim());
+            if (_userRepository.error)
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText(_userRepository.errorMessage), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtOldPassword.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
+                if (!CheckData()) return;
                 _userRepository.ChangePassword(GlobalConstants.username, txtNewPassword.Text.Trim());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
                 int result = unitOfWork.Complete();
@@ -61,6 +109,11 @@ namespace LocalDev.View.Home
                 XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
                 return;
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -8,11 +8,8 @@ using LocalDev.Core.Helper;
 
 namespace LocalDev.Persistence.Repositories
 {
-    public class ProgramFunctionAuthorityRepository : Repository<ProgramFunctionAuthority>, IProgramFunctionAuthorityRepository
+    public class ProgramFunctionAuthorityRepository : Repository<ProgramFunctionAuthority>
     {
-        public bool error = false;
-        public string errorMessage = "";
-
         public ProgramFunctionAuthorityRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
         {
         }
@@ -32,13 +29,7 @@ namespace LocalDev.Persistence.Repositories
         }
         #endregion
 
-        public ProgramFunctionAuthority GetInfo(string id)
-        {
-            ProjectDataContext projectDataContext = new ProjectDataContext();
-            return projectDataContext.ProgramFunctionAuthoritys.OrderBy(_ => _.ProgramName).SingleOrDefault(_ => _.Id.Equals(id));
-        }
-
-        public IEnumerable<ProgramFunctionAuthority> GetAll(Dictionary<SearchConditions, object> conditions)
+        public IEnumerable<ProgramFunctionAuthority> Find(Dictionary<SearchConditions, object> conditions)
         {
             ProjectDataContext projectDataContext = new ProjectDataContext();
             var query = from x in projectDataContext.ProgramFunctionAuthoritys
@@ -55,8 +46,8 @@ namespace LocalDev.Persistence.Repositories
                 }
                 if (conditions.Keys.Contains(SearchConditions.AuthorityGroupID))
                 {
-                    int? value = (int)conditions[SearchConditions.AuthorityGroupID];
-                    query = query.Where(_ => _.AuthorityGroupID == value);
+                    string value = conditions[SearchConditions.AuthorityGroupID].ToString();
+                    query = query.Where(_ => _.AuthorityGroupID.Equals(value));
                 }
                 #endregion
 
@@ -82,29 +73,14 @@ namespace LocalDev.Persistence.Repositories
         {
             if (String.IsNullOrEmpty(programFunctionAuthority.Id))
             {
+                programFunctionAuthority.Id = GetAutoID();
+                programFunctionAuthority.CreatedAt = DateTime.Now;
+                programFunctionAuthority.CreatedBy = GlobalConstants.username;
                 Add(programFunctionAuthority);
             }
             else
             {
                 Update(programFunctionAuthority);
-            }
-        }
-
-        public void Add(ProgramFunctionAuthority programFunctionAuthority)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                programFunctionAuthority.Id = GetAutoID();
-                programFunctionAuthority.CreatedAt = DateTime.Now;
-                programFunctionAuthority.CreatedBy = GlobalConstants.username;
-                ProjectDataContext.Set<ProgramFunctionAuthority>().Add(programFunctionAuthority);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
             }
         }
 
@@ -114,79 +90,13 @@ namespace LocalDev.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var query = from x in ProjectDataContext.ProgramFunctionAuthoritys
-                            where x.Id.Equals(programFunctionAuthority.Id)
-                            select x;
-                if (query.Any())
+                var raw = FirstOrDefault(x => x.Id.Equals(programFunctionAuthority.Id));
+                if (raw != null)
                 {
-                    var raw = query.FirstOrDefault();
                     raw.CollectInformation(programFunctionAuthority);
                     raw.EditedAt = DateTime.Now;
                     raw.EditedBy = GlobalConstants.username;
                 }
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void Delete(string id)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var ProgramFunctionAuthority = ProjectDataContext.ProgramFunctionAuthoritys.Where(_ => _.Id.Equals(id)).SingleOrDefault();
-                Delete(ProgramFunctionAuthority);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void Delete(ProgramFunctionAuthority programFunctionAuthority)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                if (programFunctionAuthority == null) return;
-                ProjectDataContext.Set<ProgramFunctionAuthority>().Remove(programFunctionAuthority);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void DeleteRange(string ids)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var ProgramFunctionAuthoritys = ProjectDataContext.ProgramFunctionAuthoritys.Where(_ => (ids.Contains(_.Id)));
-                DeleteRange(ProgramFunctionAuthoritys);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void DeleteRange(IEnumerable<ProgramFunctionAuthority> programFunctionAuthoritys)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                ProjectDataContext.Set<ProgramFunctionAuthority>().RemoveRange(programFunctionAuthoritys);
             }
             catch (Exception ex)
             {
@@ -202,7 +112,7 @@ namespace LocalDev.Persistence.Repositories
             try
             {
                 var ProgramFunctionAuthority = ProjectDataContext.ProgramFunctionAuthoritys.Where(_ => _.ProgramName.Equals(programName) && _.FunctionName.Equals(functionName)).ToList();
-                DeleteRange(ProgramFunctionAuthority);
+                RemoveRange(ProgramFunctionAuthority);
             }
             catch (Exception ex)
             {

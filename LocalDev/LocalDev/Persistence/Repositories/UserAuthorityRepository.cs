@@ -8,11 +8,8 @@ using LocalDev.Core.Helper;
 
 namespace LocalDev.Persistence.Repositories
 {
-    public class UserAuthorityRepository : Repository<UserAuthority>, IUserAuthorityRepository
+    public class UserAuthorityRepository : Repository<UserAuthority>
     {
-        public bool error = false;
-        public string errorMessage = "";
-
         public UserAuthorityRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
         {
         }
@@ -32,13 +29,7 @@ namespace LocalDev.Persistence.Repositories
         }
         #endregion
 
-        public UserAuthority GetInfo(string id)
-        {
-            ProjectDataContext projectDataContext = new ProjectDataContext();
-            return projectDataContext.UserAuthoritys.OrderBy(_ => _.AuthorityGroupID).SingleOrDefault(_ => _.Id.Equals(id));
-        }
-
-        public IEnumerable<UserAuthority> GetAll(Dictionary<SearchConditions, object> conditions)
+        public IEnumerable<UserAuthority> Find(Dictionary<SearchConditions, object> conditions)
         {
             ProjectDataContext projectDataContext = new ProjectDataContext();
             var query = from x in projectDataContext.UserAuthoritys
@@ -82,29 +73,14 @@ namespace LocalDev.Persistence.Repositories
         {
             if (String.IsNullOrEmpty(userAuthority.Id))
             {
+                userAuthority.Id = GetAutoID();
+                userAuthority.CreatedAt = DateTime.Now;
+                userAuthority.CreatedBy = GlobalConstants.username;
                 Add(userAuthority);
             }
             else
             {
                 Update(userAuthority);
-            }
-        }
-
-        public void Add(UserAuthority userAuthority)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                userAuthority.Id = GetAutoID();
-                userAuthority.CreatedAt = DateTime.Now;
-                userAuthority.CreatedBy = GlobalConstants.username;
-                ProjectDataContext.Set<UserAuthority>().Add(userAuthority);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
             }
         }
 
@@ -114,12 +90,9 @@ namespace LocalDev.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var query = from x in ProjectDataContext.UserAuthoritys
-                            where x.Id.Equals(userAuthority.Id)
-                            select x;
-                if (query.Any())
+                var raw = FirstOrDefault(x => x.Id.Equals(userAuthority.Id));
+                if (raw != null)
                 {
-                    var raw = query.FirstOrDefault();
                     raw.CollectInformation(userAuthority);
                     raw.EditedAt = DateTime.Now;
                     raw.EditedBy = GlobalConstants.username;
@@ -132,83 +105,9 @@ namespace LocalDev.Persistence.Repositories
             }
         }
 
-        public void Delete(string id)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var UserAuthority = ProjectDataContext.UserAuthoritys.Where(_ => _.Id.Equals(id)).SingleOrDefault();
-                Delete(UserAuthority);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void Delete(UserAuthority userAuthority)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                if (userAuthority == null) return;
-                ProjectDataContext.Set<UserAuthority>().Remove(userAuthority);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void DeleteRange(string ids)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var UserAuthoritys = ProjectDataContext.UserAuthoritys.Where(_ => (ids.Contains(_.Id)));
-                DeleteRange(UserAuthoritys);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void DeleteRange(IEnumerable<UserAuthority> userAuthoritys)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                ProjectDataContext.Set<UserAuthority>().RemoveRange(userAuthoritys);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
         public void DeleteByUserID(string userID)
         {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var UserAuthority = ProjectDataContext.UserAuthoritys.Where(_ => _.UserID.Equals(userID)).ToList();
-                DeleteRange(UserAuthority);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
+            Remove(FirstOrDefault(x => x.UserID.Equals(userID)));
         }
 
         public string GetAutoID()

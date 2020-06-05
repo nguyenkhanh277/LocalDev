@@ -95,7 +95,7 @@ namespace LocalDev.View.Users
                 conditions.Add(UserRepository.SearchConditions.Gender, chkMale.Checked ? GlobalConstants.GenderValue.Male : GlobalConstants.GenderValue.Female);
             }
             conditions.Add(UserRepository.SearchConditions.SortUsername_Desc, false);
-            dgvDuLieu.DataSource = _userRepository.GetAll(conditions);
+            dgvDuLieu.DataSource = _userRepository.Find(conditions);
             Control();
         }
 
@@ -125,7 +125,7 @@ namespace LocalDev.View.Users
         {
             if (XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                _userRepository.Delete(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
+                _userRepository.Remove(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
                 int result = unitOfWork.Complete();
                 if (result > 0)

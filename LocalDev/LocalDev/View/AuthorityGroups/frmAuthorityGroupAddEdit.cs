@@ -41,14 +41,14 @@ namespace LocalDev.View.AuthorityGroups
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        int? _id = -1;
+        string _id = "";
 
         public frmAuthorityGroupAddEdit()
         {
             InitializeComponent();
         }
 
-        public frmAuthorityGroupAddEdit(int? id)
+        public frmAuthorityGroupAddEdit(string id)
         {
             InitializeComponent();
             _id = id;
@@ -61,7 +61,7 @@ namespace LocalDev.View.AuthorityGroups
             _programFunctionAuthorityRepository = new ProgramFunctionAuthorityRepository(_projectDataContext);
             LanguageTranslate.ChangeLanguageForm(this);
             LanguageTranslate.ChangeLanguageDataGridView(dgvDuLieu);
-            if (_id == -1)
+            if (String.IsNullOrEmpty(_id))
             {
                 Clear();
             }
@@ -81,7 +81,7 @@ namespace LocalDev.View.AuthorityGroups
         private void GetData()
         {
             //Get Data Table AuthorityGroup
-            AuthorityGroup authorityGroup = _authorityGroupRepository.GetInfo(_id);
+            AuthorityGroup authorityGroup = _authorityGroupRepository.Get(_id);
             txtAuthorityGroupName.Text = authorityGroup.AuthorityGroupName;
             chkUsing.Checked = (authorityGroup.Status == GlobalConstants.StatusValue.Using);
         }
@@ -90,12 +90,12 @@ namespace LocalDev.View.AuthorityGroups
         {
             Dictionary<ProgramFunctionMasterRepository.SearchConditions, object> conditionsMaster = new Dictionary<ProgramFunctionMasterRepository.SearchConditions, object>();
             conditionsMaster.Add(ProgramFunctionMasterRepository.SearchConditions.SortProgramName_Desc, false);
-            var programFunctionMasters = _programFunctionMasterRepository.GetAll(conditionsMaster);
+            var programFunctionMasters = _programFunctionMasterRepository.Find(conditionsMaster);
 
             Dictionary<ProgramFunctionAuthorityRepository.SearchConditions, object> conditions = new Dictionary<ProgramFunctionAuthorityRepository.SearchConditions, object>();
             conditions.Add(ProgramFunctionAuthorityRepository.SearchConditions.AuthorityGroupID, _id);
             conditions.Add(ProgramFunctionAuthorityRepository.SearchConditions.SortProgramName_Desc, false);
-            _oldProgramFunctionAuthority = _programFunctionAuthorityRepository.GetAll(conditions);
+            _oldProgramFunctionAuthority = _programFunctionAuthorityRepository.Find(conditions);
 
             dgvDuLieu.Rows.Clear();
             int check = 0;
@@ -116,24 +116,39 @@ namespace LocalDev.View.AuthorityGroups
             }
         }
 
+        private bool CheckData()
+        {
+            if (txtAuthorityGroupName.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtAuthorityGroupName.Focus();
+                return false;
+            }
+            AuthorityGroup authorityGroup = _authorityGroupRepository.FirstOrDefault(x => x.AuthorityGroupName.Equals(txtAuthorityGroupName.Text.Trim()));
+            if (authorityGroup != null &&
+                (
+                    String.IsNullOrEmpty(_id) ||
+                    (!String.IsNullOrEmpty(_id) && txtAuthorityGroupName.Text.Trim() != authorityGroup.AuthorityGroupName)
+                ))
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtAuthorityGroupName.Focus();
+                return false;
+            }
+            return true;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
+                if (!CheckData()) return;
                 //Table AuthorityGroup
                 AuthorityGroup authorityGroup = new AuthorityGroup();
-                if (_id == -1)
-                {
-                    authorityGroup.Id = null;
-                }
-                else
-                {
-                    authorityGroup.Id = _id;
-                }
                 authorityGroup.AuthorityGroupName = txtAuthorityGroupName.Text.Trim();
                 authorityGroup.Status = (chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
                 _authorityGroupRepository.Save(authorityGroup);
-                if (_authorityGroupRepository.id != -1)
+                if (!String.IsNullOrEmpty(_authorityGroupRepository.id))
                 {
                     for (int i = 0; i < dgvDuLieu.RowCount; i++)
                     {
@@ -155,7 +170,7 @@ namespace LocalDev.View.AuthorityGroups
                 int result = unitOfWork.Complete();
                 if (result > 0)
                 {
-                    if (_id == -1)
+                    if (String.IsNullOrEmpty(_id))
                     {
                         XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thành công"), LanguageTranslate.ChangeLanguageText("Thông báo"));
                         Clear();

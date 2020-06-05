@@ -12,22 +12,22 @@ namespace LocalDev.Persistence
         public UnitOfWork(ProjectDataContext projectDataContext)
         {
             this._projectDataContext = projectDataContext;
-            partNumbers = new PartNumberRepository(_projectDataContext);
-            languageLibrarys = new LanguageLibraryRepository(_projectDataContext);
-            users = new UserRepository(_projectDataContext);
-            authorityGroups = new AuthorityGroupRepository(_projectDataContext);
-            programFunctionMasters = new ProgramFunctionMasterRepository(_projectDataContext);
-            programFunctionAuthoritys = new ProgramFunctionAuthorityRepository(_projectDataContext);
-            userAuthoritys = new UserAuthorityRepository(_projectDataContext);
+            //partNumbers = new PartNumberRepository(_projectDataContext);
+            //languageLibrarys = new LanguageLibraryRepository(_projectDataContext);
+            //users = new UserRepository(_projectDataContext);
+            //authorityGroups = new AuthorityGroupRepository(_projectDataContext);
+            //programFunctionMasters = new ProgramFunctionMasterRepository(_projectDataContext);
+            //programFunctionAuthoritys = new ProgramFunctionAuthorityRepository(_projectDataContext);
+            //userAuthoritys = new UserAuthorityRepository(_projectDataContext);
         }
 
-        public IPartNumberRepository partNumbers { get; private set; }
-        public ILanguageLibraryRepository languageLibrarys { get; private set; }
-        public IUserRepository users { get; private set; }
-        public IAuthorityGroupRepository authorityGroups { get; private set; }
-        public IProgramFunctionMasterRepository programFunctionMasters { get; private set; }
-        public IProgramFunctionAuthorityRepository programFunctionAuthoritys { get; private set; }
-        public IUserAuthorityRepository userAuthoritys { get; private set; }
+        //public IPartNumberRepository partNumbers { get; private set; }
+        //public ILanguageLibraryRepository languageLibrarys { get; private set; }
+        //public IUserRepository users { get; private set; }
+        //public IAuthorityGroupRepository authorityGroups { get; private set; }
+        //public IProgramFunctionMasterRepository programFunctionMasters { get; private set; }
+        //public IProgramFunctionAuthorityRepository programFunctionAuthoritys { get; private set; }
+        //public IUserAuthorityRepository userAuthoritys { get; private set; }
 
         public int Complete()
         {

@@ -9,7 +9,7 @@ namespace LocalDev.Core.Domain
         public string Id { get; set; }
         public string ProgramName { get; set; }
         public string FunctionName { get; set; }
-        public int? AuthorityGroupID { get; set; }
+        public string AuthorityGroupID { get; set; }
         #endregion
     }
 }

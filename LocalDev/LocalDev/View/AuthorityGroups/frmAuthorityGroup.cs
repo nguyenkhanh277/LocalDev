@@ -78,7 +78,7 @@ namespace LocalDev.View.AuthorityGroups
                 conditions.Add(AuthorityGroupRepository.SearchConditions.Status, chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
             }
             conditions.Add(AuthorityGroupRepository.SearchConditions.SortId_Desc, false);
-            dgvDuLieu.DataSource = _authorityGroupRepository.GetAll(conditions);
+            dgvDuLieu.DataSource = _authorityGroupRepository.Find(conditions);
             Control();
         }
 
@@ -96,7 +96,7 @@ namespace LocalDev.View.AuthorityGroups
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            frmAuthorityGroupAddEdit frm = new frmAuthorityGroupAddEdit(int.Parse(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString()));
+            frmAuthorityGroupAddEdit frm = new frmAuthorityGroupAddEdit(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
             DialogResult dr = frm.ShowDialog();
             if (dr == DialogResult.OK)
             {
@@ -108,7 +108,7 @@ namespace LocalDev.View.AuthorityGroups
         {
             if (XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                _authorityGroupRepository.Delete(int.Parse(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString()));
+                _authorityGroupRepository.Remove(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
                 int result = unitOfWork.Complete();
                 if (result > 0)

@@ -8,11 +8,8 @@ using LocalDev.Core.Helper;
 
 namespace LocalDev.Persistence.Repositories
 {
-    public class LanguageLibraryRepository : Repository<LanguageLibrary>, ILanguageLibraryRepository
+    public class LanguageLibraryRepository : Repository<LanguageLibrary>
     {
-        public bool error = false;
-        public string errorMessage = "";
-
         public LanguageLibraryRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
         {
         }
@@ -31,13 +28,7 @@ namespace LocalDev.Persistence.Repositories
         }
         #endregion
 
-        public LanguageLibrary GetInfo(string id)
-        {
-            ProjectDataContext projectDataContext = new ProjectDataContext();
-            return projectDataContext.LanguageLibrarys.OrderBy(_ => _.Vietnamese).SingleOrDefault(_ => _.Id.Equals(id));
-        }
-
-        public IEnumerable<LanguageLibrary> GetAll(Dictionary<SearchConditions, object> conditions)
+        public IEnumerable<LanguageLibrary> Find(Dictionary<SearchConditions, object> conditions)
         {
             ProjectDataContext projectDataContext = new ProjectDataContext();
             var query = from x in projectDataContext.LanguageLibrarys
@@ -76,29 +67,14 @@ namespace LocalDev.Persistence.Repositories
         {
             if (String.IsNullOrEmpty(languageLibrary.Id))
             {
+                languageLibrary.Id = GetAutoID();
+                languageLibrary.CreatedAt = DateTime.Now;
+                languageLibrary.CreatedBy = GlobalConstants.username;
                 Add(languageLibrary);
             }
             else
             {
                 Update(languageLibrary);
-            }
-        }
-
-        public void Add(LanguageLibrary languageLibrary)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                languageLibrary.Id = GetAutoID();
-                languageLibrary.CreatedAt = DateTime.Now;
-                languageLibrary.CreatedBy = GlobalConstants.username;
-                ProjectDataContext.Set<LanguageLibrary>().Add(languageLibrary);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
             }
         }
 
@@ -108,79 +84,13 @@ namespace LocalDev.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var query = from x in ProjectDataContext.LanguageLibrarys
-                            where x.Id.Equals(languageLibrary.Id)
-                            select x;
-                if (query.Any())
+                var raw = FirstOrDefault(x => x.Id.Equals(languageLibrary.Id));
+                if (raw != null)
                 {
-                    var raw = query.FirstOrDefault();
                     raw.CollectInformation(languageLibrary);
                     raw.EditedAt = DateTime.Now;
                     raw.EditedBy = GlobalConstants.username;
                 }
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void Delete(string id)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var languageLibrary = ProjectDataContext.LanguageLibrarys.Where(_ => _.Id.Equals(id)).SingleOrDefault();
-                Delete(languageLibrary);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void Delete(LanguageLibrary languageLibrary)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                if (languageLibrary == null) return;
-                ProjectDataContext.Set<LanguageLibrary>().Remove(languageLibrary);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void DeleteRange(string ids)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var languageLibrarys = ProjectDataContext.LanguageLibrarys.Where(_ => (ids.Contains(_.Id)));
-                DeleteRange(languageLibrarys);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void DeleteRange(IEnumerable<LanguageLibrary> languageLibrarys)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                ProjectDataContext.Set<LanguageLibrary>().RemoveRange(languageLibrarys);
             }
             catch (Exception ex)
             {

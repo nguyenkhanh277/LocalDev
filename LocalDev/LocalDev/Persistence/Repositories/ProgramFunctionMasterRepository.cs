@@ -8,11 +8,8 @@ using LocalDev.Core.Helper;
 
 namespace LocalDev.Persistence.Repositories
 {
-    public class ProgramFunctionMasterRepository : Repository<ProgramFunctionMaster>, IProgramFunctionMasterRepository
+    public class ProgramFunctionMasterRepository : Repository<ProgramFunctionMaster>
     {
-        public bool error = false;
-        public string errorMessage = "";
-
         public ProgramFunctionMasterRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
         {
         }
@@ -32,13 +29,7 @@ namespace LocalDev.Persistence.Repositories
         }
         #endregion
 
-        public ProgramFunctionMaster GetInfo(string id)
-        {
-            ProjectDataContext projectDataContext = new ProjectDataContext();
-            return projectDataContext.ProgramFunctionMasters.OrderBy(_ => _.ProgramName).SingleOrDefault(_ => _.Id.Equals(id));
-        }
-
-        public IEnumerable<ProgramFunctionMaster> GetAll(Dictionary<SearchConditions, object> conditions)
+        public IEnumerable<ProgramFunctionMaster> Find(Dictionary<SearchConditions, object> conditions)
         {
             ProjectDataContext projectDataContext = new ProjectDataContext();
             var query = from x in projectDataContext.ProgramFunctionMasters
@@ -83,29 +74,14 @@ namespace LocalDev.Persistence.Repositories
         {
             if (String.IsNullOrEmpty(programFunctionMaster.Id))
             {
+                programFunctionMaster.Id = GetAutoID();
+                programFunctionMaster.CreatedAt = DateTime.Now;
+                programFunctionMaster.CreatedBy = GlobalConstants.username;
                 Add(programFunctionMaster);
             }
             else
             {
                 Update(programFunctionMaster);
-            }
-        }
-
-        public void Add(ProgramFunctionMaster programFunctionMaster)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                programFunctionMaster.Id = GetAutoID();
-                programFunctionMaster.CreatedAt = DateTime.Now;
-                programFunctionMaster.CreatedBy = GlobalConstants.username;
-                ProjectDataContext.Set<ProgramFunctionMaster>().Add(programFunctionMaster);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
             }
         }
 
@@ -115,79 +91,13 @@ namespace LocalDev.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var query = from x in ProjectDataContext.ProgramFunctionMasters
-                            where x.Id.Equals(programFunctionMaster.Id)
-                            select x;
-                if (query.Any())
+                var raw = FirstOrDefault(x => x.Id.Equals(programFunctionMaster.Id));
+                if (raw != null)
                 {
-                    var raw = query.FirstOrDefault();
                     raw.CollectInformation(programFunctionMaster);
                     raw.EditedAt = DateTime.Now;
                     raw.EditedBy = GlobalConstants.username;
                 }
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void Delete(string id)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var ProgramFunctionMaster = ProjectDataContext.ProgramFunctionMasters.Where(_ => _.Id.Equals(id)).SingleOrDefault();
-                Delete(ProgramFunctionMaster);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void Delete(ProgramFunctionMaster programFunctionMaster)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                if (programFunctionMaster == null) return;
-                ProjectDataContext.Set<ProgramFunctionMaster>().Remove(programFunctionMaster);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void DeleteRange(string ids)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var ProgramFunctionMasters = ProjectDataContext.ProgramFunctionMasters.Where(_ => (ids.Contains(_.Id)));
-                DeleteRange(ProgramFunctionMasters);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void DeleteRange(IEnumerable<ProgramFunctionMaster> programFunctionMasters)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                ProjectDataContext.Set<ProgramFunctionMaster>().RemoveRange(programFunctionMasters);
             }
             catch (Exception ex)
             {

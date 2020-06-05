@@ -11,8 +11,9 @@ namespace LocalDev.Migrations
                 "dbo.AuthorityGroups",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
                         AuthorityGroupName = c.String(),
+                        Sort = c.Int(),
                         Status = c.Int(nullable: false),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.String(),
@@ -28,7 +29,7 @@ namespace LocalDev.Migrations
                         Id = c.String(nullable: false, maxLength: 128),
                         ProgramName = c.String(),
                         FunctionName = c.String(),
-                        AuthorityGroupID = c.Int(),
+                        AuthorityGroupID = c.String(maxLength: 128),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.String(),
                         EditedAt = c.DateTime(),
@@ -44,7 +45,7 @@ namespace LocalDev.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         UserID = c.String(maxLength: 128),
-                        AuthorityGroupID = c.Int(),
+                        AuthorityGroupID = c.String(maxLength: 128),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.String(),
                         EditedAt = c.DateTime(),
@@ -133,7 +134,6 @@ namespace LocalDev.Migrations
                         FullName = c.String(),
                         Phone = c.String(),
                         Address = c.String(),
-                        Address1 = c.String(),
                         Gender = c.Int(nullable: false),
                         Note = c.String(),
                         Status = c.Int(nullable: false),

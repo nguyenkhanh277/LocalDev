@@ -8,11 +8,8 @@ using LocalDev.Core.Helper;
 
 namespace LocalDev.Persistence.Repositories
 {
-    public class BarcodeRepository : Repository<Barcode>, IBarcodeRepository
+    public class BarcodeRepository : Repository<Barcode>
     {
-        public bool error = false;
-        public string errorMessage = "";
-
         public BarcodeRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
         {
         }
@@ -37,13 +34,7 @@ namespace LocalDev.Persistence.Repositories
         }
         #endregion
 
-        public Barcode GetInfo(string id)
-        {
-            ProjectDataContext projectDataContext = new ProjectDataContext();
-            return projectDataContext.Barcodes.OrderBy(_ => _.PrintDate).SingleOrDefault(_ => _.Id.Equals(id));
-        }
-
-        public IEnumerable<Barcode> GetAll(Dictionary<SearchConditions, object> conditions)
+        public IEnumerable<Barcode> Find(Dictionary<SearchConditions, object> conditions)
         {
             ProjectDataContext projectDataContext = new ProjectDataContext();
             var query = from x in projectDataContext.Barcodes
@@ -104,29 +95,14 @@ namespace LocalDev.Persistence.Repositories
         {
             if (String.IsNullOrEmpty(barcode.Id))
             {
+                barcode.Id = GetAutoID();
+                barcode.CreatedAt = DateTime.Now;
+                barcode.CreatedBy = GlobalConstants.username;
                 Add(barcode);
             }
             else
             {
                 Update(barcode);
-            }
-        }
-
-        public void Add(Barcode barcode)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                barcode.Id = GetAutoID();
-                barcode.CreatedAt = DateTime.Now;
-                barcode.CreatedBy = GlobalConstants.username;
-                ProjectDataContext.Set<Barcode>().Add(barcode);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
             }
         }
 
@@ -136,79 +112,13 @@ namespace LocalDev.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var query = from x in ProjectDataContext.Barcodes
-                            where x.Id.Equals(barcode.Id)
-                            select x;
-                if (query.Any())
+                var raw = FirstOrDefault(x => x.Id.Equals(barcode.Id));
+                if (raw != null)
                 {
-                    var raw = query.FirstOrDefault();
                     raw.CollectInformation(barcode);
                     raw.EditedAt = DateTime.Now;
                     raw.EditedBy = GlobalConstants.username;
                 }
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void Delete(string id)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var barcode = ProjectDataContext.Barcodes.Where(_ => _.Id.Equals(id)).SingleOrDefault();
-                Delete(barcode);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void Delete(Barcode barcode)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                if (barcode == null) return;
-                ProjectDataContext.Set<Barcode>().Remove(barcode);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void DeleteRange(string ids)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var barcodes = ProjectDataContext.Barcodes.Where(_ => (ids.Contains(_.Id)));
-                DeleteRange(barcodes);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void DeleteRange(IEnumerable<Barcode> barcodes)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                ProjectDataContext.Set<Barcode>().RemoveRange(barcodes);
             }
             catch (Exception ex)
             {

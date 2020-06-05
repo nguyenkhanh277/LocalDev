@@ -77,6 +77,7 @@
             this.txtOldPassword.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtOldPassword.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtOldPassword.Properties.AutoHeight = false;
+            this.txtOldPassword.Properties.UseSystemPasswordChar = true;
             this.txtOldPassword.Size = new System.Drawing.Size(300, 30);
             this.txtOldPassword.TabIndex = 1;
             // 
@@ -126,6 +127,7 @@
             this.btnClose.Size = new System.Drawing.Size(80, 40);
             this.btnClose.TabIndex = 7;
             this.btnClose.Text = "Đóng (ESC)";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
             // 
@@ -138,11 +140,13 @@
             this.btnSave.Size = new System.Drawing.Size(80, 40);
             this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Lưu (F1)";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmChangePassword
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(390, 258);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);

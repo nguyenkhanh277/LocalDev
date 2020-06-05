@@ -76,17 +76,46 @@ namespace LocalDev.View.ProgramFunctionMasters
         private void GetData()
         {
             //Get Data Table ProgramFunctionMaster
-            ProgramFunctionMaster programFunctionMaster = _programFunctionMasterRepository.GetInfo(_id);
+            ProgramFunctionMaster programFunctionMaster = _programFunctionMasterRepository.Get(_id);
             txtProgramName.Text = programFunctionMaster.ProgramName;
             txtFunctionName.Text = programFunctionMaster.FunctionName;
             txtExplanation.Text = programFunctionMaster.Explanation;
             chkUsing.Checked = (programFunctionMaster.Status == GlobalConstants.StatusValue.Using);
         }
 
+        private bool CheckData()
+        {
+            if (txtProgramName.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtProgramName.Focus();
+                return false;
+            }
+            else if (txtFunctionName.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtFunctionName.Focus();
+                return false;
+            }
+            ProgramFunctionMaster programFunctionMaster = _programFunctionMasterRepository.FirstOrDefault(x => x.ProgramName.Equals(txtProgramName.Text.Trim()) && x.FunctionName.Equals(txtFunctionName.Text.Trim()));
+            if (programFunctionMaster != null &&
+                (
+                    String.IsNullOrEmpty(_id) ||
+                    (!String.IsNullOrEmpty(_id) && (txtProgramName.Text.Trim() != programFunctionMaster.ProgramName || txtFunctionName.Text.Trim() != programFunctionMaster.FunctionName))
+                ))
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtFunctionName.Focus();
+                return false;
+            }
+            return true;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
+                if (!CheckData()) return;
                 //Table ProgramFunctionMaster
                 ProgramFunctionMaster programFunctionMaster = new ProgramFunctionMaster();
                 programFunctionMaster.Id = _id;

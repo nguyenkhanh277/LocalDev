@@ -74,7 +74,7 @@ namespace LocalDev.View.LanguageLibrarys
         {
             Dictionary<LanguageLibraryRepository.SearchConditions, object> conditions = new Dictionary<LanguageLibraryRepository.SearchConditions, object>();
             conditions.Add(LanguageLibraryRepository.SearchConditions.SortVietnamese_Desc, false);
-            dgvDuLieu.DataSource = _languageLibraryRepository.GetAll(conditions);
+            dgvDuLieu.DataSource = _languageLibraryRepository.Find(conditions);
             Control();
         }
 
@@ -104,7 +104,7 @@ namespace LocalDev.View.LanguageLibrarys
         {
             if (XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                _languageLibraryRepository.Delete(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
+                _languageLibraryRepository.Remove(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
                 int result = unitOfWork.Complete();
                 if (result > 0)

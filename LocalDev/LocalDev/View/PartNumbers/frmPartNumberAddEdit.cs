@@ -76,17 +76,46 @@ namespace LocalDev.View.PartNumbers
         private void GetData()
         {
             //Get Data Table PartNumber
-            PartNumber partNumber = _partNumberRepository.GetInfo(_id);
+            PartNumber partNumber = _partNumberRepository.Get(_id);
             txtPartNo.Text = partNumber.PartNo;
             txtModel.Text = partNumber.Model;
             txtNote.Text = partNumber.Note;
             chkUsing.Checked = (partNumber.Status == GlobalConstants.StatusValue.Using);
         }
 
+        private bool CheckData()
+        {
+            if (txtPartNo.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtPartNo.Focus();
+                return false;
+            }
+            else if (txtModel.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtModel.Focus();
+                return false;
+            }
+            PartNumber partNumber = _partNumberRepository.FirstOrDefault(x => x.PartNo.Equals(txtPartNo.Text.Trim()));
+            if (partNumber != null &&
+                (
+                    String.IsNullOrEmpty(_id) ||
+                    (!String.IsNullOrEmpty(_id) && txtPartNo.Text.Trim() != partNumber.PartNo)
+                ))
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                txtPartNo.Focus();
+                return false;
+            }
+            return true;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
+                if (!CheckData()) return;
                 //Table PartNumber
                 PartNumber partNumber = new PartNumber();
                 partNumber.Id = _id;

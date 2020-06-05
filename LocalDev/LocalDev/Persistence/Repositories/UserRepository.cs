@@ -1,18 +1,16 @@
 using LocalDev.Core.Domain;
-using LocalDev.Core.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using System;
 using LocalDev.Core;
 using LocalDev.Core.Helper;
+using System.Linq.Expressions;
 
 namespace LocalDev.Persistence.Repositories
 {
-    public class UserRepository : Repository<User>, IUserRepository
+    public class UserRepository : Repository<User>
     {
         public string id = "";
-        public bool error = false;
-        public string errorMessage = "";
 
         public UserRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
         {
@@ -38,13 +36,12 @@ namespace LocalDev.Persistence.Repositories
         }
         #endregion
 
-        public User GetInfo(string id)
+        public Expression<Func<User, bool>> FilterById(string id)
         {
-            ProjectDataContext projectDataContext = new ProjectDataContext();
-            return projectDataContext.Users.OrderBy(_ => _.Username).SingleOrDefault(_ => _.Id.Equals(id));
+            return x => x.Id.Equals(id);
         }
 
-        public IEnumerable<User> GetAll(Dictionary<SearchConditions, object> conditions)
+        public IEnumerable<User> Find(Dictionary<SearchConditions, object> conditions)
         {
             ProjectDataContext projectDataContext = new ProjectDataContext();
             var query = from x in projectDataContext.Users
@@ -115,32 +112,16 @@ namespace LocalDev.Persistence.Repositories
         {
             if (String.IsNullOrEmpty(user.Id))
             {
-                Add(user);
-            }
-            else
-            {
-                Update(user);
-            }
-        }
-
-        public void Add(User user)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
                 user.Id = GetAutoID();
                 user.Salt = SecurityHelper.CreateSalt(GlobalConstants.defaultSaltLength);
                 user.Password = SecurityHelper.GenerateMD5(user.Password, user.Salt);
                 user.CreatedAt = DateTime.Now;
                 user.CreatedBy = GlobalConstants.username;
-                var raw = ProjectDataContext.Set<User>().Add(user);
-                id = raw.Id;
+                Add(user);
             }
-            catch (Exception ex)
+            else
             {
-                error = true;
-                errorMessage = ex.ToString();
+                Update(user);
             }
         }
 
@@ -150,12 +131,9 @@ namespace LocalDev.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var query = from x in ProjectDataContext.Users
-                            where x.Id.Equals(user.Id)
-                            select x;
-                if (query.Any())
+                var raw = FirstOrDefault(x => x.Id.Equals(user.Id));
+                if (raw != null)
                 {
-                    var raw = query.FirstOrDefault();
                     if (!String.IsNullOrEmpty(user.Password))
                     {
                         user.Password = SecurityHelper.GenerateMD5(user.Password, raw.Salt);
@@ -177,84 +155,18 @@ namespace LocalDev.Persistence.Repositories
             }
         }
 
-        public void Delete(string id)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var user = ProjectDataContext.Users.Where(_ => _.Id.Equals(id)).SingleOrDefault();
-                Delete(user);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void Delete(User user)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                if (user == null) return;
-                ProjectDataContext.Set<User>().Remove(user);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void DeleteRange(string ids)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                var users = ProjectDataContext.Users.Where(_ => (ids.Contains(_.Id)));
-                DeleteRange(users);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
-        public void DeleteRange(IEnumerable<User> users)
-        {
-            error = false;
-            errorMessage = "";
-            try
-            {
-                ProjectDataContext.Set<User>().RemoveRange(users);
-            }
-            catch (Exception ex)
-            {
-                error = true;
-                errorMessage = ex.ToString();
-            }
-        }
-
         public void ChangePassword(string username, string newPassword)
         {
             error = false;
             errorMessage = "";
             try
             {
-                var query = from x in ProjectDataContext.Users
-                            where x.Username.Equals(username)
-                            select x;
-                if (query.Any())
+                var user = FirstOrDefault(x => x.Username.Equals(username));
+                if (user != null)
                 {
-                    var raw = query.FirstOrDefault();
-                    raw.Password = SecurityHelper.GenerateMD5(newPassword, raw.Salt);
-                    raw.EditedAt = DateTime.Now;
-                    raw.EditedBy = GlobalConstants.username;
+                    user.Password = SecurityHelper.GenerateMD5(newPassword, user.Salt);
+                    user.EditedAt = DateTime.Now;
+                    user.EditedBy = GlobalConstants.username;
                 }
             }
             catch (Exception ex)
@@ -268,13 +180,9 @@ namespace LocalDev.Persistence.Repositories
         {
             error = false;
             errorMessage = "";
-            ProjectDataContext projectDataContext = new ProjectDataContext();
-            var query = from x in projectDataContext.Users
-                        where x.Username.Equals(username)
-                        select x;
-            if (query.Any())
+            var user = FirstOrDefault(x => x.Username.Equals(username));
+            if (user != null)
             {
-                var user = query.SingleOrDefault();
                 String encryptedPassword = SecurityHelper.GenerateMD5(password, user.Salt);
                 if (user.Password != encryptedPassword)
                 {
