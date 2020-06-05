@@ -130,10 +130,10 @@ namespace LocalDev.Persistence.Repositories
             try
             {
                 user.Id = GetAutoID();
-                user.Salt = SecurityHelper.CreateSalt(GlobalConstants.DEFAULT_SALT_LENGTH);
+                user.Salt = SecurityHelper.CreateSalt(GlobalConstants.defaultSaltLength);
                 user.Password = SecurityHelper.GenerateMD5(user.Password, user.Salt);
                 user.CreatedAt = DateTime.Now;
-                user.CreatedBy = GlobalConstants.Username;
+                user.CreatedBy = GlobalConstants.username;
                 var raw = ProjectDataContext.Set<User>().Add(user);
                 id = raw.Id;
             }
@@ -166,7 +166,7 @@ namespace LocalDev.Persistence.Repositories
                     }
                     raw.CollectInformation(user);
                     raw.EditedAt = DateTime.Now;
-                    raw.EditedBy = GlobalConstants.Username;
+                    raw.EditedBy = GlobalConstants.username;
                     id = raw.Id;
                 }
             }
@@ -240,6 +240,30 @@ namespace LocalDev.Persistence.Repositories
             }
         }
 
+        public void ChangePassword(string username, string newPassword)
+        {
+            error = false;
+            errorMessage = "";
+            try
+            {
+                var query = from x in ProjectDataContext.Users
+                            where x.Username.Equals(username)
+                            select x;
+                if (query.Any())
+                {
+                    var raw = query.FirstOrDefault();
+                    raw.Password = SecurityHelper.GenerateMD5(newPassword, raw.Salt);
+                    raw.EditedAt = DateTime.Now;
+                    raw.EditedBy = GlobalConstants.username;
+                }
+            }
+            catch (Exception ex)
+            {
+                error = true;
+                errorMessage = ex.ToString();
+            }
+        }
+
         public void CheckSecurity(string username, string password)
         {
             error = false;
@@ -255,15 +279,15 @@ namespace LocalDev.Persistence.Repositories
                 if (user.Password != encryptedPassword)
                 {
                     error = true;
-                    errorMessage = "Incorrect password. Type the correct password, and try again.";
+                    errorMessage = "Mật khẩu không đúng";
                 }
-                GlobalConstants.Username = user.Username;
-                GlobalConstants.FullName = user.FullName;
+                GlobalConstants.username = user.Username;
+                GlobalConstants.fullName = user.FullName;
             }
             else
             {
                 error = true;
-                errorMessage = "Username does not exist.";
+                errorMessage = "Tài khoản không tồn tại";
             }
         }
 

@@ -54,7 +54,8 @@
             this.linkIForgetMyPassword.Name = "linkIForgetMyPassword";
             this.linkIForgetMyPassword.Size = new System.Drawing.Size(300, 30);
             this.linkIForgetMyPassword.TabIndex = 7;
-            this.linkIForgetMyPassword.Text = "I forgot my password";
+            this.linkIForgetMyPassword.Text = "Quên mật khẩu";
+            this.linkIForgetMyPassword.Visible = false;
             // 
             // chkKeepMeSignedIn
             // 
@@ -63,7 +64,7 @@
             this.chkKeepMeSignedIn.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.chkKeepMeSignedIn.Properties.Appearance.Options.UseFont = true;
             this.chkKeepMeSignedIn.Properties.AutoHeight = false;
-            this.chkKeepMeSignedIn.Properties.Caption = "Keep me signed in";
+            this.chkKeepMeSignedIn.Properties.Caption = "Lưu thông tin đăng nhập";
             this.chkKeepMeSignedIn.Size = new System.Drawing.Size(300, 30);
             this.chkKeepMeSignedIn.TabIndex = 5;
             // 
@@ -77,7 +78,7 @@
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(300, 50);
             this.btnSignIn.TabIndex = 6;
-            this.btnSignIn.Text = "Sign In";
+            this.btnSignIn.Text = "Đăng nhập";
             this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
             // txtPassword
@@ -102,13 +103,13 @@
             this.labelControl3.Location = new System.Drawing.Point(45, 148);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(56, 17);
+            this.labelControl3.Size = new System.Drawing.Size(59, 19);
             this.labelControl3.TabIndex = 3;
-            this.labelControl3.Text = "Password";
+            this.labelControl3.Text = "Mật khẩu";
             // 
             // lblTieuDe
             // 
-            this.lblTieuDe.Appearance.Font = new System.Drawing.Font("Segoe UI", 20F);
+            this.lblTieuDe.Appearance.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Bold);
             this.lblTieuDe.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(250)))));
             this.lblTieuDe.Appearance.Options.UseFont = true;
             this.lblTieuDe.Appearance.Options.UseForeColor = true;
@@ -145,9 +146,9 @@
             this.labelControl1.Location = new System.Drawing.Point(45, 85);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(59, 17);
+            this.labelControl1.Size = new System.Drawing.Size(57, 19);
             this.labelControl1.TabIndex = 1;
-            this.labelControl1.Text = "Username";
+            this.labelControl1.Text = "Tài khoản";
             // 
             // picEnglish
             // 
@@ -194,7 +195,7 @@
             this.MaximizeBox = false;
             this.Name = "frmSignIn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sign In";
+            this.Text = "Đăng nhập";
             this.Load += new System.EventHandler(this.frmSignIn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chkKeepMeSignedIn.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();

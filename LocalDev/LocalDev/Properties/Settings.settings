@@ -12,7 +12,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="Company" Type="System.String" Scope="User">
-      <Value Profile="(Default)">INAVINA</Value>
+      <Value Profile="(Default)">LocalDev</Value>
     </Setting>
     <Setting Name="Phone" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

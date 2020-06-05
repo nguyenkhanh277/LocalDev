@@ -98,7 +98,7 @@ namespace LocalDev.Persistence.Repositories
             {
                 userAuthority.Id = GetAutoID();
                 userAuthority.CreatedAt = DateTime.Now;
-                userAuthority.CreatedBy = GlobalConstants.Username;
+                userAuthority.CreatedBy = GlobalConstants.username;
                 ProjectDataContext.Set<UserAuthority>().Add(userAuthority);
             }
             catch (Exception ex)
@@ -122,7 +122,7 @@ namespace LocalDev.Persistence.Repositories
                     var raw = query.FirstOrDefault();
                     raw.CollectInformation(userAuthority);
                     raw.EditedAt = DateTime.Now;
-                    raw.EditedBy = GlobalConstants.Username;
+                    raw.EditedBy = GlobalConstants.username;
                 }
             }
             catch (Exception ex)

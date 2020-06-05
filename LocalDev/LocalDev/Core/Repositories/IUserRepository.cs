@@ -17,5 +17,8 @@ namespace LocalDev.Core.Repositories
         void Delete(User user);
         void DeleteRange(string ids);
         void DeleteRange(IEnumerable<User> users);
+        void ChangePassword(string username, string newPassword);
+        void CheckSecurity(string username, string password);
+        void CheckPermission(string username, string password, string permission);
     }
 }

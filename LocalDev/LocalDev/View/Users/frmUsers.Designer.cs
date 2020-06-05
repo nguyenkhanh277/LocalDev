@@ -77,11 +77,11 @@
             this.groupControl2.Controls.Add(this.chkAllGender);
             this.groupControl2.Controls.Add(this.chkFemale);
             this.groupControl2.Controls.Add(this.chkMale);
-            this.groupControl2.Location = new System.Drawing.Point(648, 5);
+            this.groupControl2.Location = new System.Drawing.Point(708, 5);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(200, 40);
+            this.groupControl2.Size = new System.Drawing.Size(210, 40);
             this.groupControl2.TabIndex = 9;
-            this.groupControl2.Text = "Gender";
+            this.groupControl2.Text = "Giới tính";
             // 
             // chkAllGender
             // 
@@ -91,10 +91,10 @@
             this.chkAllGender.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.chkAllGender.Location = new System.Drawing.Point(10, 18);
             this.chkAllGender.Name = "chkAllGender";
-            this.chkAllGender.Size = new System.Drawing.Size(42, 23);
+            this.chkAllGender.Size = new System.Drawing.Size(63, 23);
             this.chkAllGender.TabIndex = 8;
             this.chkAllGender.TabStop = true;
-            this.chkAllGender.Text = "All";
+            this.chkAllGender.Text = "Tất cả";
             this.chkAllGender.UseVisualStyleBackColor = false;
             // 
             // chkFemale
@@ -102,11 +102,11 @@
             this.chkFemale.AutoSize = true;
             this.chkFemale.BackColor = System.Drawing.Color.Transparent;
             this.chkFemale.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkFemale.Location = new System.Drawing.Point(121, 18);
+            this.chkFemale.Location = new System.Drawing.Point(141, 18);
             this.chkFemale.Name = "chkFemale";
-            this.chkFemale.Size = new System.Drawing.Size(70, 23);
+            this.chkFemale.Size = new System.Drawing.Size(45, 23);
             this.chkFemale.TabIndex = 6;
-            this.chkFemale.Text = "Female";
+            this.chkFemale.Text = "Nữ";
             this.chkFemale.UseVisualStyleBackColor = false;
             // 
             // chkMale
@@ -114,11 +114,11 @@
             this.chkMale.AutoSize = true;
             this.chkMale.BackColor = System.Drawing.Color.Transparent;
             this.chkMale.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkMale.Location = new System.Drawing.Point(58, 18);
+            this.chkMale.Location = new System.Drawing.Point(79, 18);
             this.chkMale.Name = "chkMale";
-            this.chkMale.Size = new System.Drawing.Size(57, 23);
+            this.chkMale.Size = new System.Drawing.Size(56, 23);
             this.chkMale.TabIndex = 7;
-            this.chkMale.Text = "Male";
+            this.chkMale.Text = "Nam";
             this.chkMale.UseVisualStyleBackColor = false;
             // 
             // groupControl1
@@ -130,9 +130,9 @@
             this.groupControl1.Controls.Add(this.chkNoUse);
             this.groupControl1.Location = new System.Drawing.Point(442, 5);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(200, 40);
+            this.groupControl1.Size = new System.Drawing.Size(260, 40);
             this.groupControl1.TabIndex = 8;
-            this.groupControl1.Text = "Status";
+            this.groupControl1.Text = "Trạng thái";
             // 
             // chkAllStatus
             // 
@@ -142,24 +142,22 @@
             this.chkAllStatus.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.chkAllStatus.Location = new System.Drawing.Point(5, 18);
             this.chkAllStatus.Name = "chkAllStatus";
-            this.chkAllStatus.Size = new System.Drawing.Size(42, 23);
+            this.chkAllStatus.Size = new System.Drawing.Size(63, 23);
             this.chkAllStatus.TabIndex = 9;
             this.chkAllStatus.TabStop = true;
-            this.chkAllStatus.Text = "All";
+            this.chkAllStatus.Text = "Tất cả";
             this.chkAllStatus.UseVisualStyleBackColor = false;
             // 
             // chkUsing
             // 
             this.chkUsing.AutoSize = true;
             this.chkUsing.BackColor = System.Drawing.Color.Transparent;
-            this.chkUsing.Checked = true;
             this.chkUsing.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkUsing.Location = new System.Drawing.Point(53, 18);
+            this.chkUsing.Location = new System.Drawing.Point(74, 18);
             this.chkUsing.Name = "chkUsing";
-            this.chkUsing.Size = new System.Drawing.Size(62, 23);
+            this.chkUsing.Size = new System.Drawing.Size(78, 23);
             this.chkUsing.TabIndex = 6;
-            this.chkUsing.TabStop = true;
-            this.chkUsing.Text = "Using";
+            this.chkUsing.Text = "Sử dụng";
             this.chkUsing.UseVisualStyleBackColor = false;
             // 
             // chkNoUse
@@ -167,11 +165,11 @@
             this.chkNoUse.AutoSize = true;
             this.chkNoUse.BackColor = System.Drawing.Color.Transparent;
             this.chkNoUse.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkNoUse.Location = new System.Drawing.Point(121, 18);
+            this.chkNoUse.Location = new System.Drawing.Point(158, 18);
             this.chkNoUse.Name = "chkNoUse";
-            this.chkNoUse.Size = new System.Drawing.Size(72, 23);
+            this.chkNoUse.Size = new System.Drawing.Size(97, 23);
             this.chkNoUse.TabIndex = 7;
-            this.chkNoUse.Text = "No Use";
+            this.chkNoUse.Text = "Ko sử dụng";
             this.chkNoUse.UseVisualStyleBackColor = false;
             // 
             // btnExcel
@@ -182,7 +180,7 @@
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(80, 40);
             this.btnExcel.TabIndex = 3;
-            this.btnExcel.Text = "Excel\r\n(F4)";
+            this.btnExcel.Text = "Excel (F4)";
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // btnRefresh
@@ -195,7 +193,7 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(80, 40);
             this.btnRefresh.TabIndex = 4;
-            this.btnRefresh.Text = "Refresh\r\n(F5)";
+            this.btnRefresh.Text = "Lọc (F5)";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnClose
@@ -209,7 +207,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
             this.btnClose.TabIndex = 5;
-            this.btnClose.Text = "Close\r\n(ESC)";
+            this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnDelete
@@ -222,7 +220,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(80, 40);
             this.btnDelete.TabIndex = 2;
-            this.btnDelete.Text = "Delete\r\n(F3)";
+            this.btnDelete.Text = "Xóa (F3)";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEdit
@@ -233,7 +231,7 @@
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(80, 40);
             this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "Edit\r\n(F2)";
+            this.btnEdit.Text = "Sửa (F2)";
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
@@ -246,7 +244,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(80, 40);
             this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "Add\r\n(F1)";
+            this.btnAdd.Text = "Thêm (F1)";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // dgvDuLieu
@@ -326,7 +324,7 @@
             this.Username.AppearanceHeader.Options.UseFont = true;
             this.Username.AppearanceHeader.Options.UseTextOptions = true;
             this.Username.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.Username.Caption = "Username";
+            this.Username.Caption = "Tài khoản";
             this.Username.ColumnEdit = this.repositoryItemMemoEdit1;
             this.Username.FieldName = "Username";
             this.Username.MaxWidth = 100;
@@ -346,15 +344,15 @@
             this.FullName.AppearanceHeader.Options.UseFont = true;
             this.FullName.AppearanceHeader.Options.UseTextOptions = true;
             this.FullName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.FullName.Caption = "FullName";
+            this.FullName.Caption = "Tên đầy đủ";
             this.FullName.ColumnEdit = this.repositoryItemMemoEdit1;
             this.FullName.FieldName = "FullName";
-            this.FullName.MaxWidth = 100;
-            this.FullName.MinWidth = 100;
+            this.FullName.MaxWidth = 150;
+            this.FullName.MinWidth = 150;
             this.FullName.Name = "FullName";
             this.FullName.Visible = true;
             this.FullName.VisibleIndex = 1;
-            this.FullName.Width = 100;
+            this.FullName.Width = 150;
             // 
             // Phone
             // 
@@ -366,7 +364,7 @@
             this.Phone.AppearanceHeader.Options.UseFont = true;
             this.Phone.AppearanceHeader.Options.UseTextOptions = true;
             this.Phone.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.Phone.Caption = "Phone";
+            this.Phone.Caption = "Điện thoại";
             this.Phone.ColumnEdit = this.repositoryItemMemoEdit1;
             this.Phone.FieldName = "Phone";
             this.Phone.MaxWidth = 100;
@@ -386,7 +384,7 @@
             this.Address.AppearanceHeader.Options.UseFont = true;
             this.Address.AppearanceHeader.Options.UseTextOptions = true;
             this.Address.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.Address.Caption = "Address";
+            this.Address.Caption = "Địa chỉ";
             this.Address.ColumnEdit = this.repositoryItemMemoEdit1;
             this.Address.FieldName = "Address";
             this.Address.MaxWidth = 200;
@@ -407,15 +405,15 @@
             this.Gender.AppearanceHeader.Options.UseFont = true;
             this.Gender.AppearanceHeader.Options.UseTextOptions = true;
             this.Gender.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.Gender.Caption = "Gender";
+            this.Gender.Caption = "Giới tính";
             this.Gender.ColumnEdit = this.repositoryItemMemoEdit1;
             this.Gender.FieldName = "Gender";
-            this.Gender.MaxWidth = 60;
-            this.Gender.MinWidth = 60;
+            this.Gender.MaxWidth = 70;
+            this.Gender.MinWidth = 70;
             this.Gender.Name = "Gender";
             this.Gender.Visible = true;
             this.Gender.VisibleIndex = 4;
-            this.Gender.Width = 60;
+            this.Gender.Width = 70;
             // 
             // Note
             // 
@@ -427,14 +425,14 @@
             this.Note.AppearanceHeader.Options.UseFont = true;
             this.Note.AppearanceHeader.Options.UseTextOptions = true;
             this.Note.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.Note.Caption = "Note";
+            this.Note.Caption = "Ghi chú";
             this.Note.ColumnEdit = this.repositoryItemMemoEdit1;
             this.Note.FieldName = "Note";
             this.Note.MinWidth = 100;
             this.Note.Name = "Note";
             this.Note.Visible = true;
             this.Note.VisibleIndex = 5;
-            this.Note.Width = 100;
+            this.Note.Width = 678;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -473,22 +471,22 @@
             // 
             this.btnProgram.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnProgram.Appearance.Options.UseFont = true;
-            this.btnProgram.Location = new System.Drawing.Point(940, 5);
+            this.btnProgram.Location = new System.Drawing.Point(1051, 5);
             this.btnProgram.Name = "btnProgram";
-            this.btnProgram.Size = new System.Drawing.Size(80, 40);
+            this.btnProgram.Size = new System.Drawing.Size(120, 40);
             this.btnProgram.TabIndex = 11;
-            this.btnProgram.Text = "Program\r\n(F7)";
+            this.btnProgram.Text = "Chương trình (F7)";
             this.btnProgram.Click += new System.EventHandler(this.btnProgram_Click);
             // 
             // btnAuthority
             // 
             this.btnAuthority.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnAuthority.Appearance.Options.UseFont = true;
-            this.btnAuthority.Location = new System.Drawing.Point(854, 5);
+            this.btnAuthority.Location = new System.Drawing.Point(925, 5);
             this.btnAuthority.Name = "btnAuthority";
-            this.btnAuthority.Size = new System.Drawing.Size(80, 40);
+            this.btnAuthority.Size = new System.Drawing.Size(120, 40);
             this.btnAuthority.TabIndex = 10;
-            this.btnAuthority.Text = "Authority\r\n(F6)";
+            this.btnAuthority.Text = "Phân quyền (F6)";
             this.btnAuthority.Click += new System.EventHandler(this.btnAuthority_Click);
             // 
             // frmUsers
@@ -503,7 +501,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmUsers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Users List";
+            this.Text = "Người dùng";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmUsers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();

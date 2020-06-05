@@ -56,6 +56,9 @@ namespace LocalDev.Persistence
         #endregion
 
         #region Tables
+        public virtual DbSet<PartNumber> PartNumbers { get; set; }
+        public virtual DbSet<Barcode> Barcodes { get; set; }
+        public virtual DbSet<LanguageLibrary> LanguageLibrarys { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<AuthorityGroup> AuthorityGroups { get; set; }
         public virtual DbSet<ProgramFunctionMaster> ProgramFunctionMasters { get; set; }

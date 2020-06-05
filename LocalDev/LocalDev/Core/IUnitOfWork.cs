@@ -6,11 +6,13 @@ namespace LocalDev.Core
 {
     public interface IUnitOfWork : IDisposable
     {
-        IUserRepository Users { get; }
-        IAuthorityGroupRepository AuthorityGroups { get; }
-        IProgramFunctionMasterRepository ProgramFunctionMasters { get; }
-        IProgramFunctionAuthorityRepository ProgramFunctionAuthoritys { get; }
-        IUserAuthorityRepository UserAuthoritys { get; }
+        IPartNumberRepository partNumbers { get; }
+        ILanguageLibraryRepository languageLibrarys { get; }
+        IUserRepository users { get; }
+        IAuthorityGroupRepository authorityGroups { get; }
+        IProgramFunctionMasterRepository programFunctionMasters { get; }
+        IProgramFunctionAuthorityRepository programFunctionAuthoritys { get; }
+        IUserAuthorityRepository userAuthoritys { get; }
         int Complete();
     }
 }

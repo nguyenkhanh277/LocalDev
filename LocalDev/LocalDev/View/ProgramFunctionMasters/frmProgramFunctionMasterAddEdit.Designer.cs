@@ -56,7 +56,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
             this.btnClose.TabIndex = 9;
-            this.btnClose.Text = "Close";
+            this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
@@ -69,7 +69,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
             this.btnSave.TabIndex = 8;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Lưu (F1)";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtProgramName
@@ -93,9 +93,9 @@
             this.labelControl1.Location = new System.Drawing.Point(45, 15);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(86, 17);
+            this.labelControl1.Size = new System.Drawing.Size(76, 17);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "ProgramName";
+            this.labelControl1.Text = "Chương trình";
             // 
             // labelControl2
             // 
@@ -104,9 +104,9 @@
             this.labelControl2.Location = new System.Drawing.Point(45, 78);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(83, 17);
+            this.labelControl2.Size = new System.Drawing.Size(66, 19);
             this.labelControl2.TabIndex = 2;
-            this.labelControl2.Text = "FunctionName";
+            this.labelControl2.Text = "Chức năng";
             // 
             // txtFunctionName
             // 
@@ -129,9 +129,9 @@
             this.labelControl7.Location = new System.Drawing.Point(45, 202);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(35, 17);
+            this.labelControl7.Size = new System.Drawing.Size(61, 19);
             this.labelControl7.TabIndex = 6;
-            this.labelControl7.Text = "Status";
+            this.labelControl7.Text = "Trạng thái";
             // 
             // labelControl8
             // 
@@ -140,9 +140,9 @@
             this.labelControl8.Location = new System.Drawing.Point(45, 141);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(67, 17);
+            this.labelControl8.Size = new System.Drawing.Size(53, 19);
             this.labelControl8.TabIndex = 4;
-            this.labelControl8.Text = "Explanation";
+            this.labelControl8.Text = "Diễn giải";
             // 
             // chkUsing
             // 
@@ -152,10 +152,10 @@
             this.chkUsing.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.chkUsing.Location = new System.Drawing.Point(10, 4);
             this.chkUsing.Name = "chkUsing";
-            this.chkUsing.Size = new System.Drawing.Size(62, 23);
+            this.chkUsing.Size = new System.Drawing.Size(78, 23);
             this.chkUsing.TabIndex = 0;
             this.chkUsing.TabStop = true;
-            this.chkUsing.Text = "Using";
+            this.chkUsing.Text = "Sử dụng";
             this.chkUsing.UseVisualStyleBackColor = false;
             // 
             // chkNoUse
@@ -163,11 +163,11 @@
             this.chkNoUse.AutoSize = true;
             this.chkNoUse.BackColor = System.Drawing.Color.Transparent;
             this.chkNoUse.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkNoUse.Location = new System.Drawing.Point(80, 4);
+            this.chkNoUse.Location = new System.Drawing.Point(94, 4);
             this.chkNoUse.Name = "chkNoUse";
-            this.chkNoUse.Size = new System.Drawing.Size(72, 23);
+            this.chkNoUse.Size = new System.Drawing.Size(97, 23);
             this.chkNoUse.TabIndex = 1;
-            this.chkNoUse.Text = "No Use";
+            this.chkNoUse.Text = "Ko sử dụng";
             this.chkNoUse.UseVisualStyleBackColor = false;
             // 
             // panelControl2
@@ -213,7 +213,7 @@
             this.MaximizeBox = false;
             this.Name = "frmProgramFunctionMasterAddEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add/Edit";
+            this.Text = "Chức năng chương trình";
             this.Load += new System.EventHandler(this.frmProgramFunctionMasterAddEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtProgramName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFunctionName.Properties)).EndInit();

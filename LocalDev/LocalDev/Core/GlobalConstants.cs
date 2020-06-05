@@ -1,5 +1,7 @@
-﻿using System;
+﻿using LocalDev.Core.Domain;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -8,11 +10,12 @@ namespace LocalDev.Core
     public class GlobalConstants
     {
         #region Default Values
-        public static string Username = "";
-        public static string FullName = "";
-        public static int Language = 0;
-        public static int DEFAULT_SALT_LENGTH = 5;
-        public static bool DEBUG_MODE = true;
+        public static string username = "";
+        public static string fullName = "";
+        public static int language = 0;
+        public static List<LanguageLibrary> languageLibrary = new List<LanguageLibrary>();
+        public static int defaultSaltLength = 5;
+        public static bool debugMode = true;
         public enum SearchConditions { }
         public enum GenderValue { Female, Male }
         public enum StatusValue { NoUse, Using }

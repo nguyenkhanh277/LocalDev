@@ -13,9 +13,19 @@ namespace LocalDev.Core.Domain
         public string FullName { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+        public string Address1 { get; set; }
         public GlobalConstants.GenderValue Gender { get; set; }
         public string Note { get; set; }
         public GlobalConstants.StatusValue Status { get; set; }
+        #endregion
+
+        #region FK
+        public User()
+        {
+            userAuthoritys = new ObservableCollection<UserAuthority>();
+        }
+
+        public virtual ObservableCollection<UserAuthority> userAuthoritys { get; set; }
         #endregion
     }
 }

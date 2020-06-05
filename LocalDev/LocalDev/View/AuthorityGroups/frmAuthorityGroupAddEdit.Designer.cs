@@ -60,7 +60,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
             this.btnClose.TabIndex = 5;
-            this.btnClose.Text = "Close";
+            this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
@@ -73,7 +73,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
             this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Lưu (F1)";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // labelControl2
@@ -83,9 +83,9 @@
             this.labelControl2.Location = new System.Drawing.Point(45, 15);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(124, 17);
+            this.labelControl2.Size = new System.Drawing.Size(80, 19);
             this.labelControl2.TabIndex = 0;
-            this.labelControl2.Text = "AuthorityGroupName";
+            this.labelControl2.Text = "Nhóm quyền";
             // 
             // txtAuthorityGroupName
             // 
@@ -108,9 +108,9 @@
             this.labelControl7.Location = new System.Drawing.Point(45, 78);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(35, 17);
+            this.labelControl7.Size = new System.Drawing.Size(61, 19);
             this.labelControl7.TabIndex = 2;
-            this.labelControl7.Text = "Status";
+            this.labelControl7.Text = "Trạng thái";
             // 
             // chkUsing
             // 
@@ -120,10 +120,10 @@
             this.chkUsing.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.chkUsing.Location = new System.Drawing.Point(10, 4);
             this.chkUsing.Name = "chkUsing";
-            this.chkUsing.Size = new System.Drawing.Size(62, 23);
+            this.chkUsing.Size = new System.Drawing.Size(78, 23);
             this.chkUsing.TabIndex = 0;
             this.chkUsing.TabStop = true;
-            this.chkUsing.Text = "Using";
+            this.chkUsing.Text = "Sử dụng";
             this.chkUsing.UseVisualStyleBackColor = false;
             // 
             // chkNoUse
@@ -131,11 +131,11 @@
             this.chkNoUse.AutoSize = true;
             this.chkNoUse.BackColor = System.Drawing.Color.Transparent;
             this.chkNoUse.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkNoUse.Location = new System.Drawing.Point(80, 4);
+            this.chkNoUse.Location = new System.Drawing.Point(94, 4);
             this.chkNoUse.Name = "chkNoUse";
-            this.chkNoUse.Size = new System.Drawing.Size(72, 23);
+            this.chkNoUse.Size = new System.Drawing.Size(97, 23);
             this.chkNoUse.TabIndex = 1;
-            this.chkNoUse.Text = "No Use";
+            this.chkNoUse.Text = "Ko sử dụng";
             this.chkNoUse.UseVisualStyleBackColor = false;
             // 
             // panelControl2
@@ -183,7 +183,7 @@
             this.Assign.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Assign.DataPropertyName = "Assign";
             this.Assign.FalseValue = "0";
-            this.Assign.HeaderText = "Assign";
+            this.Assign.HeaderText = "Chọn";
             this.Assign.Name = "Assign";
             this.Assign.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Assign.TrueValue = "1";
@@ -195,7 +195,7 @@
             this.ProgramName.DataPropertyName = "ProgramName";
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.ProgramName.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ProgramName.HeaderText = "Program";
+            this.ProgramName.HeaderText = "Chương trình";
             this.ProgramName.Name = "ProgramName";
             this.ProgramName.ReadOnly = true;
             this.ProgramName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -206,7 +206,7 @@
             this.FunctionName.DataPropertyName = "FunctionName";
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.FunctionName.DefaultCellStyle = dataGridViewCellStyle3;
-            this.FunctionName.HeaderText = "Function";
+            this.FunctionName.HeaderText = "Chức năng";
             this.FunctionName.Name = "FunctionName";
             this.FunctionName.ReadOnly = true;
             this.FunctionName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -217,7 +217,7 @@
             this.Explanation.DataPropertyName = "Explanation";
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Explanation.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Explanation.HeaderText = "Explanation";
+            this.Explanation.HeaderText = "Diễn giải";
             this.Explanation.Name = "Explanation";
             this.Explanation.ReadOnly = true;
             this.Explanation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -241,7 +241,7 @@
             this.MaximizeBox = false;
             this.Name = "frmAuthorityGroupAddEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add/Edit";
+            this.Text = "Nhóm quyền";
             this.Load += new System.EventHandler(this.frmAuthorityGroupAddEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthorityGroupName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();

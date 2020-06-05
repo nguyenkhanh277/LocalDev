@@ -10,5 +10,16 @@ namespace LocalDev.Core.Domain
         public string AuthorityGroupName { get; set; }
         public GlobalConstants.StatusValue Status { get; set; }
         #endregion
+
+        #region FK
+        public AuthorityGroup()
+        {
+            userAuthoritys = new ObservableCollection<UserAuthority>();
+            programFunctionAuthoritys = new ObservableCollection<ProgramFunctionAuthority>();
+        }
+
+        public virtual ObservableCollection<UserAuthority> userAuthoritys { get; set; }
+        public virtual ObservableCollection<ProgramFunctionAuthority> programFunctionAuthoritys { get; set; }
+        #endregion
     }
 }

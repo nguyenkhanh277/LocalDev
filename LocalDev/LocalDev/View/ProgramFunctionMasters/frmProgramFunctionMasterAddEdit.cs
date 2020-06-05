@@ -12,6 +12,7 @@ using LocalDev.Persistence;
 using LocalDev.Persistence.Repositories;
 using LocalDev.Core.Domain;
 using LocalDev.Core;
+using LocalDev.Core.Helper;
 
 namespace LocalDev.View.ProgramFunctionMasters
 {
@@ -26,24 +27,34 @@ namespace LocalDev.View.ProgramFunctionMasters
             _projectDataContext.Dispose();
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            KeyEventArgs e = new KeyEventArgs(keyData);
+            if (e.KeyCode == Keys.F1)
+            {
+                btnSave_Click(null, null);
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         string _id = "";
 
         public frmProgramFunctionMasterAddEdit()
         {
             InitializeComponent();
-            this.Text = "Add Program Function Master";
         }
 
         public frmProgramFunctionMasterAddEdit(string id)
         {
             InitializeComponent();
-            this.Text = "Edit Program Function Master";
             _id = id;
         }
 
         private void frmProgramFunctionMasterAddEdit_Load(object sender, EventArgs e)
         {
             _programFunctionMasterRepository = new ProgramFunctionMasterRepository(_projectDataContext);
+            LanguageTranslate.ChangeLanguageForm(this);
             if (String.IsNullOrEmpty(_id))
             {
                 Clear();
@@ -90,7 +101,7 @@ namespace LocalDev.View.ProgramFunctionMasters
                 {
                     if (String.IsNullOrEmpty(_id))
                     {
-                        XtraMessageBox.Show("Save successfully.", "Notification");
+                        XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thành công"), LanguageTranslate.ChangeLanguageText("Thông báo"));
                         Clear();
                     }
                     else
@@ -101,13 +112,13 @@ namespace LocalDev.View.ProgramFunctionMasters
                 }
                 else
                 {
-                    XtraMessageBox.Show("Save failed.", "Notification");
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
                     return;
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Save failed.", "Notification");
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
                 return;
             }
 

@@ -99,7 +99,7 @@ namespace LocalDev.Persistence.Repositories
             {
                 programFunctionMaster.Id = GetAutoID();
                 programFunctionMaster.CreatedAt = DateTime.Now;
-                programFunctionMaster.CreatedBy = GlobalConstants.Username;
+                programFunctionMaster.CreatedBy = GlobalConstants.username;
                 ProjectDataContext.Set<ProgramFunctionMaster>().Add(programFunctionMaster);
             }
             catch (Exception ex)
@@ -123,7 +123,7 @@ namespace LocalDev.Persistence.Repositories
                     var raw = query.FirstOrDefault();
                     raw.CollectInformation(programFunctionMaster);
                     raw.EditedAt = DateTime.Now;
-                    raw.EditedBy = GlobalConstants.Username;
+                    raw.EditedBy = GlobalConstants.username;
                 }
             }
             catch (Exception ex)

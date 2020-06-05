@@ -12,6 +12,7 @@ using LocalDev.Persistence;
 using LocalDev.Persistence.Repositories;
 using LocalDev.Core.Domain;
 using LocalDev.Core;
+using LocalDev.Core.Helper;
 
 namespace LocalDev.View.AuthorityGroups
 {
@@ -29,18 +30,27 @@ namespace LocalDev.View.AuthorityGroups
             _projectDataContext.Dispose();
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            KeyEventArgs e = new KeyEventArgs(keyData);
+            if (e.KeyCode == Keys.F1)
+            {
+                btnSave_Click(null, null);
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         int? _id = -1;
 
         public frmAuthorityGroupAddEdit()
         {
             InitializeComponent();
-            this.Text = "Add Authority Group";
         }
 
         public frmAuthorityGroupAddEdit(int? id)
         {
             InitializeComponent();
-            this.Text = "Edit Authority Group";
             _id = id;
         }
 
@@ -49,6 +59,8 @@ namespace LocalDev.View.AuthorityGroups
             _authorityGroupRepository = new AuthorityGroupRepository(_projectDataContext);
             _programFunctionMasterRepository = new ProgramFunctionMasterRepository(_projectDataContext);
             _programFunctionAuthorityRepository = new ProgramFunctionAuthorityRepository(_projectDataContext);
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.ChangeLanguageDataGridView(dgvDuLieu);
             if (_id == -1)
             {
                 Clear();
@@ -145,7 +157,7 @@ namespace LocalDev.View.AuthorityGroups
                 {
                     if (_id == -1)
                     {
-                        XtraMessageBox.Show("Save successfully.", "Notification");
+                        XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thành công"), LanguageTranslate.ChangeLanguageText("Thông báo"));
                         Clear();
                     }
                     else
@@ -156,13 +168,13 @@ namespace LocalDev.View.AuthorityGroups
                 }
                 else
                 {
-                    XtraMessageBox.Show("Save failed.", "Notification");
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
                     return;
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Save failed.", "Notification");
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
                 return;
             }
         }

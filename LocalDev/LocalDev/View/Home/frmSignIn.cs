@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using LocalDev.Persistence;
 using LocalDev.Persistence.Repositories;
 using LocalDev.Core;
+using LocalDev.Core.Helper;
 
 namespace LocalDev.View.Home
 {
@@ -18,6 +19,7 @@ namespace LocalDev.View.Home
     {
         ProjectDataContext _projectDataContext = new ProjectDataContext();
         UserRepository _userRepository;
+        LanguageLibraryRepository _languageLibraryRepository;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -32,10 +34,14 @@ namespace LocalDev.View.Home
 
         private void frmSignIn_Load(object sender, EventArgs e)
         {
-            GlobalConstants.Language = Properties.Settings.Default.Language;
-            LoadLanguage(GlobalConstants.Language);
-            lblTieuDe.Text = Properties.Settings.Default.Company;
             _userRepository = new UserRepository(_projectDataContext);
+            _languageLibraryRepository = new LanguageLibraryRepository(_projectDataContext);
+            GlobalConstants.languageLibrary = _languageLibraryRepository.GetAll(new Dictionary<LanguageLibraryRepository.SearchConditions, object>()).ToList();
+
+            GlobalConstants.language = Properties.Settings.Default.Language;
+            LoadLanguage(GlobalConstants.language);
+            LanguageTranslate.ChangeLanguageForm(this);
+            lblTieuDe.Text = Properties.Settings.Default.Company;
             chkKeepMeSignedIn.Checked = Properties.Settings.Default.KeepMeSignedIn;
             if (chkKeepMeSignedIn.Checked)
             {
@@ -49,7 +55,7 @@ namespace LocalDev.View.Home
             _userRepository.CheckSecurity(txtUsername.Text.Trim(), txtPassword.Text.Trim());
             if (_userRepository.error)
             {
-                XtraMessageBox.Show(_userRepository.errorMessage, "Notification");
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText(_userRepository.errorMessage), LanguageTranslate.ChangeLanguageText("Thông báo"));
                 return;
             }
             Properties.Settings.Default.KeepMeSignedIn = chkKeepMeSignedIn.Checked;
@@ -87,8 +93,8 @@ namespace LocalDev.View.Home
 
         private void LoadLanguage(int language)
         {
-            GlobalConstants.Language = language;
-            Properties.Settings.Default.Language = GlobalConstants.Language;
+            GlobalConstants.language = language;
+            Properties.Settings.Default.Language = GlobalConstants.language;
             Properties.Settings.Default.Save();
             if (language == (int)GlobalConstants.LanguageValue.English)
             {
@@ -100,17 +106,24 @@ namespace LocalDev.View.Home
                 picVietnamese.BackColor = Color.Yellow;
                 picEnglish.BackColor = Color.Transparent;
             }
-            //NgonNgu.DoiNgonNguForm(this);
         }
 
         private void picVietnamese_Click(object sender, EventArgs e)
         {
             LoadLanguage((int)GlobalConstants.LanguageValue.Vietnamese);
+            LanguageTranslate.switchLanguage = true;
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.switchLanguage = false;
+            lblTieuDe.Text = Properties.Settings.Default.Company;
         }
 
         private void picEnglish_Click(object sender, EventArgs e)
         {
             LoadLanguage((int)GlobalConstants.LanguageValue.English);
+            LanguageTranslate.switchLanguage = true;
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.switchLanguage = false;
+            lblTieuDe.Text = Properties.Settings.Default.Company;
         }
     }
 }

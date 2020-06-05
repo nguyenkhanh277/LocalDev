@@ -11,12 +11,12 @@ namespace LocalDev.Core.Repositories
     {
         UserAuthority GetInfo(string id);
         IEnumerable<UserAuthority> GetAll(Dictionary<UserAuthorityRepository.SearchConditions, object> conditions);
-        void Add(UserAuthority UserAuthority);
-        void Update(UserAuthority UserAuthority);
+        void Add(UserAuthority userAuthority);
+        void Update(UserAuthority userAuthority);
         void Delete(string id);
-        void Delete(UserAuthority UserAuthority);
+        void Delete(UserAuthority userAuthority);
         void DeleteRange(string ids);
-        void DeleteRange(IEnumerable<UserAuthority> UserAuthoritys);
+        void DeleteRange(IEnumerable<UserAuthority> userAuthoritys);
         void DeleteByUserID(string userID);
     }
 }

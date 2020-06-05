@@ -98,7 +98,7 @@ namespace LocalDev.Persistence.Repositories
             {
                 programFunctionAuthority.Id = GetAutoID();
                 programFunctionAuthority.CreatedAt = DateTime.Now;
-                programFunctionAuthority.CreatedBy = GlobalConstants.Username;
+                programFunctionAuthority.CreatedBy = GlobalConstants.username;
                 ProjectDataContext.Set<ProgramFunctionAuthority>().Add(programFunctionAuthority);
             }
             catch (Exception ex)
@@ -122,7 +122,7 @@ namespace LocalDev.Persistence.Repositories
                     var raw = query.FirstOrDefault();
                     raw.CollectInformation(programFunctionAuthority);
                     raw.EditedAt = DateTime.Now;
-                    raw.EditedBy = GlobalConstants.Username;
+                    raw.EditedBy = GlobalConstants.username;
                 }
             }
             catch (Exception ex)

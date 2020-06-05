@@ -11,12 +11,12 @@ namespace LocalDev.Core.Repositories
     {
         ProgramFunctionAuthority GetInfo(string id);
         IEnumerable<ProgramFunctionAuthority> GetAll(Dictionary<ProgramFunctionAuthorityRepository.SearchConditions, object> conditions);
-        void Add(ProgramFunctionAuthority ProgramFunctionAuthority);
-        void Update(ProgramFunctionAuthority ProgramFunctionAuthority);
+        void Add(ProgramFunctionAuthority programFunctionAuthority);
+        void Update(ProgramFunctionAuthority programFunctionAuthority);
         void Delete(string id);
-        void Delete(ProgramFunctionAuthority ProgramFunctionAuthority);
+        void Delete(ProgramFunctionAuthority programFunctionAuthority);
         void DeleteRange(string ids);
-        void DeleteRange(IEnumerable<ProgramFunctionAuthority> ProgramFunctionAuthoritys);
+        void DeleteRange(IEnumerable<ProgramFunctionAuthority> programFunctionAuthoritys);
         void DeleteByProgramAndFunction(string programName, string functionName);
     }
 }

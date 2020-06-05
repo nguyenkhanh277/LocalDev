@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.chkAllStatus = new System.Windows.Forms.RadioButton();
-            this.chkUsing = new System.Windows.Forms.RadioButton();
-            this.chkNoUse = new System.Windows.Forms.RadioButton();
             this.btnExcel = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
@@ -46,8 +42,10 @@
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.chkAllStatus = new System.Windows.Forms.RadioButton();
+            this.chkUsing = new System.Windows.Forms.RadioButton();
+            this.chkNoUse = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
@@ -55,60 +53,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupControl1
-            // 
-            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.groupControl1.AppearanceCaption.Options.UseFont = true;
-            this.groupControl1.Controls.Add(this.chkAllStatus);
-            this.groupControl1.Controls.Add(this.chkUsing);
-            this.groupControl1.Controls.Add(this.chkNoUse);
-            this.groupControl1.Location = new System.Drawing.Point(442, 5);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(200, 40);
-            this.groupControl1.TabIndex = 8;
-            this.groupControl1.Text = "Status";
-            // 
-            // chkAllStatus
-            // 
-            this.chkAllStatus.AutoSize = true;
-            this.chkAllStatus.BackColor = System.Drawing.Color.Transparent;
-            this.chkAllStatus.Checked = true;
-            this.chkAllStatus.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkAllStatus.Location = new System.Drawing.Point(5, 18);
-            this.chkAllStatus.Name = "chkAllStatus";
-            this.chkAllStatus.Size = new System.Drawing.Size(42, 23);
-            this.chkAllStatus.TabIndex = 9;
-            this.chkAllStatus.TabStop = true;
-            this.chkAllStatus.Text = "All";
-            this.chkAllStatus.UseVisualStyleBackColor = false;
-            // 
-            // chkUsing
-            // 
-            this.chkUsing.AutoSize = true;
-            this.chkUsing.BackColor = System.Drawing.Color.Transparent;
-            this.chkUsing.Checked = true;
-            this.chkUsing.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkUsing.Location = new System.Drawing.Point(53, 18);
-            this.chkUsing.Name = "chkUsing";
-            this.chkUsing.Size = new System.Drawing.Size(62, 23);
-            this.chkUsing.TabIndex = 6;
-            this.chkUsing.TabStop = true;
-            this.chkUsing.Text = "Using";
-            this.chkUsing.UseVisualStyleBackColor = false;
-            // 
-            // chkNoUse
-            // 
-            this.chkNoUse.AutoSize = true;
-            this.chkNoUse.BackColor = System.Drawing.Color.Transparent;
-            this.chkNoUse.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkNoUse.Location = new System.Drawing.Point(121, 18);
-            this.chkNoUse.Name = "chkNoUse";
-            this.chkNoUse.Size = new System.Drawing.Size(72, 23);
-            this.chkNoUse.TabIndex = 7;
-            this.chkNoUse.Text = "No Use";
-            this.chkNoUse.UseVisualStyleBackColor = false;
             // 
             // btnExcel
             // 
@@ -118,7 +65,7 @@
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(80, 40);
             this.btnExcel.TabIndex = 3;
-            this.btnExcel.Text = "Excel\r\n(F4)";
+            this.btnExcel.Text = "Excel (F4)";
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // btnRefresh
@@ -131,7 +78,7 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(80, 40);
             this.btnRefresh.TabIndex = 4;
-            this.btnRefresh.Text = "Refresh\r\n(F5)";
+            this.btnRefresh.Text = "Lọc (F5)";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnClose
@@ -145,7 +92,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
             this.btnClose.TabIndex = 5;
-            this.btnClose.Text = "Close\r\n(ESC)";
+            this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnDelete
@@ -158,7 +105,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(80, 40);
             this.btnDelete.TabIndex = 2;
-            this.btnDelete.Text = "Delete\r\n(F3)";
+            this.btnDelete.Text = "Xóa (F3)";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEdit
@@ -169,7 +116,7 @@
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(80, 40);
             this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "Edit\r\n(F2)";
+            this.btnEdit.Text = "Sửa (F2)";
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
@@ -182,7 +129,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(80, 40);
             this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "Add\r\n(F1)";
+            this.btnAdd.Text = "Thêm (F1)";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // dgvDuLieu
@@ -237,7 +184,7 @@
             this.Id.AppearanceHeader.Options.UseFont = true;
             this.Id.AppearanceHeader.Options.UseTextOptions = true;
             this.Id.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.Id.Caption = "Id";
+            this.Id.Caption = "Mã";
             this.Id.ColumnEdit = this.repositoryItemMemoEdit1;
             this.Id.FieldName = "Id";
             this.Id.MaxWidth = 200;
@@ -261,7 +208,7 @@
             this.AuthorityGroupName.AppearanceHeader.Options.UseFont = true;
             this.AuthorityGroupName.AppearanceHeader.Options.UseTextOptions = true;
             this.AuthorityGroupName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.AuthorityGroupName.Caption = "AuthorityGroupName";
+            this.AuthorityGroupName.Caption = "Nhóm quyền";
             this.AuthorityGroupName.ColumnEdit = this.repositoryItemMemoEdit1;
             this.AuthorityGroupName.FieldName = "AuthorityGroupName";
             this.AuthorityGroupName.MinWidth = 200;
@@ -300,6 +247,57 @@
             this.panelControl1.Size = new System.Drawing.Size(1290, 50);
             this.panelControl1.TabIndex = 5;
             // 
+            // groupControl1
+            // 
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.groupControl1.AppearanceCaption.Options.UseFont = true;
+            this.groupControl1.Controls.Add(this.chkAllStatus);
+            this.groupControl1.Controls.Add(this.chkUsing);
+            this.groupControl1.Controls.Add(this.chkNoUse);
+            this.groupControl1.Location = new System.Drawing.Point(442, 5);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(260, 40);
+            this.groupControl1.TabIndex = 9;
+            this.groupControl1.Text = "Trạng thái";
+            // 
+            // chkAllStatus
+            // 
+            this.chkAllStatus.AutoSize = true;
+            this.chkAllStatus.BackColor = System.Drawing.Color.Transparent;
+            this.chkAllStatus.Checked = true;
+            this.chkAllStatus.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.chkAllStatus.Location = new System.Drawing.Point(5, 18);
+            this.chkAllStatus.Name = "chkAllStatus";
+            this.chkAllStatus.Size = new System.Drawing.Size(63, 23);
+            this.chkAllStatus.TabIndex = 9;
+            this.chkAllStatus.TabStop = true;
+            this.chkAllStatus.Text = "Tất cả";
+            this.chkAllStatus.UseVisualStyleBackColor = false;
+            // 
+            // chkUsing
+            // 
+            this.chkUsing.AutoSize = true;
+            this.chkUsing.BackColor = System.Drawing.Color.Transparent;
+            this.chkUsing.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.chkUsing.Location = new System.Drawing.Point(74, 18);
+            this.chkUsing.Name = "chkUsing";
+            this.chkUsing.Size = new System.Drawing.Size(78, 23);
+            this.chkUsing.TabIndex = 6;
+            this.chkUsing.Text = "Sử dụng";
+            this.chkUsing.UseVisualStyleBackColor = false;
+            // 
+            // chkNoUse
+            // 
+            this.chkNoUse.AutoSize = true;
+            this.chkNoUse.BackColor = System.Drawing.Color.Transparent;
+            this.chkNoUse.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.chkNoUse.Location = new System.Drawing.Point(158, 18);
+            this.chkNoUse.Name = "chkNoUse";
+            this.chkNoUse.Size = new System.Drawing.Size(97, 23);
+            this.chkNoUse.TabIndex = 7;
+            this.chkNoUse.Text = "Ko sử dụng";
+            this.chkNoUse.UseVisualStyleBackColor = false;
+            // 
             // frmAuthorityGroup
             // 
             this.Appearance.Options.UseFont = true;
@@ -312,12 +310,9 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmAuthorityGroup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Authority Group List";
+            this.Text = "Nhóm quyền";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmAuthorityGroup_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDuLieu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
@@ -325,6 +320,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            this.groupControl1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -345,10 +343,10 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn Id;
         private DevExpress.XtraGrid.Columns.GridColumn AuthorityGroupName;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.GroupControl groupControl1;
+        private System.Windows.Forms.RadioButton chkAllStatus;
         private System.Windows.Forms.RadioButton chkUsing;
         private System.Windows.Forms.RadioButton chkNoUse;
-        private System.Windows.Forms.RadioButton chkAllStatus;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
     }
 }

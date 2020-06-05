@@ -11,11 +11,11 @@ namespace LocalDev.Core.Repositories
     {
         ProgramFunctionMaster GetInfo(string id);
         IEnumerable<ProgramFunctionMaster> GetAll(Dictionary<ProgramFunctionMasterRepository.SearchConditions, object> conditions);
-        void Add(ProgramFunctionMaster ProgramFunctionMaster);
-        void Update(ProgramFunctionMaster ProgramFunctionMaster);
+        void Add(ProgramFunctionMaster programFunctionMaster);
+        void Update(ProgramFunctionMaster programFunctionMaster);
         void Delete(string id);
-        void Delete(ProgramFunctionMaster ProgramFunctionMaster);
+        void Delete(ProgramFunctionMaster programFunctionMaster);
         void DeleteRange(string ids);
-        void DeleteRange(IEnumerable<ProgramFunctionMaster> ProgramFunctionMasters);
+        void DeleteRange(IEnumerable<ProgramFunctionMaster> programFunctionMasters);
     }
 }

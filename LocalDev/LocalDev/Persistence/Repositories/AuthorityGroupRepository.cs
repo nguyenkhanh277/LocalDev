@@ -99,7 +99,7 @@ namespace LocalDev.Persistence.Repositories
             try
             {
                 authorityGroup.CreatedAt = DateTime.Now;
-                authorityGroup.CreatedBy = GlobalConstants.Username;
+                authorityGroup.CreatedBy = GlobalConstants.username;
                 var raw = ProjectDataContext.Set<AuthorityGroup>().Add(authorityGroup);
                 this.id = raw.Id;
             }
@@ -124,7 +124,7 @@ namespace LocalDev.Persistence.Repositories
                     var raw = query.FirstOrDefault();
                     raw.CollectInformation(authorityGroup);
                     raw.EditedAt = DateTime.Now;
-                    raw.EditedBy = GlobalConstants.Username;
+                    raw.EditedBy = GlobalConstants.username;
                     this.id = raw.Id;
                 }
             }

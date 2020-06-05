@@ -61,7 +61,7 @@ namespace LocalDev.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("INAVINA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("LocalDev")]
         public string Company {
             get {
                 return ((string)(this["Company"]));

@@ -13,6 +13,7 @@ using LocalDev.Core;
 using LocalDev.Persistence.Repositories;
 using LocalDev.View.AuthorityGroups;
 using LocalDev.View.ProgramFunctionMasters;
+using LocalDev.Core.Helper;
 
 namespace LocalDev.View.Users
 {
@@ -76,6 +77,9 @@ namespace LocalDev.View.Users
         private void frmUsers_Load(object sender, EventArgs e)
         {
             _userRepository = new UserRepository(_projectDataContext);
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
+            btnProgram.Visible = (GlobalConstants.username.ToUpper() == "ADMIN");
             Search();
         }
 
@@ -119,7 +123,7 @@ namespace LocalDev.View.Users
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (XtraMessageBox.Show("Do you want to delete this item?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 _userRepository.Delete(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
@@ -130,7 +134,7 @@ namespace LocalDev.View.Users
                 }
                 else
                 {
-                    XtraMessageBox.Show("Delete failed.", "Notification");
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Xóa thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
                     return;
                 }
             }

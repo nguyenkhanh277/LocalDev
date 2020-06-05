@@ -14,7 +14,7 @@ namespace LocalDev.Core.Helper
             string sLogFormat = DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ==> ";
             //this variable used to create log filename format "
             //for example filename : ErrorLogYYYYMMDD
-            if (GlobalConstants.DEBUG_MODE)
+            if (GlobalConstants.debugMode)
             {
                 System.Diagnostics.Debug.WriteLine(sLogFormat + sErrMsg);
             }

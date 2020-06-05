@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
@@ -77,7 +77,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
             this.btnClose.TabIndex = 17;
-            this.btnClose.Text = "Close";
+            this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
@@ -90,7 +90,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
             this.btnSave.TabIndex = 16;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Lưu (F1)";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtPassword
@@ -115,9 +115,9 @@
             this.labelControl3.Location = new System.Drawing.Point(45, 78);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(56, 17);
+            this.labelControl3.Size = new System.Drawing.Size(59, 19);
             this.labelControl3.TabIndex = 2;
-            this.labelControl3.Text = "Password";
+            this.labelControl3.Text = "Mật khẩu";
             // 
             // txtUsername
             // 
@@ -140,9 +140,9 @@
             this.labelControl1.Location = new System.Drawing.Point(45, 15);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(59, 17);
+            this.labelControl1.Size = new System.Drawing.Size(57, 19);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "Username";
+            this.labelControl1.Text = "Tài khoản";
             // 
             // labelControl2
             // 
@@ -151,9 +151,9 @@
             this.labelControl2.Location = new System.Drawing.Point(45, 141);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(54, 17);
+            this.labelControl2.Size = new System.Drawing.Size(67, 19);
             this.labelControl2.TabIndex = 4;
-            this.labelControl2.Text = "FullName";
+            this.labelControl2.Text = "Tên đầy đủ";
             // 
             // txtFullName
             // 
@@ -190,9 +190,9 @@
             this.labelControl4.Location = new System.Drawing.Point(45, 204);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(36, 17);
+            this.labelControl4.Size = new System.Drawing.Size(63, 19);
             this.labelControl4.TabIndex = 6;
-            this.labelControl4.Text = "Phone";
+            this.labelControl4.Text = "Điện thoại";
             // 
             // labelControl5
             // 
@@ -201,9 +201,9 @@
             this.labelControl5.Location = new System.Drawing.Point(45, 330);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(43, 17);
+            this.labelControl5.Size = new System.Drawing.Size(52, 19);
             this.labelControl5.TabIndex = 10;
-            this.labelControl5.Text = "Gender";
+            this.labelControl5.Text = "Giới tính";
             // 
             // txtAddress
             // 
@@ -226,9 +226,9 @@
             this.labelControl6.Location = new System.Drawing.Point(45, 267);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(48, 17);
+            this.labelControl6.Size = new System.Drawing.Size(41, 19);
             this.labelControl6.TabIndex = 8;
-            this.labelControl6.Text = "Address";
+            this.labelControl6.Text = "Địa chỉ";
             // 
             // labelControl7
             // 
@@ -237,9 +237,9 @@
             this.labelControl7.Location = new System.Drawing.Point(45, 452);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(35, 17);
+            this.labelControl7.Size = new System.Drawing.Size(61, 19);
             this.labelControl7.TabIndex = 14;
-            this.labelControl7.Text = "Status";
+            this.labelControl7.Text = "Trạng thái";
             // 
             // labelControl8
             // 
@@ -248,34 +248,34 @@
             this.labelControl8.Location = new System.Drawing.Point(45, 391);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(29, 17);
+            this.labelControl8.Size = new System.Drawing.Size(43, 17);
             this.labelControl8.TabIndex = 12;
-            this.labelControl8.Text = "Note";
+            this.labelControl8.Text = "Ghi chú";
             // 
             // chkFemale
             // 
             this.chkFemale.AutoSize = true;
             this.chkFemale.BackColor = System.Drawing.Color.Transparent;
-            this.chkFemale.Checked = true;
             this.chkFemale.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.chkFemale.Location = new System.Drawing.Point(73, 4);
             this.chkFemale.Name = "chkFemale";
-            this.chkFemale.Size = new System.Drawing.Size(70, 23);
+            this.chkFemale.Size = new System.Drawing.Size(45, 23);
             this.chkFemale.TabIndex = 1;
-            this.chkFemale.TabStop = true;
-            this.chkFemale.Text = "Female";
+            this.chkFemale.Text = "Nữ";
             this.chkFemale.UseVisualStyleBackColor = false;
             // 
             // chkMale
             // 
             this.chkMale.AutoSize = true;
             this.chkMale.BackColor = System.Drawing.Color.Transparent;
+            this.chkMale.Checked = true;
             this.chkMale.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.chkMale.Location = new System.Drawing.Point(10, 4);
             this.chkMale.Name = "chkMale";
-            this.chkMale.Size = new System.Drawing.Size(57, 23);
+            this.chkMale.Size = new System.Drawing.Size(56, 23);
             this.chkMale.TabIndex = 0;
-            this.chkMale.Text = "Male";
+            this.chkMale.TabStop = true;
+            this.chkMale.Text = "Nam";
             this.chkMale.UseVisualStyleBackColor = false;
             // 
             // chkUsing
@@ -286,10 +286,10 @@
             this.chkUsing.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.chkUsing.Location = new System.Drawing.Point(10, 4);
             this.chkUsing.Name = "chkUsing";
-            this.chkUsing.Size = new System.Drawing.Size(62, 23);
+            this.chkUsing.Size = new System.Drawing.Size(78, 23);
             this.chkUsing.TabIndex = 0;
             this.chkUsing.TabStop = true;
-            this.chkUsing.Text = "Using";
+            this.chkUsing.Text = "Sử dụng";
             this.chkUsing.UseVisualStyleBackColor = false;
             // 
             // chkNoUse
@@ -297,11 +297,11 @@
             this.chkNoUse.AutoSize = true;
             this.chkNoUse.BackColor = System.Drawing.Color.Transparent;
             this.chkNoUse.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkNoUse.Location = new System.Drawing.Point(80, 4);
+            this.chkNoUse.Location = new System.Drawing.Point(94, 4);
             this.chkNoUse.Name = "chkNoUse";
-            this.chkNoUse.Size = new System.Drawing.Size(72, 23);
+            this.chkNoUse.Size = new System.Drawing.Size(97, 23);
             this.chkNoUse.TabIndex = 1;
-            this.chkNoUse.Text = "No Use";
+            this.chkNoUse.Text = "Ko sử dụng";
             this.chkNoUse.UseVisualStyleBackColor = false;
             // 
             // panelControl1
@@ -343,14 +343,14 @@
             this.dgvDuLieu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDuLieu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDuLieu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDuLieu.ColumnHeadersHeight = 30;
             this.dgvDuLieu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Assign,
@@ -369,7 +369,7 @@
             this.Assign.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Assign.DataPropertyName = "Assign";
             this.Assign.FalseValue = "0";
-            this.Assign.HeaderText = "Assign";
+            this.Assign.HeaderText = "Chọn";
             this.Assign.Name = "Assign";
             this.Assign.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Assign.TrueValue = "1";
@@ -379,7 +379,7 @@
             // 
             this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
+            this.Id.HeaderText = "Mã";
             this.Id.Name = "Id";
             this.Id.ReadOnly = true;
             this.Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -389,7 +389,7 @@
             // 
             this.AuthorityGroupName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.AuthorityGroupName.DataPropertyName = "AuthorityGroupName";
-            this.AuthorityGroupName.HeaderText = "AuthorityGroupName";
+            this.AuthorityGroupName.HeaderText = "Nhóm quyền";
             this.AuthorityGroupName.Name = "AuthorityGroupName";
             this.AuthorityGroupName.ReadOnly = true;
             this.AuthorityGroupName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -425,7 +425,7 @@
             this.MaximizeBox = false;
             this.Name = "frmUsersAddEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add/Edit";
+            this.Text = "Người dùng";
             this.Load += new System.EventHandler(this.frmUsersAddEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).EndInit();

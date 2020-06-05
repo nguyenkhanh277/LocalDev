@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using LocalDev.Persistence;
 using LocalDev.Core;
 using LocalDev.Persistence.Repositories;
+using LocalDev.Core.Helper;
 
 namespace LocalDev.View.ProgramFunctionMasters
 {
@@ -64,6 +65,8 @@ namespace LocalDev.View.ProgramFunctionMasters
         private void frmProgramFunctionMaster_Load(object sender, EventArgs e)
         {
             _programFunctionMasterRepository = new ProgramFunctionMasterRepository(_projectDataContext);
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
             Search();
         }
 
@@ -103,7 +106,7 @@ namespace LocalDev.View.ProgramFunctionMasters
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (XtraMessageBox.Show("Do you want to delete this item?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 _programFunctionMasterRepository.Delete(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
@@ -114,7 +117,7 @@ namespace LocalDev.View.ProgramFunctionMasters
                 }
                 else
                 {
-                    XtraMessageBox.Show("Delete failed.", "Notification");
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Xóa thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
                     return;
                 }
             }

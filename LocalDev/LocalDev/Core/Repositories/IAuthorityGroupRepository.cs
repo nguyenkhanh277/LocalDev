@@ -11,11 +11,11 @@ namespace LocalDev.Core.Repositories
     {
         AuthorityGroup GetInfo(int? id);
         IEnumerable<AuthorityGroup> GetAll(Dictionary<AuthorityGroupRepository.SearchConditions, object> conditions);
-        void Add(AuthorityGroup AuthorityGroup);
-        void Update(AuthorityGroup AuthorityGroup);
+        void Add(AuthorityGroup authorityGroup);
+        void Update(AuthorityGroup authorityGroup);
         void Delete(int? id);
-        void Delete(AuthorityGroup AuthorityGroup);
+        void Delete(AuthorityGroup authorityGroup);
         //void DeleteRange(string ids);
-        void DeleteRange(IEnumerable<AuthorityGroup> AuthorityGroups);
+        void DeleteRange(IEnumerable<AuthorityGroup> authorityGroups);
     }
 }
