@@ -46,6 +46,16 @@ namespace LocalDev.Persistence.Repositories
             return Context.Set<TEntity>().Where(predicate);
         }
 
+        public IEnumerable<TEntity> Find(IEnumerable<Expression<Func<TEntity, bool>>> expressions)
+        {
+            var queryable = Context.Set<TEntity>().AsQueryable();
+            foreach (Expression<Func<TEntity, bool>> expression in expressions)
+            {
+                queryable = queryable.Where(expression);
+            }
+            return queryable.ToList();
+        }
+
         public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
             return Context.Set<TEntity>().FirstOrDefault(predicate);

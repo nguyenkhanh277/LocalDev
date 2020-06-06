@@ -36,7 +36,6 @@
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.dgvDuLieu = new DevExpress.XtraGrid.GridControl();
             this.viewDuLieu = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.Id = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.AuthorityGroupName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -46,6 +45,7 @@
             this.chkAllStatus = new System.Windows.Forms.RadioButton();
             this.chkUsing = new System.Windows.Forms.RadioButton();
             this.chkNoUse = new System.Windows.Forms.RadioButton();
+            this.Id = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
@@ -173,27 +173,6 @@
             this.viewDuLieu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.viewDuLieu_KeyDown);
             this.viewDuLieu.DoubleClick += new System.EventHandler(this.btnEdit_Click);
             // 
-            // Id
-            // 
-            this.Id.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.Id.AppearanceCell.Options.UseFont = true;
-            this.Id.AppearanceCell.Options.UseTextOptions = true;
-            this.Id.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.Id.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.Id.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.Id.AppearanceHeader.Options.UseFont = true;
-            this.Id.AppearanceHeader.Options.UseTextOptions = true;
-            this.Id.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.Id.Caption = "Mã";
-            this.Id.ColumnEdit = this.repositoryItemMemoEdit1;
-            this.Id.FieldName = "Id";
-            this.Id.MaxWidth = 200;
-            this.Id.MinWidth = 200;
-            this.Id.Name = "Id";
-            this.Id.Visible = true;
-            this.Id.VisibleIndex = 0;
-            this.Id.Width = 200;
-            // 
             // repositoryItemMemoEdit1
             // 
             this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
@@ -214,7 +193,7 @@
             this.AuthorityGroupName.MinWidth = 200;
             this.AuthorityGroupName.Name = "AuthorityGroupName";
             this.AuthorityGroupName.Visible = true;
-            this.AuthorityGroupName.VisibleIndex = 1;
+            this.AuthorityGroupName.VisibleIndex = 0;
             this.AuthorityGroupName.Width = 200;
             // 
             // repositoryItemCheckEdit1
@@ -298,6 +277,12 @@
             this.chkNoUse.Text = "Ko sử dụng";
             this.chkNoUse.UseVisualStyleBackColor = false;
             // 
+            // Id
+            // 
+            this.Id.Caption = "Id";
+            this.Id.FieldName = "Id";
+            this.Id.Name = "Id";
+            // 
             // frmAuthorityGroup
             // 
             this.Appearance.Options.UseFont = true;
@@ -341,12 +326,12 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
-        private DevExpress.XtraGrid.Columns.GridColumn Id;
         private DevExpress.XtraGrid.Columns.GridColumn AuthorityGroupName;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private System.Windows.Forms.RadioButton chkAllStatus;
         private System.Windows.Forms.RadioButton chkUsing;
         private System.Windows.Forms.RadioButton chkNoUse;
+        private DevExpress.XtraGrid.Columns.GridColumn Id;
     }
 }

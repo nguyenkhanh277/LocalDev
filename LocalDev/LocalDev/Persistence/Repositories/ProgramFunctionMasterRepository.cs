@@ -19,57 +19,6 @@ namespace LocalDev.Persistence.Repositories
             get { return Context as ProjectDataContext; }
         }
 
-        #region Conditions for search
-        public enum SearchConditions
-        {
-            Id,
-            Status,
-
-            SortProgramName_Desc
-        }
-        #endregion
-
-        public IEnumerable<ProgramFunctionMaster> Find(Dictionary<SearchConditions, object> conditions)
-        {
-            ProjectDataContext projectDataContext = new ProjectDataContext();
-            var query = from x in projectDataContext.ProgramFunctionMasters
-                        select x;
-
-            if (!query.Any()) return new List<ProgramFunctionMaster>();
-            if (conditions != null)
-            {
-                #region Check conditions
-                if (conditions.Keys.Contains(SearchConditions.Id))
-                {
-                    string value = conditions[SearchConditions.Id].ToString();
-                    query = query.Where(_ => _.Id.Equals(value));
-                }
-                if (conditions.Keys.Contains(SearchConditions.Status))
-                {
-                    GlobalConstants.StatusValue value;
-                    Enum.TryParse<GlobalConstants.StatusValue>(conditions[SearchConditions.Status].ToString(), out value);
-                    query = query.Where(_ => _.Status == value);
-                }
-                #endregion
-
-                #region Sort by
-                if (conditions.Keys.Contains(SearchConditions.SortProgramName_Desc))
-                {
-                    bool value = (bool)conditions[SearchConditions.SortProgramName_Desc];
-                    if (value)
-                    {
-                        query = query.OrderByDescending(_ => _.ProgramName).ThenByDescending(_ => _.FunctionName);
-                    }
-                    else
-                    {
-                        query = query.OrderBy(_ => _.ProgramName).ThenBy(_ => _.FunctionName);
-                    }
-                }
-                #endregion
-            }
-            return query.ToList();
-        }
-
         public void Save(ProgramFunctionMaster programFunctionMaster)
         {
             if (String.IsNullOrEmpty(programFunctionMaster.Id))

@@ -12,6 +12,8 @@ using LocalDev.Persistence;
 using LocalDev.Core;
 using LocalDev.Persistence.Repositories;
 using LocalDev.Core.Helper;
+using LocalDev.Core.Domain;
+using System.Linq.Expressions;
 
 namespace LocalDev.View.ProgramFunctionMasters
 {
@@ -72,13 +74,14 @@ namespace LocalDev.View.ProgramFunctionMasters
 
         private void Search()
         {
-            Dictionary<ProgramFunctionMasterRepository.SearchConditions, object> conditions = new Dictionary<ProgramFunctionMasterRepository.SearchConditions, object>();
+            List<Expression<Func<ProgramFunctionMaster, bool>>> expressions = new List<Expression<Func<ProgramFunctionMaster, bool>>>();
             if (!chkAllStatus.Checked)
             {
-                conditions.Add(ProgramFunctionMasterRepository.SearchConditions.Status, chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
+                GlobalConstants.StatusValue statusValue;
+                Enum.TryParse<GlobalConstants.StatusValue>((chkUsing.Checked ? GlobalConstants.StatusValue.Using.ToString() : GlobalConstants.StatusValue.NoUse.ToString()), out statusValue);
+                expressions.Add(_ => _.Status == statusValue);
             }
-            conditions.Add(ProgramFunctionMasterRepository.SearchConditions.SortProgramName_Desc, false);
-            dgvDuLieu.DataSource = _programFunctionMasterRepository.Find(conditions);
+            dgvDuLieu.DataSource = _programFunctionMasterRepository.Find(expressions);
             Control();
         }
 

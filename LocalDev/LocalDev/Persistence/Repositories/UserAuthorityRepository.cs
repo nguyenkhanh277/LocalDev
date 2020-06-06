@@ -19,56 +19,6 @@ namespace LocalDev.Persistence.Repositories
             get { return Context as ProjectDataContext; }
         }
 
-        #region Conditions for search
-        public enum SearchConditions
-        {
-            Id,
-            UserID,
-
-            SortAuthorityGroupID_Desc
-        }
-        #endregion
-
-        public IEnumerable<UserAuthority> Find(Dictionary<SearchConditions, object> conditions)
-        {
-            ProjectDataContext projectDataContext = new ProjectDataContext();
-            var query = from x in projectDataContext.UserAuthoritys
-                        select x;
-
-            if (!query.Any()) return new List<UserAuthority>();
-            if (conditions != null)
-            {
-                #region Check conditions
-                if (conditions.Keys.Contains(SearchConditions.Id))
-                {
-                    string value = conditions[SearchConditions.Id].ToString();
-                    query = query.Where(_ => _.Id.Equals(value));
-                }
-                if (conditions.Keys.Contains(SearchConditions.UserID))
-                {
-                    string value = conditions[SearchConditions.UserID].ToString();
-                    query = query.Where(_ => _.UserID.Equals(value));
-                }
-                #endregion
-
-                #region Sort by
-                if (conditions.Keys.Contains(SearchConditions.SortAuthorityGroupID_Desc))
-                {
-                    bool value = (bool)conditions[SearchConditions.SortAuthorityGroupID_Desc];
-                    if (value)
-                    {
-                        query = query.OrderByDescending(_ => _.AuthorityGroupID);
-                    }
-                    else
-                    {
-                        query = query.OrderBy(_ => _.AuthorityGroupID);
-                    }
-                }
-                #endregion
-            }
-            return query.ToList();
-        }
-
         public void Save(UserAuthority userAuthority)
         {
             if (String.IsNullOrEmpty(userAuthority.Id))

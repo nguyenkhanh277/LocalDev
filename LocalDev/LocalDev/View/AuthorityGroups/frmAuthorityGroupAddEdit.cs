@@ -22,7 +22,6 @@ namespace LocalDev.View.AuthorityGroups
         AuthorityGroupRepository _authorityGroupRepository;
         ProgramFunctionMasterRepository _programFunctionMasterRepository;
         ProgramFunctionAuthorityRepository _programFunctionAuthorityRepository;
-        IEnumerable<ProgramFunctionAuthority> _oldProgramFunctionAuthority;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -88,21 +87,15 @@ namespace LocalDev.View.AuthorityGroups
 
         private void LoadProgramFunction()
         {
-            Dictionary<ProgramFunctionMasterRepository.SearchConditions, object> conditionsMaster = new Dictionary<ProgramFunctionMasterRepository.SearchConditions, object>();
-            conditionsMaster.Add(ProgramFunctionMasterRepository.SearchConditions.SortProgramName_Desc, false);
-            var programFunctionMasters = _programFunctionMasterRepository.Find(conditionsMaster);
-
-            Dictionary<ProgramFunctionAuthorityRepository.SearchConditions, object> conditions = new Dictionary<ProgramFunctionAuthorityRepository.SearchConditions, object>();
-            conditions.Add(ProgramFunctionAuthorityRepository.SearchConditions.AuthorityGroupID, _id);
-            conditions.Add(ProgramFunctionAuthorityRepository.SearchConditions.SortProgramName_Desc, false);
-            _oldProgramFunctionAuthority = _programFunctionAuthorityRepository.Find(conditions);
+            var programFunctionMasters = _programFunctionMasterRepository.GetAll().OrderBy(_ => _.ProgramName).ThenBy(_ => _.FunctionName);
+            var oldProgramFunctionAuthority = _programFunctionAuthorityRepository.Find(_ => _.AuthorityGroupID.Equals(_id));
 
             dgvDuLieu.Rows.Clear();
             int check = 0;
             foreach (var programFunctionMaster in programFunctionMasters)
             {
                 check = 0;
-                foreach (var programFunctionAuthority in _oldProgramFunctionAuthority)
+                foreach (var programFunctionAuthority in oldProgramFunctionAuthority)
                 {
                     if (programFunctionAuthority.ProgramName == programFunctionMaster.ProgramName &&
                         programFunctionAuthority.FunctionName == programFunctionMaster.FunctionName)

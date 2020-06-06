@@ -4,7 +4,6 @@ using System.Linq;
 using System;
 using LocalDev.Core;
 using LocalDev.Core.Helper;
-using System.Linq.Expressions;
 
 namespace LocalDev.Persistence.Repositories
 {
@@ -19,93 +18,6 @@ namespace LocalDev.Persistence.Repositories
         public ProjectDataContext ProjectDataContext
         {
             get { return Context as ProjectDataContext; }
-        }
-
-        #region Conditions for search
-        public enum SearchConditions
-        {
-            Id,
-            Username,
-            FullName,
-            Phone,
-            Address,
-            Gender,
-            Status,
-
-            SortUsername_Desc
-        }
-        #endregion
-
-        public Expression<Func<User, bool>> FilterById(string id)
-        {
-            return x => x.Id.Equals(id);
-        }
-
-        public IEnumerable<User> Find(Dictionary<SearchConditions, object> conditions)
-        {
-            ProjectDataContext projectDataContext = new ProjectDataContext();
-            var query = from x in projectDataContext.Users
-                        select x;
-
-            if (!query.Any()) return new List<User>();
-            if (conditions != null)
-            {
-                #region Check conditions
-                if (conditions.Keys.Contains(SearchConditions.Id))
-                {
-                    string value = conditions[SearchConditions.Id].ToString();
-                    query = query.Where(_ => _.Id.Equals(value));
-                }
-                if (conditions.Keys.Contains(SearchConditions.Username))
-                {
-                    string value = conditions[SearchConditions.Username].ToString();
-                    query = query.Where(_ => _.Username.Contains(value));
-                }
-                if (conditions.Keys.Contains(SearchConditions.FullName))
-                {
-                    string value = conditions[SearchConditions.FullName].ToString();
-                    query = query.Where(_ => _.FullName.Contains(value));
-                }
-                if (conditions.Keys.Contains(SearchConditions.Phone))
-                {
-                    string value = conditions[SearchConditions.Phone].ToString();
-                    query = query.Where(_ => _.Phone.Contains(value));
-                }
-                if (conditions.Keys.Contains(SearchConditions.Address))
-                {
-                    string value = conditions[SearchConditions.Address].ToString();
-                    query = query.Where(_ => _.Address.Contains(value));
-                }
-                if (conditions.Keys.Contains(SearchConditions.Gender))
-                {
-                    GlobalConstants.GenderValue value;
-                    Enum.TryParse<GlobalConstants.GenderValue>(conditions[SearchConditions.Gender].ToString(), out value);
-                    query = query.Where(_ => _.Gender == value);
-                }
-                if (conditions.Keys.Contains(SearchConditions.Status))
-                {
-                    GlobalConstants.StatusValue value;
-                    Enum.TryParse<GlobalConstants.StatusValue>(conditions[SearchConditions.Status].ToString(), out value);
-                    query = query.Where(_ => _.Status == value);
-                }
-                #endregion
-
-                #region Sort by
-                if (conditions.Keys.Contains(SearchConditions.SortUsername_Desc))
-                {
-                    bool value = (bool)conditions[SearchConditions.SortUsername_Desc];
-                    if (value)
-                    {
-                        query = query.OrderByDescending(_ => _.Username);
-                    }
-                    else
-                    {
-                        query = query.OrderBy(_ => _.Username);
-                    }
-                }
-                #endregion
-            }
-            return query.ToList();
         }
 
         public void Save(User user)

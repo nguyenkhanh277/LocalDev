@@ -12,6 +12,8 @@ using LocalDev.Persistence;
 using LocalDev.Core;
 using LocalDev.Persistence.Repositories;
 using LocalDev.Core.Helper;
+using System.Linq.Expressions;
+using LocalDev.Core.Domain;
 
 namespace LocalDev.View.AuthorityGroups
 {
@@ -72,13 +74,14 @@ namespace LocalDev.View.AuthorityGroups
 
         private void Search()
         {
-            Dictionary<AuthorityGroupRepository.SearchConditions, object> conditions = new Dictionary<AuthorityGroupRepository.SearchConditions, object>();
+            List<Expression<Func<AuthorityGroup, bool>>> expressions = new List<Expression<Func<AuthorityGroup, bool>>>();
             if (!chkAllStatus.Checked)
             {
-                conditions.Add(AuthorityGroupRepository.SearchConditions.Status, chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
+                GlobalConstants.StatusValue statusValue;
+                Enum.TryParse<GlobalConstants.StatusValue>((chkUsing.Checked ? GlobalConstants.StatusValue.Using.ToString() : GlobalConstants.StatusValue.NoUse.ToString()), out statusValue);
+                expressions.Add(_ => _.Status == statusValue);
             }
-            conditions.Add(AuthorityGroupRepository.SearchConditions.SortId_Desc, false);
-            dgvDuLieu.DataSource = _authorityGroupRepository.Find(conditions);
+            dgvDuLieu.DataSource = _authorityGroupRepository.Find(expressions);
             Control();
         }
 

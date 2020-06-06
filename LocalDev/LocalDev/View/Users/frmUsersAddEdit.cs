@@ -101,14 +101,8 @@ namespace LocalDev.View.Users
 
         private void LoadAuthority()
         {
-            Dictionary<AuthorityGroupRepository.SearchConditions, object> conditionsMaster = new Dictionary<AuthorityGroupRepository.SearchConditions, object>();
-            conditionsMaster.Add(AuthorityGroupRepository.SearchConditions.SortId_Desc, false);
-            var authorityGroups = _authorityGroupRepository.Find(conditionsMaster);
-
-            Dictionary<UserAuthorityRepository.SearchConditions, object> conditions = new Dictionary<UserAuthorityRepository.SearchConditions, object>();
-            conditions.Add(UserAuthorityRepository.SearchConditions.UserID, _id);
-            conditions.Add(UserAuthorityRepository.SearchConditions.SortAuthorityGroupID_Desc, false);
-            var userAuthoritys = _userAuthorityRepository.Find(conditions);
+            var authorityGroups = _authorityGroupRepository.GetAll().OrderBy(_ => _.Sort);
+            var userAuthoritys = _userAuthorityRepository.Find(_ => _.UserID.Equals(_id)).OrderBy(_ => _.AuthorityGroupID);
 
             dgvDuLieu.Rows.Clear();
             int check = 0;

@@ -19,56 +19,6 @@ namespace LocalDev.Persistence.Repositories
             get { return Context as ProjectDataContext; }
         }
 
-        #region Conditions for search
-        public enum SearchConditions
-        {
-            Id,
-            AuthorityGroupID,
-
-            SortProgramName_Desc
-        }
-        #endregion
-
-        public IEnumerable<ProgramFunctionAuthority> Find(Dictionary<SearchConditions, object> conditions)
-        {
-            ProjectDataContext projectDataContext = new ProjectDataContext();
-            var query = from x in projectDataContext.ProgramFunctionAuthoritys
-                        select x;
-
-            if (!query.Any()) return new List<ProgramFunctionAuthority>();
-            if (conditions != null)
-            {
-                #region Check conditions
-                if (conditions.Keys.Contains(SearchConditions.Id))
-                {
-                    string value = conditions[SearchConditions.Id].ToString();
-                    query = query.Where(_ => _.Id.Equals(value));
-                }
-                if (conditions.Keys.Contains(SearchConditions.AuthorityGroupID))
-                {
-                    string value = conditions[SearchConditions.AuthorityGroupID].ToString();
-                    query = query.Where(_ => _.AuthorityGroupID.Equals(value));
-                }
-                #endregion
-
-                #region Sort by
-                if (conditions.Keys.Contains(SearchConditions.SortProgramName_Desc))
-                {
-                    bool value = (bool)conditions[SearchConditions.SortProgramName_Desc];
-                    if (value)
-                    {
-                        query = query.OrderByDescending(_ => _.ProgramName);
-                    }
-                    else
-                    {
-                        query = query.OrderBy(_ => _.ProgramName);
-                    }
-                }
-                #endregion
-            }
-            return query.ToList();
-        }
-
         public void Save(ProgramFunctionAuthority programFunctionAuthority)
         {
             if (String.IsNullOrEmpty(programFunctionAuthority.Id))

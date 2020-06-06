@@ -72,9 +72,7 @@ namespace LocalDev.View.LanguageLibrarys
 
         private void Search()
         {
-            Dictionary<LanguageLibraryRepository.SearchConditions, object> conditions = new Dictionary<LanguageLibraryRepository.SearchConditions, object>();
-            conditions.Add(LanguageLibraryRepository.SearchConditions.SortVietnamese_Desc, false);
-            dgvDuLieu.DataSource = _languageLibraryRepository.Find(conditions);
+            dgvDuLieu.DataSource = _languageLibraryRepository.GetAll();
             Control();
         }
 

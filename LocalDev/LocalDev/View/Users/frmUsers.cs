@@ -14,6 +14,8 @@ using LocalDev.Persistence.Repositories;
 using LocalDev.View.AuthorityGroups;
 using LocalDev.View.ProgramFunctionMasters;
 using LocalDev.Core.Helper;
+using System.Linq.Expressions;
+using LocalDev.Core.Domain;
 
 namespace LocalDev.View.Users
 {
@@ -21,6 +23,7 @@ namespace LocalDev.View.Users
     {
         ProjectDataContext _projectDataContext = new ProjectDataContext();
         UserRepository _userRepository;
+        private object predicate;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -85,17 +88,20 @@ namespace LocalDev.View.Users
 
         private void Search()
         {
-            Dictionary<UserRepository.SearchConditions, object> conditions = new Dictionary<UserRepository.SearchConditions, object>();
-            if (!chkAllStatus.Checked)
-            {
-                conditions.Add(UserRepository.SearchConditions.Status, chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
-            }
+            List<Expression<Func<User, bool>>> expressions = new List<Expression<Func<User, bool>>>();
             if (!chkAllGender.Checked)
             {
-                conditions.Add(UserRepository.SearchConditions.Gender, chkMale.Checked ? GlobalConstants.GenderValue.Male : GlobalConstants.GenderValue.Female);
+                GlobalConstants.GenderValue genderValue;
+                Enum.TryParse<GlobalConstants.GenderValue>((chkMale.Checked ? GlobalConstants.GenderValue.Male.ToString() : GlobalConstants.GenderValue.Female.ToString()), out genderValue);
+                expressions.Add(_ => _.Gender == genderValue);
             }
-            conditions.Add(UserRepository.SearchConditions.SortUsername_Desc, false);
-            dgvDuLieu.DataSource = _userRepository.Find(conditions);
+            if (!chkAllStatus.Checked)
+            {
+                GlobalConstants.StatusValue statusValue;
+                Enum.TryParse<GlobalConstants.StatusValue>((chkUsing.Checked ? GlobalConstants.StatusValue.Using.ToString() : GlobalConstants.StatusValue.NoUse.ToString()), out statusValue);
+                expressions.Add(_ => _.Status == statusValue);
+            }
+            dgvDuLieu.DataSource = _userRepository.Find(expressions);
             Control();
         }
 

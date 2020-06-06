@@ -36,7 +36,7 @@ namespace LocalDev.View.Home
         {
             _userRepository = new UserRepository(_projectDataContext);
             _languageLibraryRepository = new LanguageLibraryRepository(_projectDataContext);
-            GlobalConstants.languageLibrary = _languageLibraryRepository.Find(new Dictionary<LanguageLibraryRepository.SearchConditions, object>()).ToList();
+            GlobalConstants.languageLibrary = _languageLibraryRepository.GetAll().ToList();
 
             GlobalConstants.language = Properties.Settings.Default.Language;
             LoadLanguage(GlobalConstants.language);
@@ -64,7 +64,7 @@ namespace LocalDev.View.Home
                 txtPassword.Focus();
                 return false;
             }
-            _userRepository.CheckSecurity(GlobalConstants.username, txtPassword.Text.Trim());
+            _userRepository.CheckSecurity(txtUsername.Text.Trim(), txtPassword.Text.Trim());
             if (_userRepository.error)
             {
                 XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText(_userRepository.errorMessage), LanguageTranslate.ChangeLanguageText("Thông báo"));

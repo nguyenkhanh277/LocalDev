@@ -19,50 +19,6 @@ namespace LocalDev.Persistence.Repositories
             get { return Context as ProjectDataContext; }
         }
 
-        #region Conditions for search
-        public enum SearchConditions
-        {
-            Id,
-
-            SortVietnamese_Desc
-        }
-        #endregion
-
-        public IEnumerable<LanguageLibrary> Find(Dictionary<SearchConditions, object> conditions)
-        {
-            ProjectDataContext projectDataContext = new ProjectDataContext();
-            var query = from x in projectDataContext.LanguageLibrarys
-                        select x;
-
-            if (!query.Any()) return new List<LanguageLibrary>();
-            if (conditions != null)
-            {
-                #region Check conditions
-                if (conditions.Keys.Contains(SearchConditions.Id))
-                {
-                    string value = conditions[SearchConditions.Id].ToString();
-                    query = query.Where(_ => _.Id.Equals(value));
-                }
-                #endregion
-
-                #region Sort by
-                if (conditions.Keys.Contains(SearchConditions.SortVietnamese_Desc))
-                {
-                    bool value = (bool)conditions[SearchConditions.SortVietnamese_Desc];
-                    if (value)
-                    {
-                        query = query.OrderByDescending(_ => _.Vietnamese);
-                    }
-                    else
-                    {
-                        query = query.OrderBy(_ => _.Vietnamese);
-                    }
-                }
-                #endregion
-            }
-            return query.ToList();
-        }
-
         public void Save(LanguageLibrary languageLibrary)
         {
             if (String.IsNullOrEmpty(languageLibrary.Id))
