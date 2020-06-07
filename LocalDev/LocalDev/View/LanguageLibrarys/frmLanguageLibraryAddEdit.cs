@@ -69,6 +69,7 @@ namespace LocalDev.View.LanguageLibrarys
         {
             txtVietnamese.Text = "";
             txtEnglish.Text = "";
+            txtVietnamese.Focus();
         }
 
         private void GetData()
@@ -83,24 +84,24 @@ namespace LocalDev.View.LanguageLibrarys
         {
             if (txtVietnamese.Text.Trim() == "")
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtVietnamese.Focus();
                 return false;
             }
             else if (txtEnglish.Text.Trim() == "")
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtEnglish.Focus();
                 return false;
             }
-            LanguageLibrary languageLibrary = _languageLibraryRepository.FirstOrDefault(x => x.Vietnamese.Equals(txtVietnamese.Text.Trim()));
+            LanguageLibrary languageLibrary = _languageLibraryRepository.FirstOrDefault(_ => _.Vietnamese.Equals(txtVietnamese.Text.Trim()));
             if (languageLibrary != null &&
                 (
                     String.IsNullOrEmpty(_id) ||
                     (!String.IsNullOrEmpty(_id) && txtVietnamese.Text.Trim() != languageLibrary.Vietnamese)
                 ))
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtVietnamese.Focus();
                 return false;
             }
@@ -135,13 +136,13 @@ namespace LocalDev.View.LanguageLibrarys
                 }
                 else
                 {
-                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

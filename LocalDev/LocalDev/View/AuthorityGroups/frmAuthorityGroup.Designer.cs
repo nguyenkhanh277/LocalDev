@@ -36,8 +36,9 @@
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.dgvDuLieu = new DevExpress.XtraGrid.GridControl();
             this.viewDuLieu = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+            this.Id = new DevExpress.XtraGrid.Columns.GridColumn();
             this.AuthorityGroupName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -45,7 +46,6 @@
             this.chkAllStatus = new System.Windows.Forms.RadioButton();
             this.chkUsing = new System.Windows.Forms.RadioButton();
             this.chkNoUse = new System.Windows.Forms.RadioButton();
-            this.Id = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
@@ -164,6 +164,7 @@
             this.viewDuLieu.IndicatorWidth = 40;
             this.viewDuLieu.Name = "viewDuLieu";
             this.viewDuLieu.OptionsBehavior.Editable = false;
+            this.viewDuLieu.OptionsCustomization.AllowQuickHideColumns = false;
             this.viewDuLieu.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.viewDuLieu.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.viewDuLieu.OptionsView.ShowAutoFilterRow = true;
@@ -173,9 +174,11 @@
             this.viewDuLieu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.viewDuLieu_KeyDown);
             this.viewDuLieu.DoubleClick += new System.EventHandler(this.btnEdit_Click);
             // 
-            // repositoryItemMemoEdit1
+            // Id
             // 
-            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
+            this.Id.Caption = "Id";
+            this.Id.FieldName = "Id";
+            this.Id.Name = "Id";
             // 
             // AuthorityGroupName
             // 
@@ -195,6 +198,10 @@
             this.AuthorityGroupName.Visible = true;
             this.AuthorityGroupName.VisibleIndex = 0;
             this.AuthorityGroupName.Width = 200;
+            // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
             // repositoryItemCheckEdit1
             // 
@@ -276,12 +283,6 @@
             this.chkNoUse.TabIndex = 7;
             this.chkNoUse.Text = "Ko sử dụng";
             this.chkNoUse.UseVisualStyleBackColor = false;
-            // 
-            // Id
-            // 
-            this.Id.Caption = "Id";
-            this.Id.FieldName = "Id";
-            this.Id.Name = "Id";
             // 
             // frmAuthorityGroup
             // 

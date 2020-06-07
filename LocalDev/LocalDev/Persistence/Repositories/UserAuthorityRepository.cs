@@ -10,6 +10,8 @@ namespace LocalDev.Persistence.Repositories
 {
     public class UserAuthorityRepository : Repository<UserAuthority>
     {
+        public string id = "";
+
         public UserAuthorityRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
         {
         }
@@ -27,6 +29,7 @@ namespace LocalDev.Persistence.Repositories
                 userAuthority.CreatedAt = DateTime.Now;
                 userAuthority.CreatedBy = GlobalConstants.username;
                 Add(userAuthority);
+                id = userAuthority.Id;
             }
             else
             {
@@ -40,12 +43,13 @@ namespace LocalDev.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var raw = FirstOrDefault(x => x.Id.Equals(userAuthority.Id));
+                var raw = FirstOrDefault(_ => _.Id.Equals(userAuthority.Id));
                 if (raw != null)
                 {
                     raw.CollectInformation(userAuthority);
                     raw.EditedAt = DateTime.Now;
                     raw.EditedBy = GlobalConstants.username;
+                    id = raw.Id;
                 }
             }
             catch (Exception ex)
@@ -57,7 +61,7 @@ namespace LocalDev.Persistence.Repositories
 
         public void DeleteByUserID(string userID)
         {
-            Remove(FirstOrDefault(x => x.UserID.Equals(userID)));
+            Remove(FirstOrDefault(_ => _.UserID.Equals(userID)));
         }
 
         public string GetAutoID()

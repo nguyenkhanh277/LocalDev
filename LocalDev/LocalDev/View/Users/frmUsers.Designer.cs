@@ -203,7 +203,7 @@
             this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseBackColor = true;
             this.btnClose.Appearance.Options.UseFont = true;
-            this.btnClose.Location = new System.Drawing.Point(1198, 5);
+            this.btnClose.Location = new System.Drawing.Point(1190, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
             this.btnClose.TabIndex = 5;
@@ -259,7 +259,7 @@
             this.repositoryItemCheckEdit1,
             this.repositoryItemButtonEdit1,
             this.repositoryItemMemoEdit1});
-            this.dgvDuLieu.Size = new System.Drawing.Size(1290, 418);
+            this.dgvDuLieu.Size = new System.Drawing.Size(1282, 418);
             this.dgvDuLieu.TabIndex = 4;
             this.dgvDuLieu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.viewDuLieu});
@@ -284,6 +284,7 @@
             this.viewDuLieu.IndicatorWidth = 40;
             this.viewDuLieu.Name = "viewDuLieu";
             this.viewDuLieu.OptionsBehavior.Editable = false;
+            this.viewDuLieu.OptionsCustomization.AllowQuickHideColumns = false;
             this.viewDuLieu.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.viewDuLieu.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.viewDuLieu.OptionsView.ShowAutoFilterRow = true;
@@ -464,7 +465,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1290, 50);
+            this.panelControl1.Size = new System.Drawing.Size(1282, 50);
             this.panelControl1.TabIndex = 5;
             // 
             // btnProgram
@@ -493,7 +494,7 @@
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1290, 468);
+            this.ClientSize = new System.Drawing.Size(1282, 468);
             this.Controls.Add(this.dgvDuLieu);
             this.Controls.Add(this.panelControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 10F);

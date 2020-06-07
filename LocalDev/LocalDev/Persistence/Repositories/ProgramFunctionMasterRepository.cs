@@ -10,6 +10,8 @@ namespace LocalDev.Persistence.Repositories
 {
     public class ProgramFunctionMasterRepository : Repository<ProgramFunctionMaster>
     {
+        public string id = "";
+
         public ProgramFunctionMasterRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
         {
         }
@@ -27,6 +29,7 @@ namespace LocalDev.Persistence.Repositories
                 programFunctionMaster.CreatedAt = DateTime.Now;
                 programFunctionMaster.CreatedBy = GlobalConstants.username;
                 Add(programFunctionMaster);
+                id = programFunctionMaster.Id;
             }
             else
             {
@@ -40,12 +43,13 @@ namespace LocalDev.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var raw = FirstOrDefault(x => x.Id.Equals(programFunctionMaster.Id));
+                var raw = FirstOrDefault(_ => _.Id.Equals(programFunctionMaster.Id));
                 if (raw != null)
                 {
                     raw.CollectInformation(programFunctionMaster);
                     raw.EditedAt = DateTime.Now;
                     raw.EditedBy = GlobalConstants.username;
+                    id = raw.Id;
                 }
             }
             catch (Exception ex)

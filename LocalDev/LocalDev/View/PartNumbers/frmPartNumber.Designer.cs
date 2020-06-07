@@ -219,6 +219,7 @@
             this.viewDuLieu.IndicatorWidth = 40;
             this.viewDuLieu.Name = "viewDuLieu";
             this.viewDuLieu.OptionsBehavior.Editable = false;
+            this.viewDuLieu.OptionsCustomization.AllowQuickHideColumns = false;
             this.viewDuLieu.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.viewDuLieu.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.viewDuLieu.OptionsView.ShowAutoFilterRow = true;

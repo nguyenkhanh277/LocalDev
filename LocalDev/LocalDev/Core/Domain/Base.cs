@@ -51,7 +51,7 @@ namespace LocalDev.Core.Domain
                         }
                         else
                         {
-                            if (this.GetType().GetProperties().Where(x => x.Name == prop.Name && x.GetType() == prop.GetType()).Any())
+                            if (this.GetType().GetProperties().Where(_ => _.Name == prop.Name && _.GetType() == prop.GetType()).Any())
                             {
                                 if ((val != null && withoutNullValue) || !withoutNullValue)
                                     prop.SetValue(this, src.GetProperty(prop.Name).GetValue(model));

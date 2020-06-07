@@ -10,6 +10,8 @@ namespace LocalDev.Persistence.Repositories
 {
     public class LanguageLibraryRepository : Repository<LanguageLibrary>
     {
+        public string id = "";
+
         public LanguageLibraryRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
         {
         }
@@ -27,6 +29,7 @@ namespace LocalDev.Persistence.Repositories
                 languageLibrary.CreatedAt = DateTime.Now;
                 languageLibrary.CreatedBy = GlobalConstants.username;
                 Add(languageLibrary);
+                id = languageLibrary.Id;
             }
             else
             {
@@ -40,12 +43,13 @@ namespace LocalDev.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var raw = FirstOrDefault(x => x.Id.Equals(languageLibrary.Id));
+                var raw = FirstOrDefault(_ => _.Id.Equals(languageLibrary.Id));
                 if (raw != null)
                 {
                     raw.CollectInformation(languageLibrary);
                     raw.EditedAt = DateTime.Now;
                     raw.EditedBy = GlobalConstants.username;
+                    id = raw.Id;
                 }
             }
             catch (Exception ex)

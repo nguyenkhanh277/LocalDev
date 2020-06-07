@@ -58,32 +58,42 @@ namespace LocalDev.Migrations
                 .Index(t => t.AuthorityGroupID);
             
             CreateTable(
-                "dbo.Barcodes",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        PartNumberID = c.String(maxLength: 128),
-                        PrintDate = c.DateTime(),
-                        Line = c.String(),
-                        Shift = c.String(),
-                        SEQ = c.String(),
-                        Status = c.Int(nullable: false),
-                        CreatedAt = c.DateTime(),
-                        CreatedBy = c.String(),
-                        EditedAt = c.DateTime(),
-                        EditedBy = c.String(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.PartNumbers", t => t.PartNumberID)
-                .Index(t => t.PartNumberID);
-            
-            CreateTable(
                 "dbo.LanguageLibraries",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         Vietnamese = c.String(),
                         English = c.String(),
+                        CreatedAt = c.DateTime(),
+                        CreatedBy = c.String(),
+                        EditedAt = c.DateTime(),
+                        EditedBy = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Machines",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        MachineNo = c.String(),
+                        Note = c.String(),
+                        Status = c.Int(nullable: false),
+                        CreatedAt = c.DateTime(),
+                        CreatedBy = c.String(),
+                        EditedAt = c.DateTime(),
+                        EditedBy = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Molds",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        MoldNo = c.String(),
+                        Note = c.String(),
+                        Status = c.Int(nullable: false),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.String(),
                         EditedAt = c.DateTime(),
@@ -124,6 +134,87 @@ namespace LocalDev.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.RegistBarcodes",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        PartNo = c.String(),
+                        RegistDate = c.DateTime(),
+                        MachineNo = c.String(),
+                        ShiftNo = c.String(),
+                        MoldNo = c.String(),
+                        SEQ = c.String(),
+                        Barcode = c.String(),
+                        UserID = c.String(maxLength: 128),
+                        Status = c.Int(nullable: false),
+                        CreatedAt = c.DateTime(),
+                        CreatedBy = c.String(),
+                        EditedAt = c.DateTime(),
+                        EditedBy = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Users", t => t.UserID)
+                .Index(t => t.UserID);
+            
+            CreateTable(
+                "dbo.ScanBarcodeDetails",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        ScanBarcodeId = c.String(),
+                        ProducedDate = c.DateTime(),
+                        Barcode = c.String(),
+                        PartNo = c.String(),
+                        ShiftNo = c.String(),
+                        MachineNo = c.String(),
+                        UserID = c.String(),
+                        ResultStatus = c.Int(nullable: false),
+                        Status = c.Int(nullable: false),
+                        CreatedAt = c.DateTime(),
+                        CreatedBy = c.String(),
+                        EditedAt = c.DateTime(),
+                        EditedBy = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.ScanBarcodes",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        WorkOrder = c.String(),
+                        PartNo = c.String(),
+                        Model = c.String(),
+                        ExpectedDeliveryDate = c.DateTime(),
+                        Quantity = c.Double(nullable: false),
+                        UserID = c.String(maxLength: 128),
+                        ProductionStatus = c.Int(nullable: false),
+                        Status = c.Int(nullable: false),
+                        CreatedAt = c.DateTime(),
+                        CreatedBy = c.String(),
+                        EditedAt = c.DateTime(),
+                        EditedBy = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Users", t => t.UserID)
+                .Index(t => t.UserID);
+            
+            CreateTable(
+                "dbo.Shifts",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        ShiftNo = c.String(),
+                        Note = c.String(),
+                        Status = c.Int(nullable: false),
+                        CreatedAt = c.DateTime(),
+                        CreatedBy = c.String(),
+                        EditedAt = c.DateTime(),
+                        EditedBy = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Users",
                 c => new
                     {
@@ -149,18 +240,25 @@ namespace LocalDev.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.UserAuthorities", "UserID", "dbo.Users");
-            DropForeignKey("dbo.Barcodes", "PartNumberID", "dbo.PartNumbers");
+            DropForeignKey("dbo.ScanBarcodes", "UserID", "dbo.Users");
+            DropForeignKey("dbo.RegistBarcodes", "UserID", "dbo.Users");
             DropForeignKey("dbo.UserAuthorities", "AuthorityGroupID", "dbo.AuthorityGroups");
             DropForeignKey("dbo.ProgramFunctionAuthorities", "AuthorityGroupID", "dbo.AuthorityGroups");
-            DropIndex("dbo.Barcodes", new[] { "PartNumberID" });
+            DropIndex("dbo.ScanBarcodes", new[] { "UserID" });
+            DropIndex("dbo.RegistBarcodes", new[] { "UserID" });
             DropIndex("dbo.UserAuthorities", new[] { "AuthorityGroupID" });
             DropIndex("dbo.UserAuthorities", new[] { "UserID" });
             DropIndex("dbo.ProgramFunctionAuthorities", new[] { "AuthorityGroupID" });
             DropTable("dbo.Users");
+            DropTable("dbo.Shifts");
+            DropTable("dbo.ScanBarcodes");
+            DropTable("dbo.ScanBarcodeDetails");
+            DropTable("dbo.RegistBarcodes");
             DropTable("dbo.ProgramFunctionMasters");
             DropTable("dbo.PartNumbers");
+            DropTable("dbo.Molds");
+            DropTable("dbo.Machines");
             DropTable("dbo.LanguageLibraries");
-            DropTable("dbo.Barcodes");
             DropTable("dbo.UserAuthorities");
             DropTable("dbo.ProgramFunctionAuthorities");
             DropTable("dbo.AuthorityGroups");

@@ -71,6 +71,7 @@ namespace LocalDev.View.ProgramFunctionMasters
             txtFunctionName.Text = "";
             txtExplanation.Text = "";
             chkUsing.Checked = true;
+            txtProgramName.Focus();
         }
 
         private void GetData()
@@ -87,24 +88,24 @@ namespace LocalDev.View.ProgramFunctionMasters
         {
             if (txtProgramName.Text.Trim() == "")
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtProgramName.Focus();
                 return false;
             }
             else if (txtFunctionName.Text.Trim() == "")
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtFunctionName.Focus();
                 return false;
             }
-            ProgramFunctionMaster programFunctionMaster = _programFunctionMasterRepository.FirstOrDefault(x => x.ProgramName.Equals(txtProgramName.Text.Trim()) && x.FunctionName.Equals(txtFunctionName.Text.Trim()));
+            ProgramFunctionMaster programFunctionMaster = _programFunctionMasterRepository.FirstOrDefault(_ => _.ProgramName.Equals(txtProgramName.Text.Trim()) && _.FunctionName.Equals(txtFunctionName.Text.Trim()));
             if (programFunctionMaster != null &&
                 (
                     String.IsNullOrEmpty(_id) ||
                     (!String.IsNullOrEmpty(_id) && (txtProgramName.Text.Trim() != programFunctionMaster.ProgramName || txtFunctionName.Text.Trim() != programFunctionMaster.FunctionName))
                 ))
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtFunctionName.Focus();
                 return false;
             }
@@ -141,13 +142,13 @@ namespace LocalDev.View.ProgramFunctionMasters
                 }
                 else
                 {
-                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

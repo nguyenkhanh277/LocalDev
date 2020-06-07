@@ -8,9 +8,11 @@ using LocalDev.Core.Helper;
 
 namespace LocalDev.Persistence.Repositories
 {
-    public class BarcodeRepository : Repository<Barcode>
+    public class MachineRepository : Repository<Machine>
     {
-        public BarcodeRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
+        public string id = "";
+
+        public MachineRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
         {
         }
 
@@ -19,33 +21,35 @@ namespace LocalDev.Persistence.Repositories
             get { return Context as ProjectDataContext; }
         }
 
-        public void Save(Barcode barcode)
+        public void Save(Machine machine)
         {
-            if (String.IsNullOrEmpty(barcode.Id))
+            if (String.IsNullOrEmpty(machine.Id))
             {
-                barcode.Id = GetAutoID();
-                barcode.CreatedAt = DateTime.Now;
-                barcode.CreatedBy = GlobalConstants.username;
-                Add(barcode);
+                machine.Id = GetAutoID();
+                machine.CreatedAt = DateTime.Now;
+                machine.CreatedBy = GlobalConstants.username;
+                Add(machine);
+                id = machine.Id;
             }
             else
             {
-                Update(barcode);
+                Update(machine);
             }
         }
 
-        public void Update(Barcode barcode)
+        public void Update(Machine machine)
         {
             error = false;
             errorMessage = "";
             try
             {
-                var raw = FirstOrDefault(x => x.Id.Equals(barcode.Id));
+                var raw = FirstOrDefault(_ => _.Id.Equals(machine.Id));
                 if (raw != null)
                 {
-                    raw.CollectInformation(barcode);
+                    raw.CollectInformation(machine);
                     raw.EditedAt = DateTime.Now;
                     raw.EditedBy = GlobalConstants.username;
+                    id = raw.Id;
                 }
             }
             catch (Exception ex)

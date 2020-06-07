@@ -10,6 +10,7 @@ namespace LocalDev.Core
     public class GlobalConstants
     {
         #region Default Values
+        public static string userID = "";
         public static string username = "";
         public static string fullName = "";
         public static int language = 0;
@@ -19,6 +20,8 @@ namespace LocalDev.Core
         public enum SearchConditions { }
         public enum GenderValue { Female, Male }
         public enum StatusValue { NoUse, Using }
+        public enum ProductionStatusValue { None, InProgress, Completed, Hold }
+        public enum ResultStatusValue { None, OK, NG }
         public enum LanguageValue { Vietnamese, English }
         #endregion
 

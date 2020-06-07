@@ -75,6 +75,7 @@ namespace LocalDev.View.AuthorityGroups
         {
             txtAuthorityGroupName.Text = "";
             chkUsing.Checked = true;
+            txtAuthorityGroupName.Focus();
         }
 
         private void GetData()
@@ -113,18 +114,18 @@ namespace LocalDev.View.AuthorityGroups
         {
             if (txtAuthorityGroupName.Text.Trim() == "")
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtAuthorityGroupName.Focus();
                 return false;
             }
-            AuthorityGroup authorityGroup = _authorityGroupRepository.FirstOrDefault(x => x.AuthorityGroupName.Equals(txtAuthorityGroupName.Text.Trim()));
+            AuthorityGroup authorityGroup = _authorityGroupRepository.FirstOrDefault(_ => _.AuthorityGroupName.Equals(txtAuthorityGroupName.Text.Trim()));
             if (authorityGroup != null &&
                 (
                     String.IsNullOrEmpty(_id) ||
                     (!String.IsNullOrEmpty(_id) && txtAuthorityGroupName.Text.Trim() != authorityGroup.AuthorityGroupName)
                 ))
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtAuthorityGroupName.Focus();
                 return false;
             }
@@ -176,13 +177,13 @@ namespace LocalDev.View.AuthorityGroups
                 }
                 else
                 {
-                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
         }

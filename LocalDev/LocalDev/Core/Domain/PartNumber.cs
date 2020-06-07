@@ -12,14 +12,5 @@ namespace LocalDev.Core.Domain
         public string Note { get; set; }
         public GlobalConstants.StatusValue Status { get; set; }
         #endregion
-
-        #region FK
-        public PartNumber()
-        {
-            barcodes = new ObservableCollection<Barcode>();
-        }
-
-        public virtual ObservableCollection<Barcode> barcodes { get; set; }
-        #endregion
     }
 }

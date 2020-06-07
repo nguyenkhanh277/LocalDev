@@ -39,10 +39,17 @@ namespace LocalDev.View.PartNumbers
         }
 
         string _id = "";
+        bool _quickAdd = false;
 
         public frmPartNumberAddEdit()
         {
             InitializeComponent();
+        }
+
+        public frmPartNumberAddEdit(bool quickAdd)
+        {
+            InitializeComponent();
+            _quickAdd = quickAdd;
         }
 
         public frmPartNumberAddEdit(string id)
@@ -71,6 +78,7 @@ namespace LocalDev.View.PartNumbers
             txtModel.Text = "";
             txtNote.Text = "";
             chkUsing.Checked = true;
+            txtPartNo.Focus();
         }
 
         private void GetData()
@@ -87,24 +95,24 @@ namespace LocalDev.View.PartNumbers
         {
             if (txtPartNo.Text.Trim() == "")
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtPartNo.Focus();
                 return false;
             }
             else if (txtModel.Text.Trim() == "")
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtModel.Focus();
                 return false;
             }
-            PartNumber partNumber = _partNumberRepository.FirstOrDefault(x => x.PartNo.Equals(txtPartNo.Text.Trim()));
+            PartNumber partNumber = _partNumberRepository.FirstOrDefault(_ => _.PartNo.Equals(txtPartNo.Text.Trim()));
             if (partNumber != null &&
                 (
                     String.IsNullOrEmpty(_id) ||
                     (!String.IsNullOrEmpty(_id) && txtPartNo.Text.Trim() != partNumber.PartNo)
                 ))
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtPartNo.Focus();
                 return false;
             }
@@ -130,8 +138,17 @@ namespace LocalDev.View.PartNumbers
                 {
                     if (String.IsNullOrEmpty(_id))
                     {
-                        XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thành công"), LanguageTranslate.ChangeLanguageText("Thông báo"));
-                        Clear();
+                        if (_quickAdd)
+                        {
+                            this.Tag = txtPartNo.Text.Trim();
+                            DialogResult = DialogResult.OK;
+                            Close();
+                        }
+                        else
+                        {
+                            XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thành công"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                            Clear();
+                        }
                     }
                     else
                     {
@@ -141,13 +158,13 @@ namespace LocalDev.View.PartNumbers
                 }
                 else
                 {
-                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"));
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

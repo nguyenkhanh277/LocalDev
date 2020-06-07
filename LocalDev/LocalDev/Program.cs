@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using DevExpress.XtraEditors;
 namespace LocalDev
 {
     static class Program
@@ -14,6 +14,9 @@ namespace LocalDev
         [STAThread]
         static void Main()
         {
+            DevExpress.Skins.SkinManager.EnableFormSkins();
+            DevExpress.UserSkins.BonusSkins.Register();
+            DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(Properties.Settings.Default.Theme);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Login();

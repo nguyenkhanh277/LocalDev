@@ -29,6 +29,7 @@ namespace LocalDev.Persistence.Repositories
                 authorityGroup.CreatedAt = DateTime.Now;
                 authorityGroup.CreatedBy = GlobalConstants.username;
                 Add(authorityGroup);
+                id = authorityGroup.Id;
             }
             else
             {
@@ -42,7 +43,7 @@ namespace LocalDev.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var raw = FirstOrDefault(x => x.Id.Equals(authorityGroup.Id));
+                var raw = FirstOrDefault(_ => _.Id.Equals(authorityGroup.Id));
                 if (raw != null)
                 {
                     raw.CollectInformation(authorityGroup);

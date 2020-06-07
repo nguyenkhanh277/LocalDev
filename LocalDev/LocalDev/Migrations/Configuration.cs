@@ -159,6 +159,30 @@ namespace LocalDev.Migrations
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Danh sách máy",
+                    English = "Machines List",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Danh sách khuôn",
+                    English = "Molds List",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Danh sách ca",
+                    English = "Shifts List",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
                     Vietnamese = "Quản lý PartNumber",
                     English = "PartNumber Management",
                     CreatedAt = DateTime.Now,
@@ -467,6 +491,254 @@ namespace LocalDev.Migrations
                     English = "The data is incorrect",
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Mã máy",
+                    English = "Machine No",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Mã khuôn",
+                    English = "Mold No",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Mã ca",
+                    English = "Shift No",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "In lại",
+                    English = "RePrint",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Lưu thành công",
+                    English = "Save successfully",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Lưu thất bại",
+                    English = "Save failed",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Bạn có muốn hủy thông tin này?",
+                    English = "Do you want to cancel this information?",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Bạn có muốn xóa thông tin này?",
+                    English = "Do you want to delete this information?",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Hủy thất bại",
+                    English = "Cancel failed",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Xóa thất bại",
+                    English = "Delete failed",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Ngày đăng ký",
+                    English = "Regist date",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Ngày quét mã vạch",
+                    English = "Scan barcode date",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Mã vạch",
+                    English = "Barcode",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Lưu và in (F1)",
+                    English = "Save and Print (F1)",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Lịch sử sản xuất",
+                    English = "Production history",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Thống kê sản phẩm OK",
+                    English = "Product report OK",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Thống kê sản phẩm NG",
+                    English = "Product report NG",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Báo cáo tổng hợp",
+                    English = "Report synthetic",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Đăng ký (F1)",
+                    English = "Regist (F1)",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Trạng thái sản xuất",
+                    English = "Production Status",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Quét mã vạch (F1)",
+                    English = "Scan barcode (F1)",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Trình tự công việc",
+                    English = "WorkOrder",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Ngày dự kiến giao hàng",
+                    English = "ExpectedDeliveryDate",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Số lượng",
+                    English = "Quantity",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Trạng thái sản xuất",
+                    English = "ProductionStatus",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Chưa xử lý",
+                    English = "None",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Đang xử lý",
+                    English = "In progress",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Đã xong",
+                    English = "Completed",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Bảo lưu",
+                    English = "Hold",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Đã bị hủy",
+                    English = "NoUse",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Đang dùng",
+                    English = "Using",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
                 }
             };
 
@@ -649,6 +921,103 @@ namespace LocalDev.Migrations
 
             foreach (var userAuthority in userAuthoritys)
                 projectDataContext.UserAuthoritys.AddOrUpdate(a => a.Id, userAuthority);
+            #endregion
+
+
+            #region Add PartNumber
+            var partNumbers = new List<PartNumber>
+            {
+                new PartNumber
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    PartNo = "AEF75984602",
+                    Model = "",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                }
+            };
+
+            foreach (var partNumber in partNumbers)
+                projectDataContext.PartNumbers.Add(partNumber);
+            #endregion
+
+
+            #region Add Machine
+            var machines = new List<Machine>
+            {
+                new Machine
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    MachineNo = "01",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new Machine
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    MachineNo = "02",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                }
+            };
+
+            foreach (var machine in machines)
+                projectDataContext.Machines.Add(machine);
+            #endregion
+
+
+            #region Add Shift
+            var shifts = new List<Shift>
+            {
+                new Shift
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ShiftNo = "0001",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new Shift
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ShiftNo = "0002",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                }
+            };
+
+            foreach (var shift in shifts)
+                projectDataContext.Shifts.Add(shift);
+            #endregion
+
+
+            #region Add Mold
+            var molds = new List<Mold>
+            {
+                new Mold
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    MoldNo = "0001",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new Mold
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    MoldNo = "0002",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                }
+            };
+
+            foreach (var mold in molds)
+                projectDataContext.Molds.Add(mold);
             #endregion
         }
 

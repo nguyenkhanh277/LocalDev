@@ -33,9 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DevExpress 19.1\Components\Bin\Framework\DevExpress.BonusSkins.v19.1.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.XtraGrid.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v19.1.Core, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -64,7 +70,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Domain\Barcode.cs" />
+    <Compile Include="Core\Domain\ScanBarcodeDetail.cs" />
+    <Compile Include="Core\Domain\ScanBarcode.cs" />
+    <Compile Include="Core\Domain\Shift.cs" />
+    <Compile Include="Core\Domain\Mold.cs" />
+    <Compile Include="Core\Domain\Machine.cs" />
+    <Compile Include="Core\Domain\RegistBarcode.cs" />
     <Compile Include="Core\Domain\Base.cs" />
     <Compile Include="Core\Domain\LanguageLibrary.cs" />
     <Compile Include="Core\Domain\PartNumber.cs" />
@@ -78,11 +89,16 @@
     <Compile Include="Core\Helper\Logger.cs" />
     <Compile Include="Core\Helper\SecurityHelper.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
-    <Compile Include="Migrations\202006051633186_initial-database.cs" />
-    <Compile Include="Migrations\202006051633186_initial-database.Designer.cs">
-      <DependentUpon>202006051633186_initial-database.cs</DependentUpon>
+    <Compile Include="Migrations\202006071632089_initial-database.cs" />
+    <Compile Include="Migrations\202006071632089_initial-database.Designer.cs">
+      <DependentUpon>202006071632089_initial-database.cs</DependentUpon>
     </Compile>
-    <Compile Include="Persistence\Repositories\BarcodeRepository.cs" />
+    <Compile Include="Persistence\Repositories\ScanBarcodeDetailRepository.cs" />
+    <Compile Include="Persistence\Repositories\ScanBarcodeRepository.cs" />
+    <Compile Include="Persistence\Repositories\ShiftRepository.cs" />
+    <Compile Include="Persistence\Repositories\MoldRepository.cs" />
+    <Compile Include="Persistence\Repositories\MachineRepository.cs" />
+    <Compile Include="Persistence\Repositories\RegistBarcodeRepository.cs" />
     <Compile Include="Persistence\Repositories\LanguageLibraryRepository.cs" />
     <Compile Include="Persistence\Repositories\PartNumberRepository.cs" />
     <Compile Include="Persistence\Repositories\ProgramFunctionAuthorityRepository.cs" />
@@ -121,6 +137,42 @@
     <Compile Include="View\LanguageLibrarys\frmLanguageLibraryAddEdit.Designer.cs">
       <DependentUpon>frmLanguageLibraryAddEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ScanBarcodes\frmScanBarcode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScanBarcodes\frmScanBarcode.Designer.cs">
+      <DependentUpon>frmScanBarcode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScanBarcodes\frmScanBarcodeAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScanBarcodes\frmScanBarcodeAddEdit.Designer.cs">
+      <DependentUpon>frmScanBarcodeAddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Shifts\frmShift.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Shifts\frmShift.Designer.cs">
+      <DependentUpon>frmShift.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Shifts\frmShiftAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Shifts\frmShiftAddEdit.Designer.cs">
+      <DependentUpon>frmShiftAddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Molds\frmMole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Molds\frmMole.Designer.cs">
+      <DependentUpon>frmMole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Molds\frmMoldAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Molds\frmMoldAddEdit.Designer.cs">
+      <DependentUpon>frmMoldAddEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\PartNumbers\frmPartNumber.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +184,30 @@
     </Compile>
     <Compile Include="View\PartNumbers\frmPartNumberAddEdit.Designer.cs">
       <DependentUpon>frmPartNumberAddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Machines\frmMachine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Machines\frmMachine.Designer.cs">
+      <DependentUpon>frmMachine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Machines\frmMachineAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Machines\frmMachineAddEdit.Designer.cs">
+      <DependentUpon>frmMachineAddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RegistBarcodes\frmRegistBarcode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RegistBarcodes\frmRegistBarcode.Designer.cs">
+      <DependentUpon>frmRegistBarcode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RegistBarcodes\frmRegistBarcodeAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RegistBarcodes\frmRegistBarcodeAddEdit.Designer.cs">
+      <DependentUpon>frmRegistBarcodeAddEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ProgramFunctionMasters\frmProgramFunctionMaster.cs">
       <SubType>Form</SubType>
@@ -175,8 +251,8 @@
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Migrations\202006051633186_initial-database.resx">
-      <DependentUpon>202006051633186_initial-database.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006071632089_initial-database.resx">
+      <DependentUpon>202006071632089_initial-database.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\AuthorityGroups\frmAuthorityGroup.resx">
       <DependentUpon>frmAuthorityGroup.cs</DependentUpon>
@@ -193,11 +269,41 @@
     <EmbeddedResource Include="View\LanguageLibrarys\frmLanguageLibraryAddEdit.resx">
       <DependentUpon>frmLanguageLibraryAddEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\ScanBarcodes\frmScanBarcode.resx">
+      <DependentUpon>frmScanBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ScanBarcodes\frmScanBarcodeAddEdit.resx">
+      <DependentUpon>frmScanBarcodeAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Shifts\frmShift.resx">
+      <DependentUpon>frmShift.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Shifts\frmShiftAddEdit.resx">
+      <DependentUpon>frmShiftAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Molds\frmMole.resx">
+      <DependentUpon>frmMole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Molds\frmMoldAddEdit.resx">
+      <DependentUpon>frmMoldAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\PartNumbers\frmPartNumber.resx">
       <DependentUpon>frmPartNumber.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\PartNumbers\frmPartNumberAddEdit.resx">
       <DependentUpon>frmPartNumberAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Machines\frmMachine.resx">
+      <DependentUpon>frmMachine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Machines\frmMachineAddEdit.resx">
+      <DependentUpon>frmMachineAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RegistBarcodes\frmRegistBarcode.resx">
+      <DependentUpon>frmRegistBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RegistBarcodes\frmRegistBarcodeAddEdit.resx">
+      <DependentUpon>frmRegistBarcodeAddEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ProgramFunctionMasters\frmProgramFunctionMaster.resx">
       <DependentUpon>frmProgramFunctionMaster.cs</DependentUpon>

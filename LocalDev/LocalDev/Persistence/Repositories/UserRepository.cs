@@ -30,6 +30,7 @@ namespace LocalDev.Persistence.Repositories
                 user.CreatedAt = DateTime.Now;
                 user.CreatedBy = GlobalConstants.username;
                 Add(user);
+                id = user.Id;
             }
             else
             {
@@ -43,7 +44,7 @@ namespace LocalDev.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var raw = FirstOrDefault(x => x.Id.Equals(user.Id));
+                var raw = FirstOrDefault(_ => _.Id.Equals(user.Id));
                 if (raw != null)
                 {
                     if (!String.IsNullOrEmpty(user.Password))
@@ -73,7 +74,7 @@ namespace LocalDev.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var user = FirstOrDefault(x => x.Username.Equals(username));
+                var user = FirstOrDefault(_ => _.Username.Equals(username));
                 if (user != null)
                 {
                     user.Password = SecurityHelper.GenerateMD5(newPassword, user.Salt);
@@ -92,7 +93,7 @@ namespace LocalDev.Persistence.Repositories
         {
             error = false;
             errorMessage = "";
-            var user = FirstOrDefault(x => x.Username.Equals(username));
+            var user = FirstOrDefault(_ => _.Username.Equals(username));
             if (user != null)
             {
                 String encryptedPassword = SecurityHelper.GenerateMD5(password, user.Salt);
@@ -101,6 +102,7 @@ namespace LocalDev.Persistence.Repositories
                     error = true;
                     errorMessage = "Mật khẩu không đúng";
                 }
+                GlobalConstants.userID = user.Id;
                 GlobalConstants.username = user.Username;
                 GlobalConstants.fullName = user.FullName;
             }

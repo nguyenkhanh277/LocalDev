@@ -10,6 +10,8 @@ namespace LocalDev.Persistence.Repositories
 {
     public class ProgramFunctionAuthorityRepository : Repository<ProgramFunctionAuthority>
     {
+        public string id = "";
+
         public ProgramFunctionAuthorityRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
         {
         }
@@ -27,6 +29,7 @@ namespace LocalDev.Persistence.Repositories
                 programFunctionAuthority.CreatedAt = DateTime.Now;
                 programFunctionAuthority.CreatedBy = GlobalConstants.username;
                 Add(programFunctionAuthority);
+                id = programFunctionAuthority.Id;
             }
             else
             {
@@ -40,12 +43,13 @@ namespace LocalDev.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var raw = FirstOrDefault(x => x.Id.Equals(programFunctionAuthority.Id));
+                var raw = FirstOrDefault(_ => _.Id.Equals(programFunctionAuthority.Id));
                 if (raw != null)
                 {
                     raw.CollectInformation(programFunctionAuthority);
                     raw.EditedAt = DateTime.Now;
                     raw.EditedBy = GlobalConstants.username;
+                    id = raw.Id;
                 }
             }
             catch (Exception ex)

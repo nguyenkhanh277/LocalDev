@@ -28,15 +28,18 @@ namespace LocalDev.Core.Helper
             string result = content;
             if (content != "" && content != Properties.Settings.Default.Company && GlobalConstants.languageLibrary.Count > 0)
             {
-                if (switchLanguage && GlobalConstants.language == (int)GlobalConstants.LanguageValue.Vietnamese)
+                if (!String.IsNullOrEmpty(result))
                 {
-                    result = GlobalConstants.languageLibrary.Where(_ => _.English.Equals(result)).Select(_ => _.Vietnamese).FirstOrDefault();
+                    if (switchLanguage && GlobalConstants.language == (int)GlobalConstants.LanguageValue.Vietnamese)
+                    {
+                        result = GlobalConstants.languageLibrary.Where(_ => _.English.Equals(content)).Select(_ => _.Vietnamese).FirstOrDefault();
+                    }
+                    else if (GlobalConstants.language == (int)GlobalConstants.LanguageValue.English)
+                    {
+                        result = GlobalConstants.languageLibrary.Where(_ => _.Vietnamese.Equals(content)).Select(_ => _.English).FirstOrDefault();
+                    }
                 }
-                else if (GlobalConstants.language == (int)GlobalConstants.LanguageValue.English)
-                {
-                    result = GlobalConstants.languageLibrary.Where(_ => _.Vietnamese.Equals(result)).Select(_ => _.English).FirstOrDefault();
-                }
-                if(String.IsNullOrEmpty(result))
+                if (String.IsNullOrEmpty(result))
                 {
                     result = content;
                 }
